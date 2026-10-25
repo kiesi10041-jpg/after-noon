@@ -127,6 +127,7 @@ if(!pay(s,costs[a]))return false;
 if(a==='fill'){s.utilityKnown.water='on';s.stock.water=(s.stock.water||0)+3;s.text='물을 세 병 받아 두었다.';}
 if(a==='repair'){s.stock.cloth--;s.bag.durability=Math.min(100,s.bag.durability+45);s.text='헤진 어깨끈을 꿰맸다.';}
 if(a==='expand'){s.stock.cloth--;s.bag.slots+=2;s.text='가방에 주머니 두 칸을 덧댔다.';}
+if(a==='plant'){s.stock.seed--;s.garden={wateredDays:0,lastWaterDay:0};s.gardenNotice='씨앗을 심었다. 하루 한 번 물을 주며 살펴보자.';s.text=s.gardenNotice;}
 if(a==='insulate'){s.stock.blanket--;s.insulation++;s.text='창가 틈과 잠자리를 보강했다.';}
 
 
