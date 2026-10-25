@@ -1,0 +1,24 @@
+export const items={water:['생수',1,.5],can:['통조림',1,.4],fresh:['냉장 식품',1,.3],cloth:['천과 실',1,.2],tool:['수리 공구',2,1],blanket:['겨울 이불',3,1.5],fuel:['연료',2,2],seed:['씨앗',1,.1]};
+export function create(seed=Date.now()>>>0){return {v:2,seed,rng:seed,day:1,ap:3,health:100,hunger:75,thirst:75,stress:15,bag:{slots:6,durability:100},stock:{water:3,can:2,cloth:1},food:[],insulation:0,garden:0,power:3+seed%3,water:5+seed%4,scene:'wake',text:'눈을 떴다. 시계는 12:00. 창밖에서 경적이 끊이지 않는다.',loot:null,visits:{},log:[],ended:false};}
+export function rand(s){s.rng=(Math.imul(s.rng,1664525)+1013904223)>>>0;return s.rng/4294967296;}
+export const season=s=>['봄','여름','가을','겨울'][Math.floor((s.day-1)/20)%4];
+export const capacity=s=>Math.max(2,s.bag.slots-(s.bag.durability<40?2:0));
+export function action(s,a){if(s.ended)return false;const free=['look','phone','begin','eat','drink','take','return'];if(!free.includes(a)&&a!=='sleep'&&s.ap<=0){s.text='오늘은 더 움직일 힘이 없다. 물과 먹을 것을 챙기고 밤을 보내자.';return false;}
+if(a==='look'){s.scene='street';s.text='교차로에 차들이 비스듬히 멈춰 있다. 횡단보도에는 옷과 가방만 남았다. 움직이는 사람은 보이지 않는다.';}
+if(a==='phone'){s.scene='phone';s.text='가족에게 전화를 걸었다. 신호는 가지만 받지 않는다. 다른 번호도 마찬가지다.';}
+if(a==='begin'){s.scene='home';s.text='현관을 잠갔다. 오늘 할 수 있는 큰일은 세 가지 정도다. 수도가 나올 때 물부터 받아둘까.';}
+if(a==='eat'){if(s.food.length){s.food.sort((a,b)=>a.expires-b.expires);s.food.shift();s.hunger=Math.min(100,s.hunger+35);}else if(s.stock.can){s.stock.can--;s.hunger=Math.min(100,s.hunger+35);}else{s.text='먹을 것이 없다.';return false;}}
+if(a==='drink'){if(!s.stock.water){s.text='마실 물이 없다.';return false;}s.stock.water--;s.thirst=Math.min(100,s.thirst+40);}
+if(a==='fill'){if(s.day>=s.water){s.text='수도꼭지에서 공기 섞인 소리가 났다. 물은 나오지 않는다.';return false;}s.ap--;s.stock.water+=3;s.text='물을 세 병 받아 두었다. 언제까지 나올지는 알 수 없다.';}
+if(a==='rest'){s.ap--;s.stress=Math.max(0,s.stress-25);s.health=Math.min(100,s.health+8);s.text='오늘 할 일을 줄이고 쉬었다. 창밖의 소리에 귀를 기울였다.';}
+if(a==='repair'){if(!s.stock.cloth){s.text='천과 실이 필요하다.';return false;}s.ap--;s.stock.cloth--;s.bag.durability=Math.min(100,s.bag.durability+45);s.text='헤진 어깨끈을 꿰맸다.';}
+if(a==='expand'){if(!s.stock.cloth||!s.stock.tool||s.bag.slots>=10){s.text='천과 실, 수리 공구가 필요하다. 가방은 최대 10칸까지 늘릴 수 있다.';return false;}s.ap--;s.stock.cloth--;s.bag.slots+=2;s.text='덧댄 주머니에 물건을 더 넣을 수 있다. 최대 무게 8kg은 그대로다.';}
+if(a==='insulate'){if(!s.stock.blanket){s.text='단열에 쓸 이불이 필요하다.';return false;}s.ap--;s.stock.blanket--;s.insulation++;s.text='창가와 잠자리를 보강했다. 추위가 오기 전에 해두길 잘했다.';}
+if(a==='plant'){if(!s.stock.seed||season(s)==='겨울'){s.text='씨앗과 따뜻한 계절이 필요하다.';return false;}s.stock.seed--;s.ap--;s.garden=s.day+8;s.text='화분에 씨앗을 심었다. 수확까지 여덟 날, 매일 물 한 병이 필요하다.';}
+if(a==='out'){s.ap--;s.scene='door';s.text='외출은 오늘의 행동 하나를 쓴다. 집 주변에서 알고 있는 곳은 편의점과 생활용품점이다. 돌아오기까지 한 번의 외출이다.';}
+if(a==='store'||a==='hardware'){s.scene=a;s.visits[a]=(s.visits[a]||0)+1;s.event=rand(s)<.5?'glass':'blocked';s.text=s.event==='glass'?'깨진 유리가 입구에 흩어져 있다. 우회하면 가방을 덜 채워야 한다.':'쓰러진 선반이 안쪽을 막았다. 공구가 있으면 길을 만들 수 있다.';}
+if(a==='careful'||a==='force'||a==='tool'){if(a==='tool'&&!s.stock.tool){s.text='공구를 챙기지 못했다.';return false;}if(a==='force'){s.bag.durability=Math.max(0,s.bag.durability-25);s.stress+=12;if(rand(s)<.4)s.health-=15;}s.limit=a==='careful'?Math.max(1,capacity(s)-2):capacity(s);s.load=0;s.mass=0;const shop=s.scene==='store';s.loot=shop?{water:2,can:1+(rand(s)*3|0),...(s.day<s.power+2?{fresh:2}:{})}:{cloth:2,tool:1,...(rand(s)<.5?{blanket:1,fuel:1}:{seed:1})};if(s.visits[s.scene]>3)s.loot=shop?{water:1}:{cloth:1};s.scene='loot';s.text=shop&&s.day>=s.power+2?'냉장 진열대에서는 냄새가 난다. 밀봉된 물건만 살핀다.':'가방에 모두 들어가지는 않는다. 필요한 것부터 고르자.';}
+if(a==='return'){s.loot=null;s.scene='home';s.text='문을 닫고 가져온 물건을 내려놓았다.';}
+if(a==='sleep'){s.day++;s.ap=3;s.hunger-=24;s.thirst-=season(s)==='여름'?36:28;let spoiled=0;s.food=s.food.filter(f=>{if(f.expires<=s.day){spoiled++;return false;}return true;});if(s.garden){if(s.stock.water)s.stock.water--;else s.garden++;if(s.day>=s.garden){s.food.push({expires:s.day+3},{expires:s.day+3});s.garden=0;}}if(season(s)==='겨울'&&s.insulation<2){if(s.stock.fuel)s.stock.fuel--;else s.health-=12;}if(s.hunger<0)s.health-=18;if(s.thirst<0)s.health-=25;s.hunger=Math.max(0,s.hunger);s.thirst=Math.max(0,s.thirst);s.scene='home';s.text=`${s.day}일째 아침. ${season(s)}. `+(s.day===s.power?'냉장고 소리가 멎었다. ':'')+(s.day>=s.water?'수도는 끊겨 있다. ':'')+(spoiled?`식품 ${spoiled}개를 버렸다. `:'')+(s.day%20>=15?'계절이 바뀌기 전에 준비를 살펴야 한다.':'오늘도 할 수 있는 일부터 하자.');}
+s.health=Math.max(0,s.health);s.ended=s.health===0;s.log.unshift(s.text);s.log=s.log.slice(0,30);return true;}
+export function take(s,id){if(!s.loot?.[id])return false;const [,slots,mass]=items[id];if(s.load+slots>s.limit||s.mass+mass>8)return false;s.loot[id]--;s.load+=slots;s.mass+=mass;if(id==='fresh')s.food.push({expires:s.day+(season(s)==='여름'?1:2)});else s.stock[id]=(s.stock[id]||0)+1;return true;}
