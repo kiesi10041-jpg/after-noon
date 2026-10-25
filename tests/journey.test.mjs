@@ -73,3 +73,5 @@ test('locked bicycle requires carried tools and paid unlocking time',()=>{
  s.carry.tool=1;s.ap=0;assert.equal(take(s,'bike'),false);assert.equal(s.loot.bike,1);
  s.ap=3;assert.equal(take(s,'bike'),true);assert.equal(s.transport.bike,true);assert.equal(s.ap,2);assert.equal(s.time,750);assert.equal(s.loot.bike,0);assert.equal(take(s,'bike'),false);
 });
+
+test('planting consumes seed and creates garden exactly once',()=>{const s=ready();s.stock.seed=1;assert.equal(action(s,'plant'),true);assert.equal(s.stock.seed,0);assert.equal(s.garden.wateredDays,0);const ap=s.ap;assert.equal(action(s,'plant'),false);assert.equal(s.ap,ap);});
