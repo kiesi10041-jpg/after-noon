@@ -55,3 +55,27 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scrollbar-gutter:auto}
 
 /* One viewport, with shelf anchors in the illustration's own coordinate system. */
 .game-root:has(.storage-unified){overflow:hidden!important}.game-root .storage-unified{height:100dvh;min-height:0!important;width:100%;max-width:none;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)!important;display:flex;flex-direction:column;overflow:hidden;background:#e9dfca;color:#302c23}.storage-unified>header{position:static;flex:none;padding:8px 12px;min-height:58px;display:flex;align-items:center;justify-content:space-between;font-size:19px;gap:8px}.storage-unified>header button{font-size:16px;min-height:44px;padding:8px;border:0;background:transparent}.storage-viewport{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#d5c7ac}.game-root .storage-unified .storage-stage{position:relative;flex:none;height:100%;width:auto;max-width:100%;min-height:0;aspect-ratio:2/3;margin:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat;overflow:hidden}.storage-unified .stored-item{position:absolute;left:var(--slot-x);top:var(--slot-y);width:15%;height:14%;min-width:0!important;min-height:0!important;transform:translate(-50%,-100%)!important;background:transparent!important;border:0!important;padding:0}.storage-unified .stored-item .object-art{inset:auto -8% 0;height:auto;aspect-ratio:3/2}.storage-unified .object-shadow{bottom:0}.storage-unified .stored-item.selected{outline:2px solid #695335;outline-offset:0}.storage-controls{flex:none;min-height:132px;padding:10px 16px;background:#eee3cc;border-top:1px solid #b7a789}.storage-selection{min-height:66px;display:flex;gap:12px;align-items:center;justify-content:space-between}.storage-selection>strong{font-size:19px;line-height:1.4}.storage-selection>p{font-size:17px;line-height:1.5;margin:0}.storage-use{display:flex;gap:8px;flex-shrink:0}.storage-use button{font-size:17px;min-height:48px;padding:10px 14px;border:1px solid #897658;background:#536548;color:#fff8e7;border-radius:5px}.storage-use button+button{background:transparent;color:#40392c}.storage-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;line-height:1.4;min-height:34px}.storage-meta .storage-pages{display:flex;gap:8px;align-items:center}.storage-meta .storage-pages button{font-size:14px;min-height:34px;padding:3px 8px}.storage-meta .storage-pages span{font-size:14px}
+
+/* Shared scene proportions and unobstructed contextual actions. */
+.place-actions{display:none}.quest-progress{display:block!important;font-size:14px;line-height:1.5;color:#e7d7ad;margin-top:4px;font-weight:400}.wildlife-cat,.wildlife-crow{display:none!important}
+@media(max-width:760px){
+.game-root.place-mode .play-body{grid-template-rows:minmax(230px,1fr) auto}
+.game-root.place-mode .scene-stage{grid-template-rows:minmax(0,1fr) auto auto!important}
+.game-root.place-mode .world-spot{display:none}
+.game-root.place-mode .place-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px 12px;background:#17251d;border-top:1px solid #b8b18d55;z-index:15}
+.place-actions button{min-width:0;min-height:58px;padding:7px 4px;font-size:16px;background:#344537;color:#fff0d5;border:1px solid #82957888;border-radius:5px}
+.place-actions button small{display:block;font-size:12px;line-height:1.4;margin-top:4px}
+.game-root.place-mode .scene-choices>button[data-a="force"]{display:none}
+.game-root.place-mode .decision-panel{max-height:38dvh;padding:10px 14px 12px}
+.game-root.place-mode .vitals{padding-bottom:8px;gap:8px}
+.game-root.place-mode .vital{grid-template-columns:16px 1fr auto;gap:3px}
+.game-root.place-mode .vital b{grid-column:auto;font-size:18px;text-align:right}
+.game-root.place-mode .vital>span{font-size:13px}
+.game-root.place-mode .vital svg{width:15px;height:15px}
+.game-root.place-mode .vital meter{grid-column:1/-1;height:4px}
+.game-root.place-mode .narration{padding:10px 0 0}.game-root.place-mode .return-estimate{margin:8px 0 0;padding:8px 0}
+.game-root:not(.cinematic):not(.map-mode) .world-art{background-color:#242d25}
+.wildlife-sprite{z-index:2;width:19%;left:47%;bottom:8%}.wildlife-dog,.wildlife-boar{width:25%}
+}
+
+.world.hardware .world-art{background-size:220% 230%;background-position:2% 98%}
