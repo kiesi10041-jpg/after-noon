@@ -83,3 +83,5 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scrollbar-gutter:auto}
 .game-root .quest-card>.quest-progress{font-size:14px!important;max-width:none!important;line-height:1.5}
 .map-mode .decision-panel>.quest-card{display:block!important;margin:0 0 6px;padding:5px 9px!important}
 .map-mode .quest-card summary{min-height:24px}.map-mode .quest-card summary strong{font-size:15px!important}.map-mode .quest-progress{font-size:13px!important;margin-top:1px}
+
+.game-root .place-actions button small{color:#e0dbc6!important;font-size:13px!important}.game-root .place-actions button:disabled{opacity:.65!important}.game-root .place-actions button{line-height:1.45}
