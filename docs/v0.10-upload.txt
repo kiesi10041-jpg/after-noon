@@ -1,0 +1,8 @@
+12:00 v0.10 업로드 안내
+
+1. 저장소에 있는 v2 폴더와 assets 폴더를 업데이트 파일의 같은 이름 폴더로 덮어씁니다.
+2. CHANGELOG.md를 갱신하고 main 브랜치에 커밋·푸시합니다.
+3. GitHub Actions 배포 작업이 완료된 뒤 사이트를 새로고침합니다.
+4. 기존 저장 데이터는 자동 이전됩니다. 새 기록부터 이름 입력 화면이 표시됩니다.
+
+포함 파일: v2/, assets/, tests/journey.test.mjs, CHANGELOG.md, docs/v0.10.md, docs/v0.10-upload.txt
