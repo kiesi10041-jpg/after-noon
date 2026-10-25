@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {create,migrate,action,pack,take,drop,consumeCarry,returnCost,searchCost,load,isNight,clock,places,travelMinutes,departureAt,season,weatherToday,incidentAt,petEncounterAt} from '../v2/journey.js';
+import {create,migrate,action,pack,take,drop,consumeCarry,returnCost,searchCost,load,isNight,clock,places,travelMinutes,departureAt,season,weatherToday,incidentAt,petEncounterAt,routeDistance} from '../v2/journey.js';
 import {eatPantry} from '../v2/rules.js';
 
 const ready=()=>{const s=create(42);s.scene='home';s.ratsChecked={neighbor:true,store:true,hardware:true,pharmacy:true,market:true,park:true};return s;};
@@ -56,8 +56,11 @@ test('a parrot encounter can become a named companion and its food is consumed',
 
 test('a hungry companion raises tension; spending time together eases it slightly',()=>{const s=ready();s.pet={kind:'cat',name:'나비',nextMealDay:3,hungry:false};s.stock={};s.day=3;s.time=1430;const before=s.stress;assert.ok(action(s,'wait'));assert.equal(s.pet.hungry,true);assert.equal(s.stress,Math.min(100,before+2));const tense=s.stress;assert.ok(action(s,'pet-care'));assert.equal(s.stress,tense-8);});
 
-test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,15);assert.equal(s.pet,null);});
+test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,17);assert.equal(s.pet,null);});
 
 test('continue resting reaches the next morning in one action and drains standby battery',()=>{const s=ready();s.time=780;s.hornUntil=0;const charge=s.phoneBattery;assert.ok(action(s,'sleep-morning'));assert.equal(s.day,2);assert.equal(clock(s),'06:00');assert.ok(s.phoneBattery<charge);});
 test('horn disturbance can be mitigated with crafted earplugs',()=>{const s=ready();s.stock.cloth=1;s.hornUntil=4;assert.ok(action(s,'earplugs'));s.time=1320;assert.ok(action(s,'sleep'));assert.equal(s.ap,8);});
 test('a late signal leaves a missed transmission rather than a live voice',()=>{const s=ready();s.signalPending=true;s.day=s.signalDeadline+1;assert.ok(action(s,'answer-signal'));assert.equal(s.signalHeard,undefined);assert.equal(s.signalMissed,true);});
+
+test('family route is regional and symmetric from every local origin',()=>{for(const from of ['home','neighbor','store','pharmacy','market','hardware','park','station']){assert.ok(routeDistance(from,'family')>75);assert.equal(routeDistance(from,'family'),routeDistance('family',from));}assert.equal(routeDistance('home','family'),80);assert.equal(routeDistance('station','family'),77.9);assert.equal(routeDistance('road3','family'),20);assert.equal(routeDistance('family','family'),0);});
+test('regional foot travel can progress through a rest stop',()=>{const s=ready();s.questStage=2;s.incidents=Array(40).fill(null);s.petEncounters=[];s.wildlifeChecked={};assert.ok(plan(s,'road1'));assert.equal(s.location,'road1');assert.ok(s.ap<=4);assert.ok(action(s,'road-rest'));assert.ok(s.ap>=6);assert.ok(action(s,'nearby'));assert.ok(plan(s,'road2'));assert.equal(s.location,'road2');});
