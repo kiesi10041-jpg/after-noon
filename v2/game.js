@@ -1,7 +1,7 @@
 import{patchHTML}from'./render.js';
-import{storageObjects,storageView,useStored}from'./storage.js?v=0.19.0';
-import{setSound,soundOn,effect,stopRing}from'./sound.js?v=0.19.0';
-import{create,migrate,action,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.19.0';
+import{storageObjects,storageView,useStored}from'./storage.js?v=0.19.1';
+import{setSound,soundOn,effect,stopRing}from'./sound.js?v=0.19.1';
+import{create,migrate,action,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.19.1';
 const root=document.querySelector('#game'),key=new URLSearchParams(location.search).has('qa')?'noon-v2-qa':'noon-v2-preview',mapDots={home:[8,28],neighbor:[17,44],store:[43,66],pharmacy:[82,35],market:[71,74],hardware:[27,76],park:[28,22],station:[88,78],family:[25,10],road1:[75,72],road2:[25,52],road3:[75,32]};let s=create(),title=true,hasSave=false,confirmNew=false,nameEntry=false,nameError='',panel=null,storage=null,storagePage=0,selectedStored=null,bagTab='food',beam={x:55,y:58},dragStart=null,beamDragged=false;
 try{const x=JSON.parse(localStorage.getItem(key));if(x?.v===2&&x.stock&&Number.isFinite(x.day)){s=migrate(x);hasSave=true;}}catch{}
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
