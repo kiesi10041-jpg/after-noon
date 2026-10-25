@@ -66,3 +66,10 @@ test('family route is regional and symmetric from every local origin',()=>{for(c
 test('regional foot travel can progress through a rest stop',()=>{const s=ready();s.questStage=2;s.incidents=Array(40).fill(null);s.petEncounters=[];s.wildlifeChecked={};assert.ok(plan(s,'road1'));assert.equal(s.location,'road1');assert.ok(s.ap<=4);assert.ok(action(s,'road-rest'));assert.ok(s.ap>=6);assert.ok(action(s,'nearby'));assert.ok(plan(s,'road2'));assert.equal(s.location,'road2');});
 
 test('distant return proposes a reachable regional leg rather than an impossible rest loop',()=>{const s=ready();s.questStage=3;s.away=true;s.location='family';s.scene='family';s.ap=8;assert.ok(action(s,'return'));assert.equal(s.scene,'door');assert.equal(s.mapScope,'regional');assert.equal(s.tripPlan.target,'road3');assert.ok(routeDistance('family','road3')<32);});
+
+test('locked bicycle requires carried tools and paid unlocking time',()=>{
+ const s=ready();s.away=true;s.scene='loot';s.location='park';s.time=720;s.day=3;s.loot={bike:1};s.worldLoot={park:{bike:1}};
+ assert.equal(take(s,'bike'),false);assert.equal(s.transport.bike,false);assert.equal(s.loot.bike,1);
+ s.carry.tool=1;s.ap=0;assert.equal(take(s,'bike'),false);assert.equal(s.loot.bike,1);
+ s.ap=3;assert.equal(take(s,'bike'),true);assert.equal(s.transport.bike,true);assert.equal(s.ap,2);assert.equal(s.time,750);assert.equal(s.loot.bike,0);assert.equal(take(s,'bike'),false);
+});
