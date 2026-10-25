@@ -56,4 +56,4 @@ test('a parrot encounter can become a named companion and its food is consumed',
 
 test('a hungry companion raises tension; spending time together eases it slightly',()=>{const s=ready();s.pet={kind:'cat',name:'나비',nextMealDay:3,hungry:false};s.stock={};s.day=3;s.time=1430;const before=s.stress;assert.ok(action(s,'wait'));assert.equal(s.pet.hungry,true);assert.equal(s.stress,Math.min(100,before+5));const tense=s.stress;assert.ok(action(s,'pet-care'));assert.equal(s.stress,tense-2);});
 
-test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,12);assert.equal(s.pet,null);});
+test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,13);assert.equal(s.pet,null);});
