@@ -82,3 +82,19 @@ main[data-weather="안개"] .scene-stage:has(.world.door, .world.street, .world.
 .hud-pet{display:block;color:#d8c692;font-size:10px;line-height:1.1}.game-root .hud-day .player-name{align-self:flex-end;padding-bottom:3px;white-space:nowrap}
 @media(max-width:760px){.title-root .title-controls:has(.name-entry){padding-top:30vh}.name-entry{gap:8px;padding:16px}.name-entry input{font-size:16px}.companion-sprite{height:35%;bottom:11%}.companion-cat{height:29%;bottom:12%}.companion-parrot{height:29%;bottom:18%}.game-root .hud-day .player-name{font-size:9px;margin-top:2px}.hud-pet{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.companion-sprite{animation:none}}
+
+/* v0.12: guided opening, grounded item art, and compact day review */
+.world-art{background-size:cover;background-position:center}
+.world.station .world-art{background-image:url('../assets/subway-station-v12.webp');background-size:cover;background-position:center}
+.world.family .world-art{background-image:url('../assets/family-home-v12.webp');background-size:cover;background-position:center}
+.basket-object{position:absolute;z-index:6;right:7%;bottom:14%;width:min(31%,220px);height:auto;filter:drop-shadow(0 7px 7px #12140f77);pointer-events:none;animation:basket-arrive .45s ease-out both}
+@keyframes basket-arrive{from{opacity:0;transform:translateY(10px) rotate(2deg)}to{opacity:1;transform:none}}
+.gear-art{background-image:url('../assets/survival-tools-v12.webp');background-size:400% 300%;background-repeat:no-repeat;filter:drop-shadow(0 2px 2px #0004)}
+.gear-flashlight{background-position:0 0}.gear-battery{background-position:33.333% 0}.gear-medicine{background-position:66.667% 0}.gear-cloth,.gear-mask{background-position:100% 0}.gear-tool{background-position:0 50%}.gear-blanket{background-position:33.333% 50%}.gear-jacket{background-position:66.667% 50%}.gear-fuel{background-position:100% 50%}.gear-bike{background-position:0 100%}.gear-carKey{background-position:33.333% 100%}.gear-metroCard{background-position:66.667% 100%}.gear-seed{background-position:100% 100%}
+.quest-card{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 2px;padding:10px 12px;background:#1c2821;border-left:2px solid #c6b17f;color:#eee4cf}
+.quest-card>div{display:grid;gap:2px;min-width:0}.quest-card small{font-size:10px;letter-spacing:.08em;color:#c8b88e}.quest-card strong{font-size:14px;font-weight:600}.quest-card span,.quest-card>b{font-size:11px;line-height:1.45;color:#c7c5b4}.quest-card>b{max-width:42%;text-align:right;font-weight:400}
+.report-condition{padding:12px;background:#202b24;border:1px solid #8e967a55}.report-condition>strong,.report-condition>span{display:block}.report-condition>span{margin-top:4px;color:#e2d5b8;font-size:13px}.report-condition p{margin:6px 0 0;color:#bfc6b4;font-size:13px;line-height:1.65}.report-heading{display:block;margin:18px 0 6px;color:#e3d4ae;font-size:14px}.report-actions{list-style:none;margin:0;padding:0;border-top:1px solid #8e967a44}.report-actions li{display:flex;gap:12px;padding:7px 2px;border-bottom:1px solid #8e967a33;font-size:13px}.report-actions time{color:#c9b98e;font-variant-numeric:tabular-nums;min-width:42px}.report-supplies{display:flex;flex-wrap:wrap;gap:5px;padding:6px 0}.report-item{display:flex;align-items:center;min-width:52px;padding:3px 5px;background:#1e2922;border:1px solid #8e967a33}.report-item .supply-art{width:37px;height:31px}.report-item b{font-size:12px;color:#e1d1a6}
+@media(max-width:760px){.basket-object{right:4%;bottom:15%;width:34%}.quest-card{margin:8px 0;padding:8px 10px}.quest-card strong{font-size:13px}.quest-card span,.quest-card>b{font-size:10px}.report-condition>span,.report-condition p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.basket-object{animation:none}}
+
+.scene-stage .world{margin-bottom:0}
