@@ -1,12 +1,13 @@
 export const items={water:['생수',1,.5],can:['통조림',1,.4],fresh:['냉장 식품',1,.3],cloth:['천과 실',1,.2],tool:['수리 공구',2,1],blanket:['겨울 이불',3,1.5],fuel:['연료',2,2],seed:['씨앗',1,.1]};
-export function create(seed=Date.now()>>>0){return {v:2,seed,rng:seed,day:1,ap:3,health:100,hunger:75,thirst:75,stress:15,bag:{slots:6,durability:100},stock:{water:3,can:2,cloth:1},food:[],insulation:0,garden:0,power:3+seed%3,water:5+seed%4,scene:'wake',text:'눈을 떴다. 시계는 12:00. 창밖에서 경적이 끊이지 않는다.',loot:null,visits:{},log:[],ended:false};}
+export function create(seed=Date.now()>>>0){return {v:2,seed,rng:seed,day:1,ap:3,health:100,hunger:75,thirst:75,stress:15,bag:{slots:6,durability:100},stock:{water:3,can:2,cloth:1},food:[],insulation:0,garden:0,power:3+seed%3,water:5+seed%4,scene:'wake',text:'눈을 떴다. 시계는 12:00. 밖에서 경적이 끊이지 않는다. 무슨 일인지 확인하려고 현관문을 열었다.',loot:null,visits:{},log:[],ended:false};}
 export function rand(s){s.rng=(Math.imul(s.rng,1664525)+1013904223)>>>0;return s.rng/4294967296;}
 export const season=s=>['봄','여름','가을','겨울'][Math.floor((s.day-1)/20)%4];
 export const capacity=s=>Math.max(2,s.bag.slots-(s.bag.durability<40?2:0));
-export function action(s,a){if(s.ended)return false;const free=['look','phone','begin','eat','drink','take','return'];if(!free.includes(a)&&a!=='sleep'&&s.ap<=0){s.text='오늘은 더 움직일 힘이 없다. 물과 먹을 것을 챙기고 밤을 보내자.';return false;}
-if(a==='look'){s.scene='street';s.text='교차로에 차들이 비스듬히 멈춰 있다. 횡단보도에는 옷과 가방만 남았다. 움직이는 사람은 보이지 않는다.';}
-if(a==='phone'){s.scene='phone';s.text='가족에게 전화를 걸었다. 신호는 가지만 받지 않는다. 다른 번호도 마찬가지다.';}
-if(a==='begin'){s.scene='home';s.text='현관을 잠갔다. 오늘 할 수 있는 큰일은 세 가지 정도다. 수도가 나올 때 물부터 받아둘까.';}
+export function action(s,a){if(s.ended)return false;const free=['look','outside','phone','begin','eat','drink','take','return'];if(!free.includes(a)&&a!=='sleep'&&s.ap<=0){s.text='오늘은 더 움직일 힘이 없다. 물과 먹을 것을 챙기고 밤을 보내자.';return false;}
+if(a==='look'){s.scene='threshold';s.text='복도 바닥에 이웃의 옷과 슬리퍼가 놓여 있다. 열린 문 안으로 불러 봤지만 대답이 없다. 아래층에서 경적 소리가 들린다.';}
+if(a==='outside'){s.scene='street';s.text='건물 밖으로 나왔다. 차 두 대가 부딪힌 채 멈춰 있다. 횡단보도에는 옷과 가방이 흩어져 있다. 차 안에도, 인도에도 사람이 없다. 가족이 있는 집은 괜찮을까.';}
+if(a==='phone'){s.scene='phone';s.text='길가에 멈춰 서서 가족이 있는 집에 전화를 걸었다. 신호음이 이어진다. 아무도 받지 않는다. 다시 걸어도 마찬가지다.';}
+if(a==='begin'){s.scene='home';s.text='집으로 돌아와 현관을 잠갔다. 전화기를 식탁에 내려놓았다. 수도에서는 아직 물이 나온다. 오늘은 물을 받아 두고 먹을 것을 확인해야겠다.';}
 if(a==='eat'){if(s.food.length){s.food.sort((a,b)=>a.expires-b.expires);s.food.shift();s.hunger=Math.min(100,s.hunger+35);}else if(s.stock.can){s.stock.can--;s.hunger=Math.min(100,s.hunger+35);}else{s.text='먹을 것이 없다.';return false;}}
 if(a==='drink'){if(!s.stock.water){s.text='마실 물이 없다.';return false;}s.stock.water--;s.thirst=Math.min(100,s.thirst+40);}
 if(a==='fill'){if(s.day>=s.water){s.text='수도꼭지에서 공기 섞인 소리가 났다. 물은 나오지 않는다.';return false;}s.ap--;s.stock.water+=3;s.text='물을 세 병 받아 두었다. 언제까지 나올지는 알 수 없다.';}
