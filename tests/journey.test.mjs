@@ -6,6 +6,8 @@ import {eatPantry} from '../v2/rules.js';
 const ready=()=>{const s=create(42);s.scene='home';s.ratsChecked={neighbor:true,store:true,hardware:true,pharmacy:true,market:true,park:true};return s;};
 function plan(s,target='store',vehicle='walk',departure='now'){
   if(!s.away&&s.scene==='home')action(s,'out');
+  if(vehicle==='bike')s.transport.bike=true;
+  if(vehicle==='car'){s.transport.carKey=true;s.stock.fuel??=1;}
   s.tripPlan={target,vehicle,departure};
   return action(s,'depart');
 }
@@ -29,7 +31,7 @@ test('phone charges only while mains power is available',()=>{const s=ready();s.
 test('rat encounters begin early and resolve once without regenerating stock',()=>{let count=0;for(let seed=1;seed<=60;seed++){const s=create(seed);s.scene='home';s.day=4;s.time=900;s.ratsChecked={};plan(s,'neighbor');if(s.scene==='neighbor')action(s,'careful');if(s.scene!=='rat-choice')continue;count++;assert.equal(take(s,'water'),false);assert.ok(action(s,'rat-ignore'));assert.equal(s.ratActive,false);assert.equal(s.scene,'neighbor');assert.ok(action(s,'careful'));assert.equal(s.scene,'loot');}assert.ok(count>4);});
 test('rat scene can be abandoned; return removes its sprite',()=>{const s=ready();assert.ok(plan(s,'neighbor'));s.scene='rat-choice';s.ratActive=true;assert.ok(action(s,'return'));assert.equal(s.scene,'home');assert.equal(s.ratActive,false);});
 test('departure windows consume actual waiting time',()=>{const s=ready();s.time=750;assert.ok(plan(s,'store','bike','day'));assert.equal(clock(s),'13:06');assert.equal(s.ap,12);});
-test('bike is available; car requires keys and fuel, then spends fuel once per outing',()=>{const s=ready();assert.ok(s.transport.bike);s.transport.carKey=true;s.stock.fuel=1;assert.ok(plan(s,'market','car'));assert.equal(s.stock.fuel,0);assert.ok(action(s,'nearby'));assert.ok(plan(s,'pharmacy','car','dusk'));assert.equal(s.stock.fuel,0);assert.ok(action(s,'return'));assert.equal(s.transport.fuelPaid,false);});
+test('new runs begin on foot; car requires keys and fuel, then spends fuel once per outing',()=>{const s=ready();assert.equal(s.transport.bike,false);assert.equal(s.transport.carKey,false);s.transport.bike=true;s.transport.carKey=true;s.stock.fuel=1;assert.ok(plan(s,'market','car'));assert.equal(s.stock.fuel,0);assert.ok(action(s,'nearby'));assert.ok(plan(s,'pharmacy','car','dusk'));assert.equal(s.stock.fuel,0);assert.ok(action(s,'return'));assert.equal(s.transport.fuelPaid,false);});
 test('a single outing can chain destinations and return from the current place',()=>{const s=ready();assert.ok(plan(s,'store'));assert.ok(action(s,'nearby'));assert.ok(plan(s,'pharmacy'));assert.equal(s.location,'pharmacy');assert.ok(action(s,'return'));assert.equal(s.scene,'home');});
 test('map distance and travel time vary by destination and vehicle',()=>{assert.equal(places.park.distance,1.5);assert.ok(travelMinutes('park','walk')>travelMinutes('park','bike'));assert.ok(travelMinutes('park','bike')>travelMinutes('park','car'));const s=ready();assert.match(departureAt(s,'dawn').label,/06:00/);});
 test('wildlife pressure escalates: ordinary birds early, dogs after day three, boars near the park later',()=>{let dogs=0,boars=0;for(let seed=1;seed<=80;seed++){const s=create(seed);s.scene='home';s.day=10;s.time=1000;s.ratsChecked={};plan(s,'park');if(s.wildlifeActive==='dog')dogs++;if(s.wildlifeActive==='boar')boars++;}assert.ok(dogs>0);assert.ok(boars>0);});
@@ -54,4 +56,4 @@ test('a parrot encounter can become a named companion and its food is consumed',
 
 test('a hungry companion raises tension; spending time together eases it slightly',()=>{const s=ready();s.pet={kind:'cat',name:'나비',nextMealDay:3,hungry:false};s.stock={};s.day=3;s.time=1430;const before=s.stress;assert.ok(action(s,'wait'));assert.equal(s.pet.hungry,true);assert.equal(s.stress,Math.min(100,before+5));const tense=s.stress;assert.ok(action(s,'pet-care'));assert.equal(s.stress,tense-2);});
 
-test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,10);assert.equal(s.pet,null);});
+test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,11);assert.equal(s.pet,null);});
