@@ -84,6 +84,7 @@ main[data-weather="안개"] .scene-stage:has(.world.door, .world.street, .world.
 @media(prefers-reduced-motion:reduce){.companion-sprite{animation:none}}
 
 /* v0.12: guided opening, grounded item art, and compact day review */
+/* v0.13: grounded transit and clear health recovery guidance */
 .world-art{background-size:cover;background-position:center}
 .world.station .world-art{background-image:url('../assets/subway-station-v12.webp');background-size:cover;background-position:center}
 .world.family .world-art{background-image:url('../assets/family-home-v12.webp');background-size:cover;background-position:center}
@@ -98,3 +99,5 @@ main[data-weather="안개"] .scene-stage:has(.world.door, .world.street, .world.
 @media(prefers-reduced-motion:reduce){.basket-object{animation:none}}
 
 .scene-stage .world{margin-bottom:0}
+
+.report-recovery{margin:16px 0 4px;padding:11px 12px;background:#202b24;border-left:2px solid #c9b284}.report-recovery strong{font-size:13px;color:#e4d7b6}.report-recovery p{margin:5px 0 0;font-size:12px;line-height:1.65;color:#c3c6b6}
