@@ -118,3 +118,6 @@ main[data-weather="안개"] .scene-stage:has(.world.door, .world.street, .world.
 }
 
 .cinematic .scene-location{display:none}
+
+html{scrollbar-gutter:auto}
+@media(max-width:760px){.map-mode .decision-panel>.quest-card,.map-mode .decision-panel>.vitals,.map-mode .decision-panel>.narration{display:none!important}.map-mode .trip-planner-head small{display:none}.map-mode .trip-planner-head strong{white-space:nowrap;font-size:15px;line-height:1.4}.map-mode .trip-planner-head{display:block}.map-mode .trip-help{margin:0}}
