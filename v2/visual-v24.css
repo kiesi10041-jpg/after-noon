@@ -1,0 +1,20 @@
+/* Illustrated surfaces, with live text and accessible touch targets. */
+.game-root .world.home .world-art{background-size:cover;background-position:center}
+.game-root .world.neighbor .world-art,.game-root .after-dark .world.neighbor .world-art{background-image:url('../assets/neighbor-v24.webp');background-size:cover;background-position:center}
+.game-root .standalone-item{object-fit:contain;object-position:center;background:none!important;max-width:100%;filter:none}
+.bike-portrait{background:#ded6be;padding:12px;min-height:150px}.bike-portrait .standalone-item{width:100%;height:155px;max-width:310px}
+.game-root.regional-map .world.door .world-art{background:url('../assets/route-sheet-v24.svg') center/100% 100% no-repeat!important;filter:none!important}
+.game-root.regional-map .world-light{display:none}.game-root.regional-map .world{aspect-ratio:8/9}
+.game-root.regional-map .scene-location{color:#302e24;text-shadow:none;background:#eee4cb;padding:2px 6px}
+.game-root.regional-map .world-spot{max-width:43%;min-width:100px;top:var(--y)!important;padding:4px;color:#292d24;gap:0}
+.game-root.regional-map .spot-marker{width:16px;height:16px;min-height:16px;border:2px solid #455342;background:#f1e8d3;box-shadow:none}.game-root.regional-map .spot-marker svg{display:none}
+.game-root.regional-map .spot-label{font-size:16px;line-height:1.25;color:#272b24;background:#eee5d0f5;padding:3px 5px;border-radius:1px;white-space:normal;border-bottom:1px solid #a69c7b}
+.game-root.regional-map .spot-label small{display:block!important;color:#605b49;font-size:12px!important;margin-top:1px}
+.game-root.regional-map .route-current{color:#fff7df;background:#40523f;z-index:6;font-size:12px;transform:translate(-50%,-110%)}
+.game-root.regional-map .route-path path{stroke:#a74f39;stroke-width:.65;stroke-dasharray:2 1}
+.game-root.regional-map .route-path circle{fill:#a74f39}
+.game-root .travel-tabs button{background:#dcd4be;color:#2f392f;border:1px solid #8c947b;border-radius:2px;font-size:14px}
+.game-root .place-actions button,.game-root .home-actions button{border-radius:2px;background:#303e32;border-color:#a9ad8c66;box-shadow:inset 0 1px #ded6b51a}
+.game-root .companion-parrot{width:7%!important;max-width:55px;bottom:18%!important;left:75%!important;right:auto!important}
+.game-root .world.neighbor .companion-parrot{left:57%!important;bottom:36%!important}
+@media(max-width:760px){.game-root.regional-map .scene-stage{min-height:300px!important;flex:1!important}.game-root.regional-map .world{width:100%;height:100%;min-height:300px}.game-root.regional-map .play-body{min-height:0}.game-root.regional-map .decision-panel{max-height:34dvh!important}.game-root .travel-tabs{gap:4px}.game-root .travel-tabs button{min-width:0;padding:6px 3px;font-size:13px}.game-root.regional-map .spot-label{font-size:15px!important}.game-root.regional-map .scene-location{font-size:12px}.game-root.regional-map .route-current{min-width:30px}.game-root.regional-map .trip-return{font-size:13px}}
