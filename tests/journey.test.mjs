@@ -56,7 +56,7 @@ test('a parrot encounter can become a named companion and its food is consumed',
 
 test('a hungry companion raises tension; spending time together eases it slightly',()=>{const s=ready();s.pet={kind:'cat',name:'나비',nextMealDay:3,hungry:false};s.stock={};s.day=3;s.time=1430;const before=s.stress;assert.ok(action(s,'wait'));assert.equal(s.pet.hungry,true);assert.equal(s.stress,Math.min(100,before+2));const tense=s.stress;assert.ok(action(s,'pet-care'));assert.equal(s.stress,tense-8);});
 
-test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,17);assert.equal(s.pet,null);});
+test('v0.7 saves keep their clock, bag, and carried supplies during weather migration',()=>{const s=ready();s.rulesVersion=7;s.time=1325;s.carry={can:1};s.bag.durability=63;migrate(s);assert.equal(s.time,1325);assert.equal(s.carry.can,1);assert.equal(s.bag.durability,63);assert.equal(s.rulesVersion,21);assert.equal(s.pet,null);});
 
 test('continue resting reaches the next morning in one action and drains standby battery',()=>{const s=ready();s.time=780;s.hornUntil=0;const charge=s.phoneBattery;assert.ok(action(s,'sleep-morning'));assert.equal(s.day,2);assert.equal(clock(s),'06:00');assert.ok(s.phoneBattery<charge);});
 test('horn disturbance can be mitigated with crafted earplugs',()=>{const s=ready();s.stock.cloth=1;s.hornUntil=4;assert.ok(action(s,'earplugs'));s.time=1320;assert.ok(action(s,'sleep'));assert.equal(s.ap,8);});
