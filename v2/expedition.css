@@ -10,3 +10,5 @@
 
 .shelter-feedback{font-size:16px;line-height:1.7;color:#e5d8b8;background:#233b2d;padding:10px;border-left:2px solid #b8bd8f}
 @media(max-width:760px){.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .scene-choices{display:none}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .place-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .place-actions button{font-size:16px;min-height:50px}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .place-actions button small{font-size:12px!important}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .place-actions>button:last-child{border-color:#c2b586}}
+
+@media(max-width:360px){.story-copy{max-height:57%;padding:14px 18px 18px}.story-copy p{font-size:18px;line-height:1.75;margin-bottom:16px;word-break:keep-all;overflow-wrap:anywhere}.story-copy button{font-size:17px;min-height:52px;padding:10px 14px}}
