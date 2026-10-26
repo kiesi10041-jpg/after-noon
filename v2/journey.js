@@ -1,6 +1,6 @@
 import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.23.2';
 export {flashlightOwned};
-import {expeditionPlaces,extraItems,initExpedition,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.23.2';
+import {expeditionPlaces,extraItems,initExpedition,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.24.1';
 import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js';
 export {items,pantryFoods,season,capacity,weatherToday,incidentToday};
 items.flashlight=['손전등',1,.2];items.battery=['건전지 한 쌍',1,.1];
