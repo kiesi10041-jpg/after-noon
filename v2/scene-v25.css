@@ -26,3 +26,5 @@
 /* Each companion occupies one square cell of the 3:1 source sheet. */
 .game-root .companion-sprite{height:auto!important;aspect-ratio:1/1}
 .game-root .companion-parrot{width:12%!important;max-width:88px;min-width:38px;height:auto!important;aspect-ratio:1/1}
+
+.game-root button.vital{padding:0;min-height:44px;border:0;background:transparent;border-radius:0;text-align:left;cursor:pointer}.game-root button.vital:hover{background:#ffffff0a}.care-alert{margin-top:10px;padding:10px 12px;min-height:48px;color:#ffe4bd;background:#473d2b;border:1px solid #bfaa73;font-size:16px;line-height:1.5}
