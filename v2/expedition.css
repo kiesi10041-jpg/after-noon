@@ -18,3 +18,6 @@
 
 .relay-decision button{display:block;margin-top:8px;text-align:left}.relay-decision button small{display:block;font-size:13px;color:#dbd9c4;line-height:1.5;margin-top:4px}.relay-decision .story-back{min-height:38px;padding:6px 12px;border:0;background:transparent;color:#d3cfba;font-size:15px;text-align:center}.relay-decision button:disabled{opacity:.5}.relay-decision p{margin-bottom:12px}
 @media(max-width:760px){.game-root.place-mode .scene-stage:not(.after-dark) .scene-lightbar{display:none}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .return-estimate{display:none}.game-root.place-mode:is([data-location=nowon],[data-location=relay],[data-location=clinic]) .place-actions button small{line-height:1.4}.relay-decision{max-height:66%}.relay-decision p{font-size:18px;line-height:1.65}.relay-decision button{min-height:56px;font-size:17px;padding:8px 12px}}
+/* Keep each 4:3 atlas cell at its own ratio, then crop the scene window. */
+.world:is(.nowon,.clinic,.relay),.game-root[data-shelter=yes] .world:is(.road1,.road2,.road3){container-type:size;overflow:hidden}
+.world:is(.nowon,.clinic,.relay) .world-art,.game-root[data-shelter=yes] .world:is(.road1,.road2,.road3) .world-art{inset:auto;left:50%;top:50%;width:max(100cqw,133.333cqh);height:max(100cqh,75cqw);transform:translate(-50%,-50%)}
