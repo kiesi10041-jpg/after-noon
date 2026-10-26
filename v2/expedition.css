@@ -21,3 +21,5 @@
 /* Keep each 4:3 atlas cell at its own ratio, then crop the scene window. */
 .world:is(.nowon,.clinic,.relay),.game-root[data-shelter=yes] .world:is(.road1,.road2,.road3){container-type:size;overflow:hidden}
 .world:is(.nowon,.clinic,.relay) .world-art,.game-root[data-shelter=yes] .world:is(.road1,.road2,.road3) .world-art{inset:auto;left:50%;top:50%;width:max(100cqw,133.333cqh);height:max(100cqh,75cqw);transform:translate(-50%,-50%)}
+
+@media(max-width:760px){.game-root.place-mode:has(.pitch-dark) .scene-choices{display:grid}}
