@@ -18,3 +18,11 @@
  .game-root.map-mode:not(.regional-map) .spot-label small{font-size:12px}
  .game-root.map-mode:not(.regional-map) .spot-marker{width:29px;height:29px}
 }
+
+/* Full-width local maps; height remains stable when a destination is selected. */
+@media(max-width:760px){
+ .game-root.map-mode:not(.regional-map) .scene-stage .world{width:100%;max-width:none;aspect-ratio:auto}
+}
+/* Each companion occupies one square cell of the 3:1 source sheet. */
+.game-root .companion-sprite{height:auto!important;aspect-ratio:1/1}
+.game-root .companion-parrot{width:12%!important;max-width:88px;min-width:38px;height:auto!important;aspect-ratio:1/1}
