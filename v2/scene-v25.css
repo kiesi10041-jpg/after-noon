@@ -1,0 +1,20 @@
+/* Each scene owns a complete image. Never sample a multi-scene atlas. */
+.game-root .world.hardware .world-art{background-image:url('../assets/hardware-v25.webp');background-size:cover;background-position:center;background-repeat:no-repeat}
+.game-root.map-mode:not(.regional-map) .world.door .world-art{background-image:url('../assets/neighborhood-v25.webp');background-size:cover;background-position:center;background-repeat:no-repeat}
+/* Keep the same camera when searching, collecting loot, or showing an event. */
+@media(max-width:760px){
+ .game-root:not(.cinematic):not(.map-mode) .play-body{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+ .game-root:not(.cinematic):not(.map-mode) .scene-stage{display:flex!important;flex-direction:column;align-items:stretch;flex:none;min-height:0;height:auto;padding:0;max-height:none}
+ .game-root:not(.cinematic):not(.map-mode) .scene-stage .world{flex:none;width:100%;height:min(66.6667vw,32svh);min-height:0;max-height:none;aspect-ratio:auto;margin:0}
+ .game-root:not(.cinematic):not(.map-mode) .scene-lightbar{flex:none;position:static}
+ .game-root:not(.cinematic):not(.map-mode) .decision-panel{max-height:none;min-height:0;overflow-y:auto;overflow-x:hidden}
+ .game-root .scene-stage .home-actions,.game-root .scene-stage .place-actions{flex:none}
+ .game-root.map-mode .play-body{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+ .game-root.map-mode .scene-stage{display:flex;justify-content:center;align-items:center;flex:none!important;min-height:0!important;height:calc(min(100vw,46svh) + 24px);padding:24px 0 0;max-height:none}
+ .game-root.map-mode .scene-stage .world{flex:none;width:min(100vw,46svh);height:min(100vw,46svh);min-height:0;margin:0;aspect-ratio:1;max-width:100%}
+ .game-root.map-mode.regional-map .scene-stage .world{width:calc(min(100vw,46svh) * 8 / 9);aspect-ratio:8/9}
+ .game-root.map-mode .decision-panel{min-height:0;max-height:none!important;overflow-y:auto;overflow-x:hidden}
+ .game-root.map-mode:not(.regional-map) .spot-label{font-size:14px;line-height:1.25;padding:3px 5px;max-width:100px}
+ .game-root.map-mode:not(.regional-map) .spot-label small{font-size:12px}
+ .game-root.map-mode:not(.regional-map) .spot-marker{width:29px;height:29px}
+}
