@@ -1,8 +1,8 @@
-import {initExpedition,storyBeats,expeditionQuest,shelterAt,woundNotice} from './expedition.js?v=0.21.4';
+import {initExpedition,storyBeats,expeditionQuest,shelterAt,woundNotice} from './expedition.js?v=0.21.6';
 export {expeditionQuest};
 const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function storyView(s){const b=storyBeats[s.storyBeat];if(!b)return null;const phone=['call','missed','drawer'].includes(s.storyBeat);return `<section class="story-screen" aria-label="${b.title}"><div class="story-illustration story-art-${b.art}"></div><div class="story-shade"></div><header>${b.title}</header>${phone?`<div class="story-phone-state ${s.storyBeat==='drawer'?'vibrating':''}">${s.storyBeat==='drawer'?'수신 중':s.storyBeat==='call'?'연결이 끊겼습니다':'부재중 전화 1 · 서비스 없음'}</div>`:''}<div class="story-copy"><p>${esc(b.text).replace(/\n/g,'<br>')}</p><button data-a="story-next">${b.next}<span>›</span></button></div></section>`;}
-export function expeditionControls(s,button){const e=initExpedition(s);let out='';if(s.scene!==s.location||!s.away)return out;
+export function expeditionControls(s,button){const e=initExpedition(s);let out='';if(s.scene!==s.location||!s.away)return out;if(s.ap<2)out+=button('field-rest','잠시 몸을 숨겨 쉰다','1시간 · 기력 +2 · 긴장·허기·갈증 소모');
 if(s.location==='family'&&e.phase===1)out+=button('family-record',s.signalPending?'서랍의 진동 확인':'휴대폰 저장 기록 확인','가족이 남긴 기록을 살핀다');
 if(s.location==='nowon'&&e.phase===2)out+=button('read-records','인계장과 기록기 확인','25분 · 기력 1');
 if(s.location==='relay'&&[3,4].includes(e.phase))out+=button('inspect-relay','두 녹음과 장비 대조','30분 · 기력 1 · 라디오 또는 건전지');
