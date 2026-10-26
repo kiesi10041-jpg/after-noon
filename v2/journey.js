@@ -1,4 +1,4 @@
-import {chapterPlaces,chapterAction} from './chapter2.js?v=0.26.0';
+import {chapterPlaces,chapterAction} from './chapter2.js?v=0.26.0-r2';
 import {replaceBattery,tension} from './survival-controls.js?v=0.25.3';
 import {useMedicine} from './care.js?v=0.25.2';
 import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.23.2';

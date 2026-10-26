@@ -1,10 +1,12 @@
 .game-root .world.depot .world-art,.ch2-art-depot{background:url('../assets/chapter2-depot.webp') center/cover no-repeat}
 .game-root .world.school .world-art,.ch2-art-school{background:url('../assets/chapter2-school.webp') center/cover no-repeat}
 .game-root .world.waterworks .world-art,.ch2-art-waterworks{background:url('../assets/chapter2-waterworks.webp') center/cover no-repeat}
-.ch2-art-relay{background:url('../assets/chapter2-waterworks.webp') center/cover no-repeat}
+.ch2-art-relay,.game-root .world.relay .world-art{background:url('../assets/chapter2-relay.webp') center/cover no-repeat}
 .game-root.map-mode.regional-map[data-chapter-map=yes] .world.door .world-art{background:url('../assets/chapter2-route.svg') center/100% 100% no-repeat!important}
 .game-root.map-mode.regional-map[data-chapter-map=yes] .scene-stage .world{width:100%;max-width:none}
 .game-root[data-chapter-map=yes] .travel-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .story-mode .story-copy{max-height:60dvh;overflow-y:auto;overscroll-behavior:contain}
 .story-mode .story-copy p{font-size:clamp(18px,2.5vw,23px);line-height:1.8}
 .story-mode .story-copy button{min-height:50px;font-size:18px}
+
+.game-root.place-mode .scene-choices:has([data-a^="ch2-"]){display:grid!important;margin-top:12px}.game-root.place-mode .scene-choices:has([data-a^="ch2-"])>button:not([data-a^="ch2-"]){display:none}.game-root.place-mode .scene-choices:has([data-a^="ch2-"])>p{display:block}

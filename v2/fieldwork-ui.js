@@ -1,6 +1,6 @@
 import {tension} from './survival-controls.js?v=0.25.3';
 import {foodLabelHTML} from './food-labels.js?v=0.24.2';
-import {isResidence,shelterAt} from './expedition.js?v=0.26.0';
+import {isResidence,shelterAt} from './expedition.js?v=0.26.0-r2';
 import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.23.2';
 export function lightControls(s,button,source){return button(flashlightOwned(s)?'light':'light-help',source==='flashlight'?'손전등 끄기':'손전등',flashlightHint(s),flashlightOwned(s)&&s.battery<=0)+button('phone-light',source==='phone'?'휴대폰 끄기':'휴대폰',`${s.phoneBattery}%`,!s.phoneBattery)+button('power-kit','건전지','교체·충전');}
 export function mapTabs(s,button){return `<div class="travel-tabs">${s.chapter2?.stage?button('ch2-map','2장 지도'):''}${button('local-map','집 주변')}${s.away&&districtFor(s.location)?button('district-map',hubs[districtFor(s.location)]+' 주변'):''}${button('regional-map','광역 지도')+button('rail-map','역 순서')}</div>`;}
