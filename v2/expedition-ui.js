@@ -1,4 +1,4 @@
-import {initExpedition,storyBeats,expeditionQuest,shelterAt,woundNotice} from './expedition.js?v=0.21.0';
+import {initExpedition,storyBeats,expeditionQuest,shelterAt,woundNotice} from './expedition.js?v=0.21.2';
 export {expeditionQuest};
 const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function storyView(s){const b=storyBeats[s.storyBeat];if(!b)return null;const phone=['call','missed','drawer'].includes(s.storyBeat);return `<section class="story-screen" aria-label="${b.title}"><div class="story-illustration story-art-${b.art}"></div><div class="story-shade"></div><header>${b.title}</header>${phone?`<div class="story-phone-state ${s.storyBeat==='drawer'?'vibrating':''}">${s.storyBeat==='drawer'?'수신 중':s.storyBeat==='call'?'연결이 끊겼습니다':'부재중 전화 1 · 서비스 없음'}</div>`:''}<div class="story-copy"><p>${esc(b.text).replace(/\n/g,'<br>')}</p><button data-a="story-next">${b.next}<span>›</span></button></div></section>`;}
