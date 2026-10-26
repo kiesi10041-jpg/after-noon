@@ -9,7 +9,7 @@ export function districtPoints(s){const hub=districtFor(s.location)||s.districtH
 export function initFieldwork(s){s.equipment??={flashlight:false};s.transport??={bike:false,carKey:false};s.transport.bikeCondition??=s.transport.bike?100:0;s.bikeFind??=null;s.bikeLog??=[];}
 export function localStock(s){return s.away?s.expedition?.shelters?.[s.location]?.stock||{}:s.stock;}
 export function flashlightOwned(s){return Boolean(s.equipment?.flashlight||s.carry?.flashlight||localStock(s).flashlight);}
-export function flashlightHint(s){return flashlightOwned(s)?(s.battery>0?`${s.battery}%`:'건전지 필요'):s.away&&s.stock.flashlight?'집에 두고 옴':'미보유';}
+export function flashlightHint(s){return flashlightOwned(s)?(s.battery>0?`${s.battery}%`:'건전지 필요'):s.away&&s.stock.flashlight?'집에 두고 옴':Object.values(s.expedition?.shelters||{}).some(sh=>sh.stock?.flashlight)?'거처에 보관':'미보유';}
 export function bikeWear(s,km,random){if(!s.transport.bike)return;const wear=Math.max(1,Math.ceil(km*.6));let extra=0;if(random()<.18)extra=10+Math.floor(random()*16);s.transport.bikeCondition=Math.max(0,s.transport.bikeCondition-wear-extra);if(s.transport.bikeCondition<25&&s.tripPlan?.vehicle==='bike')s.tripPlan.vehicle='walk';s.bikeNotice=extra?'자전거 바퀴와 체인에서 이상 소리가 난다. 정비가 필요하다.':s.transport.bikeCondition<25?'자전거를 타기 어려울 정도로 손상됐다. 다음 이동 전에 수리해야 한다.':'';}
 export function fieldAction(s,a,c){initFieldwork(s);const {pay,advance,finish,requireSight,random,places}=c,kit=s.away?s.carry:s.stock;
 if(a==='district-map'){const hub=districtFor(s.location);if(!s.away||!hub)return false;s.districtHub=hub;s.scene='door';s.mapScope='district';s.tripPlan.target='';s.text=`${hubs[hub]} 밖의 거리 지도를 펼쳤다. 역으로 돌아오거나 주변 상점에서 물자를 찾을 수 있다.`;return true;}
