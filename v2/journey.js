@@ -1,6 +1,6 @@
-import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.23.1';
+import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.23.2';
 export {flashlightOwned};
-import {expeditionPlaces,extraItems,initExpedition,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.23.1';
+import {expeditionPlaces,extraItems,initExpedition,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.23.2';
 import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js';
 export {items,pantryFoods,season,capacity,weatherToday,incidentToday};
 items.flashlight=['손전등',1,.2];items.battery=['건전지 한 쌍',1,.1];
@@ -106,7 +106,7 @@ if(a==='depart'&&s.scene==='door'){
   const companion=petEncounterAt(s,s.location);if(companion){s.petEncounter={...companion};s.scene='pet-event';s.text=companion.kind==='parrot'?'이웃집 문틈에서 작은 날갯짓과 짧은 울음이 들린다. 집 안에는 사람이 보이지 않는다.':'쓰러진 가방 곁에서 작은 동물이 몸을 웅크리고 있다. 가까이 다가가자 경계하면서도 자리를 떠나지 않는다.';return true;}
   const animal=travelEncounter(s);s.wildlifeActive=animal;
   if(animal==='dog'||animal==='boar'||animal==='wolf'){s.scene='wildlife';s.text=animal==='wolf'?'사육시설 표식이 남은 목줄을 찬 늑대가 도로 끝에 서 있다. 사람을 피하던 동물이지만 지금은 퇴로를 찾는 듯하다.':animal==='boar'?'하천 산책로에서 멧돼지 한 마리가 길을 막았다. 바람을 거슬러 온 건지, 아직 사람 냄새를 경계하는 듯하다.':'골목 입구에 개 두 마리가 서 있다. 한 마리가 짖자 다른 개가 길을 막아선다.';return true;}
-  s.text=animal==='cat'?'가게 앞 고양이가 쓰러진 바구니를 살피다 담장 너머로 사라졌다.':animal==='crow'?'까마귀 몇 마리가 도로의 음식 포장지를 쪼고 있다. 가까이 다가가자 전깃줄로 날아갔다.':places[s.location]?.kind==='중간거점'?'차량이 버려진 도로 옆에 문을 막을 수 있는 작은 건물이 남아 있다. 물자를 살피거나 여기서 쉬어 갈 수 있다.':s.location==='neighbor'?'현관 장바구니가 쓰러져 있다. 안쪽 주방은 조용하다.':s.location==='store'?'입구에 유리 조각이 흩어져 있다. 뒤쪽 진열대는 쓰러진 선반에 가려져 있다.':s.location==='pharmacy'?'약국 유리문 한쪽이 깨져 있다. 조제실 문은 닫혀 있다.':s.location==='market'?'마트 입구에 손수레가 뒤집혀 있다. 냉장 매대의 전원은 끊겼다.':s.location==='park'?'하천 산책로에 자전거가 쓰러져 있다. 풀숲에서 움직임이 보인다.':'상자 사이로 좁은 통로가 남아 있다. 안쪽에는 공구와 생활용품이 보인다.';return true;
+  s.text=animal==='cat'?'가게 앞 고양이가 쓰러진 바구니를 살피다 담장 너머로 사라졌다.':animal==='crow'?'까마귀 몇 마리가 도로의 음식 포장지를 쪼고 있다. 가까이 다가가자 전깃줄로 날아갔다.':districtPlaces[s.location]?({street:'역 출입구 밖으로 나왔다. 버려진 차 사이로 상점 입구와 자전거 수리점이 보인다.',supply:'유리문 너머로 식품 진열대가 보인다. 생수와 밀봉 식품부터 살펴보자.',workshop:'거치대에 잠긴 자전거가 남아 있다. 작업대에는 공구와 타이어 수선 재료가 보인다.'})[districtPlaces[s.location].suffix]:places[s.location]?.kind==='중간거점'?'차량이 버려진 도로 옆에 문을 막을 수 있는 작은 건물이 남아 있다. 물자를 살피거나 여기서 쉬어 갈 수 있다.':s.location==='neighbor'?'현관 장바구니가 쓰러져 있다. 안쪽 주방은 조용하다.':s.location==='store'?'입구에 유리 조각이 흩어져 있다. 뒤쪽 진열대는 쓰러진 선반에 가려져 있다.':s.location==='pharmacy'?'약국 유리문 한쪽이 깨져 있다. 조제실 문은 닫혀 있다.':s.location==='market'?'마트 입구에 손수레가 뒤집혀 있다. 냉장 매대의 전원은 끊겼다.':s.location==='park'?'하천 산책로에 자전거가 쓰러져 있다. 풀숲에서 움직임이 보인다.':'상자 사이로 좁은 통로가 남아 있다. 안쪽에는 공구와 생활용품이 보인다.';return true;
 }
 
 if(a==='medicine'&&s.away&&s.carry.medicine){s.carry.medicine--;s.health=Math.min(100,s.health+18);s.cold=Math.max(0,(s.cold||0)-18);s.illnessStage=s.cold>=68?2:s.cold>=35?1:0;s.text=s.illnessStage?'해열제를 먹고 몸을 따뜻하게 했다. 오한이 남아 무리하지 않기로 했다.':'상처를 소독하고 붕대를 감았다. 몸의 열감도 조금 가라앉았다.';return true;}
