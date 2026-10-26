@@ -3,8 +3,8 @@
 <rect width="800" height="900" fill="#e7ddc2"/><rect width="800" height="900" fill="url(#grid)"/><rect width="800" height="900" filter="url(#paper)"/>
 <path d="M410 0L395 900M0 450H800" stroke="#897e60" opacity=".16" stroke-width="4"/><rect x="17" y="17" width="766" height="866" rx="2" fill="none" stroke="#867a5e" stroke-width="2"/>
 <path d="M80 800Q290 650 340 480T720 260" fill="none" stroke="#73989a" stroke-width="45" opacity=".2"/>
-<path d="M184 747V351" stroke="#83693e" stroke-width="10" fill="none"/><path d="M184 351V153H600" stroke="#4c777b" stroke-width="10" fill="none"/>
-<path d="M600 153V747" stroke="#86795e" stroke-width="5" stroke-dasharray="11 10" fill="none"/>
-<g fill="#e7ddc2" stroke="#4b5547" stroke-width="4"><circle cx="184" cy="747" r="11"/><circle cx="184" cy="549" r="11"/><circle cx="184" cy="351" r="15"/><circle cx="184" cy="153" r="11"/><circle cx="600" cy="153" r="11"/><circle cx="600" cy="351" r="11"/><circle cx="600" cy="549" r="11"/><circle cx="600" cy="747" r="11"/></g>
+<path d="M184 693V315" stroke="#83693e" stroke-width="10" fill="none"/><path d="M184 315V126H600" stroke="#4c777b" stroke-width="10" fill="none"/>
+<path d="M600 126V693" stroke="#86795e" stroke-width="5" stroke-dasharray="11 10" fill="none"/>
+<g fill="#e7ddc2" stroke="#4b5547" stroke-width="4"><circle cx="184" cy="693" r="11"/><circle cx="184" cy="504" r="11"/><circle cx="184" cy="315" r="15"/><circle cx="184" cy="126" r="11"/><circle cx="600" cy="126" r="11"/><circle cx="600" cy="315" r="11"/><circle cx="600" cy="504" r="11"/><circle cx="600" cy="693" r="11"/></g>
 <g font-family="serif" fill="#6b624d" text-anchor="middle"><text x="400" y="55" font-size="23" letter-spacing="6">남겨진 길</text><text x="400" y="865" font-size="16">지상 이동 약도 · 열차 운행 중단</text></g>
 </svg>

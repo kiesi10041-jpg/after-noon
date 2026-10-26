@@ -3,7 +3,7 @@
 .game-root .world.neighbor .world-art,.game-root .after-dark .world.neighbor .world-art{background-image:url('../assets/neighbor-v24.webp');background-size:cover;background-position:center}
 .game-root .standalone-item{object-fit:contain;object-position:center;background:none!important;max-width:100%;filter:none}
 .bike-portrait{background:#ded6be;padding:12px;min-height:150px}.bike-portrait .standalone-item{width:100%;height:155px;max-width:310px}
-.game-root.regional-map .world.door .world-art{background:url('../assets/route-sheet-v24.svg?v=2') center/100% 100% no-repeat!important;filter:none!important}
+.game-root.regional-map .world.door .world-art{background:url('../assets/route-sheet-v24.svg?v=3') center/100% 100% no-repeat!important;filter:none!important}
 .game-root.regional-map .world-light{display:none}.game-root.regional-map .world{aspect-ratio:8/9}
 .game-root.regional-map .scene-location{color:#302e24;text-shadow:none;background:#eee4cb;padding:2px 6px}
 .game-root.regional-map .world-spot{max-width:43%;min-width:100px;top:var(--y)!important;padding:4px;color:#292d24;gap:0}
@@ -27,3 +27,6 @@
 .game-root.map-mode .trip-planner-head{margin:0}
 .game-root.regional-map .world{background:#e7ddc2}
 @media(max-width:760px){.game-root.map-mode .decision-panel{max-height:36dvh!important}.game-root.regional-map .spot-label{font-size:14px!important}.game-root.regional-map .world-spot{min-width:96px}.game-root.map-mode .trip-planner{gap:6px;padding:7px}.game-root.map-mode .route-origin{font-size:13px}.game-root.map-mode .trip-planner-head strong{font-size:16px}}
+
+@media(max-width:760px){.game-root.regional-map .spot-marker{width:12px;height:12px;min-height:12px}.game-root.regional-map .spot-label{line-height:1.15;padding:2px 4px}.game-root.map-mode .trip-option{display:flex;align-items:center;justify-content:center;gap:8px;min-height:32px;padding:4px}.game-root.map-mode .trip-planner>button[data-a=depart]{min-height:50px;padding:6px 8px}.game-root.map-mode .trip-planner>button small{font-size:12px}.game-root.map-mode .route-current{font-size:11px}}
+@media(max-width:760px) and (max-height:680px){.game-root.map-mode .decision-panel{max-height:none!important;padding:4px 8px}.game-root.map-mode .route-origin{display:none}.game-root.map-mode .trip-planner{gap:5px;padding:5px}.game-root.map-mode .travel-tabs button{min-height:36px}.game-root.map-mode .trip-planner-head strong{font-size:15px}.game-root.map-mode .trip-modes{gap:3px}.game-root.map-mode .scene-stage{padding-bottom:2px}}
