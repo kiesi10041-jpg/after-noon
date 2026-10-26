@@ -9,3 +9,5 @@
 
 .game-root .game-sheet button:hover:not(:disabled){background:#435b45;color:#fff2d9}.game-root .game-sheet button small{color:#d8d1b9!important;font-size:14px;line-height:1.5}.shelter-main-actions button{background:#334a39;color:#f7ecd2;border:1px solid #a6b08c}.game-root .shelter-art+button{display:block;width:100%;margin:10px 0;min-height:48px;background:#344c3c;color:#f8ecd4}.game-root .game-sheet>button[data-a=shelter-build]{width:100%;background:#344c3c;color:#f8ecd4}
 @media(max-width:760px){.beam-help{display:none}}
+
+.game-root.ended-mode .scene-choices{display:grid!important}.game-root.ended-mode .place-actions{display:none!important}
