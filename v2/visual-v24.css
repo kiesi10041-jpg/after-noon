@@ -3,7 +3,7 @@
 .game-root .world.neighbor .world-art,.game-root .after-dark .world.neighbor .world-art{background-image:url('../assets/neighbor-v24.webp');background-size:cover;background-position:center}
 .game-root .standalone-item{object-fit:contain;object-position:center;background:none!important;max-width:100%;filter:none}
 .bike-portrait{background:#ded6be;padding:12px;min-height:150px}.bike-portrait .standalone-item{width:100%;height:155px;max-width:310px}
-.game-root.regional-map .world.door .world-art{background:url('../assets/route-sheet-v24.svg') center/100% 100% no-repeat!important;filter:none!important}
+.game-root.regional-map .world.door .world-art{background:url('../assets/route-sheet-v24.svg?v=2') center/100% 100% no-repeat!important;filter:none!important}
 .game-root.regional-map .world-light{display:none}.game-root.regional-map .world{aspect-ratio:8/9}
 .game-root.regional-map .scene-location{color:#302e24;text-shadow:none;background:#eee4cb;padding:2px 6px}
 .game-root.regional-map .world-spot{max-width:43%;min-width:100px;top:var(--y)!important;padding:4px;color:#292d24;gap:0}
@@ -17,4 +17,13 @@
 .game-root .place-actions button,.game-root .home-actions button{border-radius:2px;background:#303e32;border-color:#a9ad8c66;box-shadow:inset 0 1px #ded6b51a}
 .game-root .companion-parrot{width:7%!important;max-width:55px;bottom:18%!important;left:75%!important;right:auto!important}
 .game-root .world.neighbor .companion-parrot{left:57%!important;bottom:36%!important}
-@media(max-width:760px){.game-root.regional-map .scene-stage{min-height:300px!important;flex:1!important}.game-root.regional-map .world{width:100%;height:100%;min-height:300px}.game-root.regional-map .play-body{min-height:0}.game-root.regional-map .decision-panel{max-height:34dvh!important}.game-root .travel-tabs{gap:4px}.game-root .travel-tabs button{min-width:0;padding:6px 3px;font-size:13px}.game-root.regional-map .spot-label{font-size:15px!important}.game-root.regional-map .scene-location{font-size:12px}.game-root.regional-map .route-current{min-width:30px}.game-root.regional-map .trip-return{font-size:13px}}
+@media(max-width:760px){.game-root.regional-map .scene-stage{min-height:240px!important;flex:1!important}.game-root.regional-map .world{width:100%;height:100%;min-height:240px}.game-root.regional-map .play-body{min-height:0}.game-root.regional-map .decision-panel{max-height:34dvh!important}.game-root .travel-tabs{gap:4px}.game-root .travel-tabs button{min-width:0;padding:6px 3px;font-size:13px}.game-root.regional-map .spot-label{font-size:15px!important}.game-root.regional-map .scene-location{font-size:12px}.game-root.regional-map .route-current{min-width:30px}.game-root.regional-map .trip-return{font-size:13px}}
+
+.game-root.regional-map .world-spot{transform:translate(-50%,-8px);padding:0;min-height:48px}
+.game-root.regional-map .spot-label{max-width:140px!important}
+.game-root.regional-map .route-current{transform:translate(-50%,-155%)}
+.game-root.map-mode .decision-panel>.quest-card{display:none!important}
+.game-root.map-mode .trip-help{display:none}
+.game-root.map-mode .trip-planner-head{margin:0}
+.game-root.regional-map .world{background:#e7ddc2}
+@media(max-width:760px){.game-root.map-mode .decision-panel{max-height:36dvh!important}.game-root.regional-map .spot-label{font-size:14px!important}.game-root.regional-map .world-spot{min-width:96px}.game-root.map-mode .trip-planner{gap:6px;padding:7px}.game-root.map-mode .route-origin{font-size:13px}.game-root.map-mode .trip-planner-head strong{font-size:16px}}
