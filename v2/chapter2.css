@@ -1,5 +1,5 @@
 .game-root .world.depot .world-art,.ch2-art-depot{background:url('../assets/chapter2-depot.webp') center/cover no-repeat}
-.game-root .world.school .world-art,.ch2-art-school{background:url('../assets/chapter2-school.webp') center/cover no-repeat}
+.game-root .world.school .world-art,.ch2-art-school{background:url('../assets/school-inactive-v27.webp') center/cover no-repeat}
 .game-root .world.waterworks .world-art,.ch2-art-waterworks{background:url('../assets/chapter2-waterworks.webp') center/cover no-repeat}
 .ch2-art-relay,.game-root .world.relay .world-art{background:url('../assets/chapter2-relay.webp') center/cover no-repeat}
 .game-root.map-mode.regional-map[data-chapter-map=yes] .world.door .world-art{background:url('../assets/chapter2-route.svg') center/100% 100% no-repeat!important}
@@ -10,3 +10,5 @@
 .story-mode .story-copy button{min-height:50px;font-size:18px}
 
 .game-root.place-mode .scene-choices:has([data-a^="ch2-"]){display:grid!important;margin-top:12px}.game-root.place-mode .scene-choices:has([data-a^="ch2-"])>button:not([data-a^="ch2-"]){display:none}.game-root.place-mode .scene-choices:has([data-a^="ch2-"])>p{display:block}
+
+.game-root .world.rail-platform .world-art{background:url('../assets/subway-station-v12.webp') center/cover no-repeat}.game-root .world.rail-tunnel .world-art{background:url('../assets/rail-tunnel-v27.webp') center/cover no-repeat}.rail-progress{padding:12px;background:#18261e;border-left:2px solid #b8b18c}.rail-progress strong,.rail-progress span{display:block;font-size:17px;line-height:1.6}.rail-progress p{font-size:14px;margin:8px 0 0}.rail-progress progress{width:100%;height:8px}.game-root[data-rail=yes] .beam-help{display:none}
