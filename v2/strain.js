@@ -1,4 +1,4 @@
-import {initGrowth} from './growth.js?v=0.28.4';
+import {initGrowth} from './growth.js?v=0.28.5';
 export const carryLimit=s=>4+initGrowth(s).stats.endurance*2;
 export const comfortLoad=s=>2+initGrowth(s).stats.endurance;
 export const minuteNow=s=>(s.day-1)*1440+s.time;

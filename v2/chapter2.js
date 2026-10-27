@@ -1,4 +1,4 @@
-import {carryLimit} from './strain.js?v=0.28.4';
+import {carryLimit} from './strain.js?v=0.28.5';
 export const chapterPlaces={depot:{name:'북부 물류창고',distance:91,kind:'단서'},school:{name:'학교 대피소',distance:96,kind:'단서'},waterworks:{name:'배수지 관리동',distance:102,kind:'단서'}};
 export const chapterDots={relay:[23,20],depot:[75,20],school:[23,52],waterworks:[75,80]};
 export const chapterPoints=()=>[['relay','중계실',23,20,'radio'],['depot','물류창고',75,20,'tool'],['school','학교 대피소',23,52,'moon'],['waterworks','배수지 관리동',75,80,'water']];
