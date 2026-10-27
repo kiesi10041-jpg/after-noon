@@ -10,7 +10,7 @@ import {medicineSource} from './care.js?v=0.29.0';
 import {foodLabelHTML} from './food-labels.js?v=0.29.0';
 import {regionalPoints,regionalDots,discoveredPaths} from './route-art.js?v=0.29.0';
 import {districtFor,districtPoints,districtDots,districtPlaces,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.29.0';
-import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView} from './fieldwork-ui.js?v=0.29.0';
+import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView} from './fieldwork-ui.js?v=0.29.0-r3';
 import {storyView,expeditionQuest,expeditionControls,expeditionStatus,fieldCareView,shelterView,railView} from './expedition-ui.js?v=0.29.0';
 import {initExpedition,shelterAt,isResidence} from './expedition.js?v=0.29.0';
 import{patchHTML}from'./render.js';
