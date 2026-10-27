@@ -1,5 +1,5 @@
 import {siteInteractions} from './site-interactions.js?v=0.29.0';
-import {travelConfirm,mapControls} from './travel-ui.js?v=0.29.0';
+import {travelConfirm,mapControls} from './travel-ui.js?v=0.29.0-r1';
 import {growthView,initGrowth,books} from './growth.js?v=0.29.0';
 import {roadView,routeAllowed,explorationQuest,initDiscovery} from './overland.js?v=0.29.0';
 import {siteState} from './worldgen.js?v=0.29.0';
