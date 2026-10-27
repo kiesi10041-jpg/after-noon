@@ -1,6 +1,6 @@
 import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.28.0';
 import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.28.0';
-import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.28.0';
+import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.28.0-r3';
 import {railAction,railEstimate} from './rail-journey.js?v=0.28.0';
 import {chapterPlaces,chapterAction} from './chapter2.js?v=0.27.0';
 import {replaceBattery,tension} from './survival-controls.js?v=0.25.3';

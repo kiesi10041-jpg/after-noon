@@ -1,4 +1,4 @@
-import {neighbors,edgeKey} from './overland.js?v=0.28.0';
+import {neighbors,edgeKey} from './overland.js?v=0.28.0-r3';
 import {chapterPoints,chapterDots} from './chapter2.js?v=0.27.0';
 // Schematic ground journey; coordinates also anchor the illustrated route sheet.
 export const regionalDots={bridge:[23,66],home:[23,88],station:[23,88],road1:[23,56],road2:[23,35],road3:[23,14],family:[75,14],nowon:[75,35],clinic:[75,56],relay:[75,77]};

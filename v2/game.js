@@ -1,20 +1,20 @@
 import {growthView,initGrowth,books} from './growth.js?v=0.28.0';
-import {roadView,routeAllowed,explorationQuest,initDiscovery} from './overland.js?v=0.28.0';
+import {roadView,routeAllowed,explorationQuest,initDiscovery} from './overland.js?v=0.28.0-r3';
 import {siteState} from './worldgen.js?v=0.28.0';
 import {railStops,railEstimate,railView as railJourneyView} from './rail-journey.js?v=0.28.0';
 import {chapterDots} from './chapter2.js?v=0.27.0';
 import {batteryStock,tension} from './survival-controls.js?v=0.25.3';
 import {medicineSource} from './care.js?v=0.25.2';
 import {foodLabelHTML} from './food-labels.js?v=0.24.2';
-import {regionalPoints,regionalDots,discoveredPaths} from './route-art.js?v=0.28.0-r2';
+import {regionalPoints,regionalDots,discoveredPaths} from './route-art.js?v=0.28.0-r3';
 import {districtFor,districtPoints,districtDots,districtPlaces,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.28.0';
-import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView} from './fieldwork-ui.js?v=0.28.0';
+import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView} from './fieldwork-ui.js?v=0.28.0-r3';
 import {storyView,expeditionQuest,expeditionControls,expeditionStatus,fieldCareView,shelterView,railView} from './expedition-ui.js?v=0.28.0';
 import {initExpedition,shelterAt,isResidence} from './expedition.js?v=0.28.0';
 import{patchHTML}from'./render.js';
 import{storageObjects,storageView,useStored}from'./storage.js?v=0.27.1';
 import{setSound,soundOn,effect,stopRing}from'./sound.js?v=0.23.2';
-import{create,migrate,action,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.28.0-r2';
+import{create,migrate,action,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.28.0-r3';
 const root=document.querySelector('#game'),key=new URLSearchParams(location.search).has('qa')?'noon-v2-qa':'noon-v2-preview',mapDots={home:[8,28],bookstore:[60,27],neighbor:[17,44],store:[43,66],pharmacy:[82,35],market:[71,74],hardware:[27,76],park:[28,22],station:[88,78],family:[25,10],road1:[75,72],road2:[25,52],road3:[75,32]};let draft=null;let s=create(),title=true,hasSave=false,confirmNew=false,nameEntry=false,nameError='',panel=null,lastPanel=null,storage=null,storagePage=0,selectedStored=null,bagTab='food',beam={x:55,y:58},dragStart=null,beamDragged=false;
 Object.assign(mapDots,districtDots);
 try{const x=JSON.parse(localStorage.getItem(key));if(x?.v===2&&x.stock&&Number.isFinite(x.day)){s=migrate(x);hasSave=true;}}catch{}
