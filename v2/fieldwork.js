@@ -1,4 +1,4 @@
-import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.28.2';
+import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.28.3';
 // District exits, light ownership and bicycle lifecycle.
 export const hubs={station:'영종역',road1:'검암역',road2:'서울역',road3:'창동역',nowon:'노원역'};
 export const districtPlaces={};export const districtDots={};

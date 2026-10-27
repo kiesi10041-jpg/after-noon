@@ -1,8 +1,8 @@
-import {hasKnowledge,level} from './growth.js?v=0.28.2';
-import {tension} from './survival-controls.js?v=0.28.2';
-import {foodLabelHTML} from './food-labels.js?v=0.28.2';
-import {isResidence,shelterAt} from './expedition.js?v=0.28.2';
-import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.28.2';
+import {hasKnowledge,level} from './growth.js?v=0.28.3';
+import {tension} from './survival-controls.js?v=0.28.3';
+import {foodLabelHTML} from './food-labels.js?v=0.28.3';
+import {isResidence,shelterAt} from './expedition.js?v=0.28.3';
+import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.28.3';
 export function lightControls(s,button,source){return button(flashlightOwned(s)?'light':'light-help',source==='flashlight'?'손전등 끄기':'손전등',flashlightHint(s),flashlightOwned(s)&&s.battery<=0)+button('phone-light',source==='phone'?'휴대폰 끄기':'휴대폰',`${s.phoneBattery}%`,!s.phoneBattery)+button('power-kit','건전지','교체·충전');}
 export function mapTabs(s,button){return `<div class="travel-tabs">${s.chapter2?.stage?button('ch2-map','2장 지도'):''}${button('local-map','집 주변')}${s.away&&districtFor(s.location)?button('district-map',hubs[districtFor(s.location)]+' 주변'):''}${button('regional-map','광역 지도')+button('rail-map','역 순서')}</div>`;}
 export function bikeView(s,button,itemArt,places){const b=s.bikeFind,owned=s.transport.bike,kit=s.away?s.carry:s.stock;return `<p class="shelter-feedback" role="status">${s.text}</p><div class="bike-portrait">${itemArt('bike')}</div><p class="sheet-note">${owned?`보유 자전거 · 상태 ${s.transport.bikeCondition}%`:b?`발견 위치: ${places[b.location]?.name} · 상태 ${b.condition}%`:'공원이나 각 역 주변 자전거 수리점에서 프레임을 찾아보세요.'}</p><p class="sheet-note">${s.away?'현재 가방':'집'}: 공구 ${kit.tool||0} · 정비 부품 ${kit.bikeParts||0} · 천과 실 ${kit.cloth||0}<br>공구는 유지됩니다. 심한 손상과 완전 정비에는 부품이 필요하며, 천은 간단한 응급 수선에 사용합니다.</p><p class="sheet-note">정비 지식: ${hasKnowledge(s,'mechanics')?'기초 이해':'학습 필요'} · 숙련 ${level(s,'mechanics')}/3</p>${button('growth','정비 학습·실습','책을 읽거나 실제 작업으로 배우기')}<ol class="bike-stages"><li class="${b||owned?'done':''}">프레임·바퀴 확인</li><li class="${owned||b&&!b.locked?'done':''}">케이블 잠금 제거</li><li class="${owned?'done':''}">타이어·체인·브레이크 정비</li></ol><div class="sheet-actions">${!owned?button('bike-inspect','주변 자전거 살피기','10분 · 발견 장소에서 진행')+button('bike-unlock','케이블 잠금 제거','20분 · 기력 1 · 공구',!b||!b.locked):''}${button('bike-repair',owned?'자전거 수리':'수리하고 자전거 확보','40분 · 기력 1 · 공구 + 정비 부품 또는 천과 실',owned?s.transport.bikeCondition>=100:!b||b.locked)}</div><p class="sheet-note">이동 거리만큼 마모되고, 확률적으로 체인·바퀴가 추가 손상됩니다. 상태 25% 미만이면 수리 후 탈 수 있습니다.</p>`;}
