@@ -1,0 +1,3 @@
+import {initDiscovery,edgeKey} from '../v2/overland.js';
+export function knownRoute(s,to){const d=initDiscovery(s);for(const id of [s.location,to])if(!d.known.includes(id))d.known.push(id);d.surveyed[edgeKey(s.location,to)]=true;}
+export function finishRoad(s,action){let n=0;while(s.roadTrip&&n++<160){if(s.roadTrip.stage==='obstacle'){if(!action(s,'road-detour'))return false;}else if(s.ap<(s.roadTrip.effort[s.roadTrip.index]||0)){if(!action(s,'road-rest'))return false;}else{if(!s.lightOn&&s.equipment?.flashlight&&s.battery>0)action(s,'light');if(!s.lightOn&&s.phoneBattery>0)action(s,'phone-light');if(!action(s,'road-step'))return false;}}return !s.roadTrip&&!s.ended;}

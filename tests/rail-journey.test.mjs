@@ -1,8 +1,9 @@
+import {knownRoute} from './route-fixture.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {create,action,needsLight} from '../v2/journey.js';
 import {railStops,railEstimate} from '../v2/rail-journey.js';
 import {chapterStory} from '../v2/chapter2.js';
-const start=(from='road3',to='family')=>{const s=create(18);s.away=true;s.location=from;s.scene='door';s.questStage=2;s.equipment.flashlight=true;s.lightOn=true;s.tripPlan={target:to,vehicle:'railwalk'};assert.equal(action(s,'depart'),true);return s;};
+const start=(from='road3',to='family')=>{const s=create(18);s.away=true;s.location=from;s.scene='door';s.questStage=2;s.equipment.flashlight=true;s.lightOn=true;s.tripPlan={target:to,vehicle:'railwalk'};knownRoute(s,to);assert.equal(action(s,'depart'),true);return s;};
 test('internal route follows stations and cannot jump bridges or use trains',()=>{assert.deepEqual(railStops('road3','family'),['창동','노원']);assert.equal(railStops('station','road1'),null);assert.equal(railEstimate('road2','road3').ap,7);});
 test('departure enters platform; each segment spends time, battery and arrives once',()=>{const s=start();assert.equal(s.scene,'rail-journey');assert.notEqual(s.location,'family');assert.equal(needsLight(s),true);const time=s.time,battery=s.battery;assert.equal(action(s,'rail-step'),true);assert.equal(s.time,time+12);assert.equal(s.railTrip.stage,'tunnel');assert.ok(s.battery<battery);assert.equal(action(s,'rail-step'),true);assert.equal(s.location,'family');assert.equal(s.time,time+25);assert.equal(s.questStage,3);assert.equal(s.railTrip,undefined);assert.equal(action(s,'rail-step'),false);});
 test('mid-trip save retains position and blocks map/return teleport or remote stock',()=>{const s=start();action(s,'rail-step');const saved=JSON.parse(JSON.stringify(s));assert.equal(action(saved,'nearby'),false);assert.equal(action(saved,'return'),false);assert.equal(saved.scene,'rail-journey');saved.carry.battery=0;saved.stock.battery=9;saved.battery=0;assert.equal(action(saved,'battery'),false);});
