@@ -11,3 +11,5 @@
 .game-root[data-season=winter] .world.road-passage .world-art,.game-root[data-season=winter][data-profile=street] .world .world-art{background:url('../assets/street-winter-v28.webp') center/cover no-repeat}
 
 .game-root .world-art{transition:filter .35s ease}.game-root.map-mode .route-feedback{max-height:54px;overflow:auto}.game-root .route-feedback:empty{display:none}
+
+.game-root.regional-map:not([data-chapter-map=yes]) .world.door .world-art{background:url('../assets/discovery-map-v28.svg') center/100% 100% no-repeat!important}.discovered-paths{position:absolute;inset:0;width:100%;height:100%;fill:none;pointer-events:none;z-index:1}.game-root.regional-map .world-spot{z-index:3}
