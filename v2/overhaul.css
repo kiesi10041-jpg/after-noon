@@ -21,3 +21,5 @@
 
 .ability-tabs{position:sticky;top:0;z-index:2;background:#253228;padding:8px 0}.game-root .game-dock .ability-shortcut{min-width:0}.game-root .game-dock .ability-shortcut small{font-size:12px}.skill-list button:disabled{opacity:.65}.game-root .book-item:has(.read-badge){position:relative}.book-item .read-badge{position:absolute;bottom:-5px;left:0;right:0;font-size:11px;background:#d5c69e;color:#253228;text-align:center}
 @media(max-width:760px){.game-root .game-dock{display:flex;gap:2px;padding-left:4px;padding-right:4px}.game-root .game-dock button{flex:1 1 0;min-width:0!important;flex-direction:column;justify-content:center;gap:3px!important;padding:6px 2px!important;font-size:14px!important;line-height:1.2;white-space:nowrap}.game-root .game-dock button svg{width:20px;height:20px}.game-root .game-dock small{display:none!important}.game-root .game-dock .return-button{margin-left:0}}
+
+.game-root .tension-notice button:disabled{opacity:1;background:#253129!important;color:#dedbc7!important;border:1px solid #7e8871!important}.game-root .tension-notice button:disabled small{color:#c6cbb9!important;opacity:1;font-size:14px;line-height:1.5}
