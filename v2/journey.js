@@ -10,7 +10,7 @@ import {railAction,railEstimate} from './rail-journey.js?v=0.30.0';
 import {chapterPlaces,chapterAction} from './chapter2.js?v=0.30.0';
 import {replaceBattery,tension} from './survival-controls.js?v=0.30.0';
 import {useMedicine} from './care.js?v=0.30.0';
-import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.30.0';
+import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.30.0-r1';
 export {flashlightOwned};
 import {expeditionPlaces,extraItems,initExpedition,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.30.0';
 import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.30.0';

@@ -10,7 +10,7 @@ export const districtLayout={
  road3:[['street','주거지 거리','street'],['supply','아파트 관리실','office'],['workshop','자전거 수리점','workshop'],['garden','아파트 텃밭','garden']],
  nowon:[['street','가족 집 주변 거리','street'],['supply','생활약국','medical'],['workshop','생활용품 창고','warehouse'],['home','다세대 주택','home']]};
 for(const [id,site] of Object.entries(medicalSites))if(id!=='clinic')districtLayout[site.hub].push(['medical',site.name,'medical']);
-for(const [hub,entries] of Object.entries(districtLayout))for(const [suffix,label,profile] of entries){const id=hub+'_'+suffix;districtPlaces[id]={name:hubs[hub]+' '+label,kind:profile==='garden'?'외곽':profile==='street'?'거리':profile==='workshop'?'정비':'실내',profile,hub,suffix,distance:.3,minutes:5,cost:1};}
+for(const [hub,entries] of Object.entries(districtLayout))for(const [suffix,label,profile] of entries){const id=hub+'_'+suffix;districtPlaces[id]={name:profile==='medical'?label:hubs[hub]+' '+label,kind:profile==='garden'?'외곽':profile==='street'?'거리':profile==='workshop'?'정비':'실내',profile,hub,suffix,distance:.3,minutes:5,cost:1};}
 export const districtFor=id=>hubs[id]?id:districtPlaces[id]?.hub||null;
 const offsets={street:[.12,0],supply:[.32,.16],workshop:[.3,-.24],books:[-.25,.22],garden:[-.3,.1],home:[-.2,-.2],medical:[.50,-.30]};
 export function districtDistance(from,to,base){const a=districtPlaces[from],b=districtPlaces[to];if(!a&&!b)return null;const ah=a?.hub||from,bh=b?.hub||to,pa=offsets[a?.suffix]||[0,0],pb=offsets[b?.suffix]||[0,0];return Math.round((ah===bh?Math.hypot(pa[0]-pb[0],pa[1]-pb[1]):base(ah,bh)+Math.hypot(...pa)+Math.hypot(...pb))*100)/100;}

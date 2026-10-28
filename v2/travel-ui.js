@@ -1,4 +1,4 @@
-import {districtFor} from './fieldwork.js?v=0.30.0';
+import {districtFor} from './fieldwork.js?v=0.30.0-r1';
 import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.30.0';
 import {routeAllowed,initDiscovery,neighbors} from './overland.js?v=0.30.0';
 import {railStops,railEstimate} from './rail-journey.js?v=0.30.0';
