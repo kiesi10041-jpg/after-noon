@@ -1,0 +1,6 @@
+// A four-digit code groups tester runs. It is not account authentication.
+export const normalizePlayerName=value=>String(value??'').normalize('NFC').trim().replace(/\s+/g,' ').slice(0,14);
+export function identityError(name,pin){if(!normalizePlayerName(name))return '이름을 입력해 주세요.';if(!/^[0-9]{4}$/.test(String(pin??'')))return '구분 번호는 숫자 4자리로 입력해 주세요.';return '';}
+export async function identifyPlayer(name,pin,cryptoApi=globalThis.crypto){const error=identityError(name,pin);if(error)throw new Error(error);const playerName=normalizePlayerName(name);const material=new TextEncoder().encode(`12:00/tester/v1\u0000${playerName}\u0000${pin}`);const digest=await cryptoApi.subtle.digest('SHA-256',material);return {name:playerName,profileId:Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join(''),version:1};}
+export function newRunId(cryptoApi=globalThis.crypto){return cryptoApi.randomUUID();}
+export function attachIdentity(s,identity,{resume=false,cryptoApi=globalThis.crypto}={}){s.playerName=identity.name;s.playerIdentity={...identity};if(!resume||!s.runRecord?.id)s.runRecord={id:newRunId(cryptoApi),startedAt:new Date().toISOString(),activeMs:0,sequence:0,legacy:resume};return s;}
