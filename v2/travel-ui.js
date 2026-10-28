@@ -1,7 +1,7 @@
-import {districtFor} from './fieldwork.js?v=0.30.0-r1';
-import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.30.0';
-import {routeAllowed,initDiscovery,neighbors} from './overland.js?v=0.30.0';
-import {railStops,railEstimate} from './rail-journey.js?v=0.30.0';
+import {districtFor} from './fieldwork.js?v=0.30.1';
+import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.30.1';
+import {routeAllowed,initDiscovery,neighbors} from './overland.js?v=0.30.1';
+import {railStops,railEstimate} from './rail-journey.js?v=0.30.1';
 const escape=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const duration=n=>`${Math.floor(n/60)?Math.floor(n/60)+'시간 ':''}${n%60||!n?n%60+'분':''}`;
 export function travelSummary(s){const target=s.tripPlan?.target,origin=s.away?s.location:'home',mode=s.tripPlan?.vehicle||'walk';if(!places[target])return null;const km=routeDistance(origin,target),rail=mode==='railwalk'?railEstimate(origin,target):null,minutes=rail?rail.minutes:travelMinutes(target,mode,mass(s),origin,s),ap=rail?rail.ap:km<1?0:mode==='walk'?Math.ceil(km/4):mode==='bike'?Math.ceil(km/9):1;return {target,origin,mode,km,minutes,ap,allowed:routeAllowed(s,origin,target),segmented:km>=5||Boolean(rail)};}

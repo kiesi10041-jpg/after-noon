@@ -1,5 +1,5 @@
-import {comfortLoad} from './strain.js?v=0.30.0';
-import {roll,initGrowth,gain,level} from './growth.js?v=0.30.0';
+import {comfortLoad} from './strain.js?v=0.30.1';
+import {roll,initGrowth,gain,level} from './growth.js?v=0.30.1';
 export const routePlaces={bridge:{name:'청라하늘대교 진입부',kind:'외곽',profile:'street',distance:8}};
 export const backbone=['station','bridge','road1','road2','road3','family'];
 const hub=id=>id?.includes('_')?id.split('_')[0]:['home','neighbor','store','pharmacy','market','hardware','park','bookstore'].includes(id)?'station':id;

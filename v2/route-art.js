@@ -1,5 +1,5 @@
-import {neighbors,edgeKey} from './overland.js?v=0.30.0';
-import {chapterPoints,chapterDots} from './chapter2.js?v=0.30.0';
+import {neighbors,edgeKey} from './overland.js?v=0.30.1';
+import {chapterPoints,chapterDots} from './chapter2.js?v=0.30.1';
 // Schematic ground journey; coordinates also anchor the illustrated route sheet.
 export const regionalDots={station:[20,84],home:[20,84],bridge:[48,74],road1:[22,56],road2:[66,46],road3:[44,24],family:[82,16],nowon:[84,37],clinic:[80,60],relay:[73,80]};
 export function regionalPoints(s){if(s.chapterMap&&s.chapter2?.stage)return chapterPoints();return [['station','영종역','rail'],['bridge','연결로 진입부','walk'],['road1','검암권 쉼터','moon'],['road2','서울역 쉼터','moon'],['road3','창동역 쉼터','moon'],['family','가족 집','door'],...(s.questStage>=3?[['nowon','노원역 기록실','rail'],['clinic','의료 거점','heart'],['relay','도봉권 중계실','radio']]:[])].map(([id,name,icon])=>[id,name,...regionalDots[id],icon]);}
