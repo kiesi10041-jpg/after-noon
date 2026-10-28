@@ -17,3 +17,4 @@ export function useMedicine(s){
  s.text=`${source.label}의 구급약 1개를 사용했다. 건강 ${Math.round(before)} → ${Math.round(s.health)} · 오한 ${Math.round(s.cold)}. 허기와 갈증은 식량과 물로 해결해야 한다.`;
  return true;
 }
+

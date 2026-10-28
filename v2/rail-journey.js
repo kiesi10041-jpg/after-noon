@@ -1,4 +1,4 @@
-import {roll} from './growth.js?v=0.29.0';
+import {roll} from './growth.js?v=0.30.0';
 export const line4Stops=['서울역','회현','명동','충무로','동대문역사문화공원','동대문','혜화','한성대입구','성신여대입구','길음','미아사거리','미아','수유','쌍문','창동','노원'];
 const anchors={road2:0,road3:14,family:15,nowon:15};
 export function railStops(from,to){const a=anchors[from],b=anchors[to];if(a===undefined||b===undefined||a===b)return null;const out=[];for(let i=a;;i+=a<b?1:-1){out.push(line4Stops[i]);if(i===b)break;}return out;}
@@ -25,3 +25,4 @@ export function railAction(s,a,c){const t=s.railTrip;
  s.text=`${t.stops[t.index]} 승강장에 닿았다. 아직 ${t.stops.length-1-t.index}개 구간이 남았다. 여기서 조명을 정비하고 쉬어 갈 수 있다.`;return true;
 }
 export function railView(s,button){const t=s.railTrip;if(!t)return '';const cost=t.stage==='platform'&&t.index%2===0?1:0;return `<section class="rail-progress"><strong>${t.stops[t.index]} → ${t.stops[t.index+1]||t.stops[t.index]}</strong><span>${t.index}/${t.stops.length-1} 구간 통과 · 누적 이동 ${t.spent}분</span><progress max="${t.stops.length-1}" value="${t.index}"></progress><p>열차 운행 중단 · 내부 도보 탐색<br>공항철도 철교·단절 구간은 지상 경로를 이용합니다.</p></section><div class="sheet-actions">${t.stage==='blocked'?button('rail-clear','점검문 손보기','공구 · 20분 · 기력 1',!s.carry.tool)+button('rail-detour','비상계단으로 우회','35분 · 기력 소모 없음'):button('rail-step',t.stage==='platform'?'다음 역 방향 통로로':'앞쪽 승강장까지 이동',`${t.stage==='platform'?12:13}분 · 기력 ${cost} · 조명 배터리 소모`)}${t.stage==='platform'?button('rail-rest','승강장에서 잠시 쉬기','30분 · 기력 +2 · 긴장 +2'):''}${button('rail-turnback','출발한 역으로 되돌아가기','되짚는 시간과 기력 필요')}</div>`;}
+

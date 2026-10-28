@@ -3,3 +3,4 @@ export function siteInteractions(id,places={}){const p=places[id]||{},profile=p.
  if(profile==='street')return {outside:true,near:'길가에 남은 물건',nearAt:[30,72],inside:null,force:'흩어진 짐 사이 조사',description:'길가에 멈춘 차량과 남겨진 짐을 살핀다.'};
  if(id==='park'||profile==='garden')return {outside:true,near:'자전거와 주변 물건',nearAt:[30,72],inside:'자전거 부품 확인',force:'풀숲에 걸린 짐 조사',description:'산책로와 풀숲 사이에 남겨진 물건을 살핀다.'};
  const names=({home:['현관 장바구니','주방 수납장 확인'],supply:['입구 진열대','쓰러진 진열대 뒤 확인'],workshop:['작업대 상자','잠긴 공구함 확인'],medical:['깨진 진열장','닫힌 보관함 확인'],books:['계산대 앞 책','기울어진 책장 뒤 확인'],warehouse:['출입구 적재물','잠긴 보관함 확인'],lodging:['로비의 짐','닫힌 수납공간 확인'],office:['안내대 주변','잠긴 서랍 확인']})[profile]||['손에 닿는 물건','닫힌 수납공간 확인'];return {outside:false,near:id==='family'?'현관과 책상':id==='station'?'개찰구 주변':names[0],nearAt:id==='neighbor'?[78,75]:[28,64],inside:names[1],force:'잔해를 넘어 조사',description:'손이 닿는 물건과 가려진 수납공간을 나누어 살핀다.'};}
+

@@ -36,3 +36,9 @@
 .game-root .world.bridge .world-art{background-image:url('../assets/bridge-v28.webp')!important}.map-result{font-size:14px;line-height:1.5;color:#d9d6b6;margin:0 0 8px}
 
 .game-root .ability-tabs{position:static}.game-root .game-sheet>header{position:sticky;top:-20px;z-index:12;background:#253228;padding-top:8px;padding-bottom:12px}.game-root .game-sheet>header button{position:relative;z-index:13;flex-shrink:0}@media(max-width:760px){.game-root .game-sheet>header{top:-16px}}
+
+
+/* No flashing or camera shake: danger is carried by text, tone and a stable border. */
+.tension-notice details{margin-top:.4rem}.tension-notice summary{cursor:pointer;font-size:1rem;padding:.5rem 0}.tension-notice details p{font-size:1rem;line-height:1.6}.tension-stage-high{border-left:4px solid #c28a74;background:#3a3029}.tension-stage-mid{border-left:3px solid #c6af74}.panic-lead{font-size:clamp(1.2rem,3.5vw,1.65rem);color:#e7c6a4;line-height:1.5}.game-sheet .panic-lead~.sheet-actions button{min-height:72px}.world[class*="_medical"] .world-art{background-image:url('../assets/pharmacy-v7.webp')!important;background-size:cover!important;background-position:center!important}
+
+.tension-notice>strong,.tension-notice>span{font-size:1rem;line-height:1.6}

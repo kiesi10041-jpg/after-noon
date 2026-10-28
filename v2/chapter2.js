@@ -1,4 +1,4 @@
-import {carryLimit} from './strain.js?v=0.29.0';
+import {carryLimit} from './strain.js?v=0.30.0';
 export const chapterPlaces={depot:{name:'북부 물류창고',distance:91,kind:'단서'},school:{name:'학교 대피소',distance:96,kind:'단서'},waterworks:{name:'배수지 관리동',distance:102,kind:'단서'}};
 export const chapterDots={relay:[23,20],depot:[75,20],school:[23,52],waterworks:[75,80]};
 export const chapterPoints=()=>[['relay','중계실',23,20,'radio'],['depot','물류창고',75,20,'tool'],['school','학교 대피소',23,52,'moon'],['waterworks','배수지 관리동',75,80,'water']];
@@ -39,3 +39,4 @@ if(a==='ch2-power'&&place==='waterworks'&&(c.stage===3||[4,5].includes(c.stage)&
 if(a.startsWith('ch2-compare:')&&place==='waterworks'&&c.stage===4){if(stamp(s)+15>c.powerUntil)return fail('기록 장치의 전원이 꺼졌다. 예비 부품과 전원을 다시 마련해야 한다.');if(!pay(s,{ap:0,minutes:15}))return false;const correct=(s.seed>>>0)%2?'after':'before';if(a.split(':')[1]!==correct){s.stress=Math.min(100,s.stress+8);s.text='도장의 순서가 맞지 않는다. 수동 운반은 훈련 전원 차단 뒤라는 인수표와 방송일지를 다시 펼쳤다.';return true;}note(s,'2장: 서로 다른 장치의 사건 순서 대조 완료');c.beat='evidence';return true;}
 if(['ch2-radio','ch2-paper'].includes(a)&&place==='waterworks'&&c.stage===5){const radio=a==='ch2-radio',food=Object.keys(foods).find(id=>kit[id]>0&&(id==='can'||(s.carryDates[id]||[]).some(d=>d>s.day)));if(radio&&stamp(s)+45>c.powerUntil)return fail('전원이 부족하다. 종이 경로를 남기거나 기록 대조 단계에서 전원을 다시 준비해야 한다.');if(radio&&!kit.radio&&!kit.battery)return fail('수동 라디오 또는 건전지 한 쌍이 필요하다.');if(!radio&&(!kit.water||!food))return fail('남길 물 한 병과 먹을 수 있는 포장 식량 한 개가 필요하다.');if(!pay(s,{ap:1,minutes:radio?45:30}))return false;if(radio){if(!kit.radio)kit.battery--;c.choice='radio';c.beat='radioEnd';}else{kit.water--;kit[food]--;if(food!=='can'){const i=s.carryDates[food].findIndex(d=>d>s.day);s.carryDates[food].splice(i,1);}c.choice='paper';c.beat='paperEnd';}note(s,radio?'2장: 시험 문장을 지우고 내 이동 경로 송출':'2장: 전원에 의존하지 않는 종이 경로와 물자');return true;}
 return fail('지금 진행할 수 있는 조사인지 목표를 확인하자.');}
+

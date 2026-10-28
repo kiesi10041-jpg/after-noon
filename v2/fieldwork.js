@@ -1,4 +1,5 @@
-import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.29.0';
+import {medicalSites} from './medical-sites.js?v=0.30.0';
+import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.30.0';
 // District exits, light ownership and bicycle lifecycle.
 export const hubs={station:'영종역',road1:'검암역',road2:'서울역',road3:'창동역',nowon:'노원역'};
 export const districtPlaces={};export const districtDots={};
@@ -8,11 +9,12 @@ export const districtLayout={
  road2:[['street','도심 골목','street'],['supply','숙박시설','lodging'],['workshop','역무실 창고','office'],['books','중고 서점','books']],
  road3:[['street','주거지 거리','street'],['supply','아파트 관리실','office'],['workshop','자전거 수리점','workshop'],['garden','아파트 텃밭','garden']],
  nowon:[['street','가족 집 주변 거리','street'],['supply','생활약국','medical'],['workshop','생활용품 창고','warehouse'],['home','다세대 주택','home']]};
+for(const [id,site] of Object.entries(medicalSites))if(id!=='clinic')districtLayout[site.hub].push(['medical',site.name,'medical']);
 for(const [hub,entries] of Object.entries(districtLayout))for(const [suffix,label,profile] of entries){const id=hub+'_'+suffix;districtPlaces[id]={name:hubs[hub]+' '+label,kind:profile==='garden'?'외곽':profile==='street'?'거리':profile==='workshop'?'정비':'실내',profile,hub,suffix,distance:.3,minutes:5,cost:1};}
 export const districtFor=id=>hubs[id]?id:districtPlaces[id]?.hub||null;
-const offsets={street:[.12,0],supply:[.32,.16],workshop:[.3,-.24],books:[-.25,.22],garden:[-.3,.1],home:[-.2,-.2]};
+const offsets={street:[.12,0],supply:[.32,.16],workshop:[.3,-.24],books:[-.25,.22],garden:[-.3,.1],home:[-.2,-.2],medical:[.50,-.30]};
 export function districtDistance(from,to,base){const a=districtPlaces[from],b=districtPlaces[to];if(!a&&!b)return null;const ah=a?.hub||from,bh=b?.hub||to,pa=offsets[a?.suffix]||[0,0],pb=offsets[b?.suffix]||[0,0];return Math.round((ah===bh?Math.hypot(pa[0]-pb[0],pa[1]-pb[1]):base(ah,bh)+Math.hypot(...pa)+Math.hypot(...pb))*100)/100;}
-export function districtPoints(s){const hub=districtFor(s.location)||s.districtHub||'station',positions=[[50,33],[23,59],[77,59],[50,82]];return [[hub,hubs[hub],50,12,'rail'],...districtLayout[hub].map(([suffix,label,profile],i)=>[hub+'_'+suffix,label,...positions[i],profile==='books'?'book':profile==='workshop'?'tool':profile==='street'?'walk':profile==='medical'?'heart':'bag'])];}
+export function districtPoints(s){const hub=districtFor(s.location)||s.districtHub||'station',positions=[[50,31],[20,52],[80,52],[27,78],[73,78]];return [[hub,hubs[hub],50,12,'rail'],...districtLayout[hub].map(([suffix,label,profile],i)=>[hub+'_'+suffix,label,...positions[i],profile==='books'?'book':profile==='workshop'?'tool':profile==='street'?'walk':profile==='medical'?'heart':'bag'])];}
 export function initFieldwork(s){s.equipment??={flashlight:false};s.transport??={bike:false,carKey:false};s.transport.bikeCondition??=s.transport.bike?100:0;s.bikeFind??=null;s.bikeLog??=[];}
 export function localStock(s){return s.away?s.expedition?.shelters?.[s.location]?.stock||{}:s.stock;}
 export function flashlightOwned(s){return Boolean(s.equipment?.flashlight||s.carry?.flashlight||localStock(s).flashlight);}
@@ -26,3 +28,4 @@ if(a==='bike-inspect'){if(s.transport.bike){s.text=`내 자전거 상태는 ${s.
 if(a==='bike-unlock'){const b=s.bikeFind;if(!b||b.location!==s.location||!b.locked)return false;if(!kit.tool){s.text='케이블 잠금을 제거할 공구를 가져와야 한다.';return false;}if(!requireSight(s)||!pay(s,{ap:1,minutes:20}))return false;b.locked=false;s.bikeLog.push('케이블 잠금 제거');s.text='케이블 잠금을 제거했다. 이제 바퀴와 체인을 정비할 차례다.';return finish(s);}
 if(a==='bike-repair'){const b=s.bikeFind,owned=s.transport.bike;if(owned&&s.transport.bikeCondition>=100){s.text='자전거 상태가 정상이다. 수선 재료를 쓸 필요가 없다.';return false;}if(!owned&&(!b||b.location!==s.location||b.locked)){s.text='발견한 자전거를 살피고 잠금부터 제거해야 한다.';return false;}if(!hasKnowledge(s,'mechanics')){s.text='정비 방법을 아직 모른다. 책을 읽거나 공구로 기초 관찰·실습을 쌓아야 한다.';return false;}if((owned?s.transport.bikeCondition:b.condition)<25&&!kit.bikeParts){s.text='심한 손상은 천으로 고칠 수 없다. 자전거 정비 부품이 필요하다.';return false;}if(!kit.tool||(!kit.bikeParts&&!kit.cloth)){s.text='수리 준비 부족: '+[!kit.tool?'공구 1개':'',!kit.bikeParts&&!kit.cloth?'정비 부품 또는 천과 실 1개':''].filter(Boolean).join(' · ')+(s.away?'를 가방에 챙겨야 한다.':'가 필요하다.');return false;}if(!requireSight(s)||!pay(s,{ap:1,minutes:Math.max(25,50-initGrowth(s).stats.dexterity*5-level(s,'mechanics')*3)}))return false;const complete=Boolean(kit.bikeParts);if(complete)kit.bikeParts--;else kit.cloth--;s.transport.bike=true;s.transport.bikeCondition=complete?100:Math.min(80,(owned?s.transport.bikeCondition:b.condition)+35);gain(s,'mechanics','repair',2);s.vehicleFinds??={placed:{}};s.vehicleFinds.placed??={};s.vehicleFinds.placed.bike=true;s.bikeNotice='';s.bikeLog.push('체인 장력 · 바퀴 · 브레이크 정비 완료');if(b)b.condition=s.transport.bikeCondition;for(const q of [s.loot,s.worldLoot?.[s.location]])if(q?.bike)q.bike=0;s.text=complete?'부품을 교체하고 정비 도해에 따라 점검했다. 상태 100%.':'배운 방법으로 간단히 응급 수선했다. 상태 '+s.transport.bikeCondition+'%. 완전한 정비에는 교체 부품이 필요하다.';return finish(s);}
 return null;}
+

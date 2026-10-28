@@ -1,3 +1,4 @@
 export function batteryStock(s){if(s.carry?.battery>0)return {stock:s.carry,name:'가방'};const stock=s.away?s.expedition?.shelters?.[s.location]?.stock:s.stock;return stock?.battery>0?{stock,name:s.away?'현재 거처':'집'}:null;}
 export function replaceBattery(s,owned){const source=batteryStock(s);if(!owned){s.text='사용할 손전등 본체가 없다. 건전지만으로 휴대폰을 충전할 수는 없다.';return false;}if(!source){s.text='이곳에서 사용할 건전지가 없다. 가방이나 현재 거처의 물자를 확인하자.';return false;}if(s.battery>=100){s.text='손전등 배터리가 가득 차 있어 교체할 필요가 없다.';return false;}source.stock.battery--;s.battery=100;s.text=`${source.name}의 건전지 한 쌍을 넣었다. 손전등 배터리 100%. 휴대폰은 전기가 있는 곳에서 별도로 충전해야 한다.`;return true;}
 export function tension(s){const n=s.stress||0;return n>=80?{level:2,name:'공황 직전',minutes:20,ap:1}:n>=60?{level:1,name:'불안·손 떨림',minutes:10,ap:0}:{level:0,name:n>=40?'경계·초조':'안정',minutes:0,ap:0};}
+
