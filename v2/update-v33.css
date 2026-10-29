@@ -75,3 +75,8 @@
 .game-root .work-controls{margin-top:6px!important}
 .game-root .work-controls:empty{display:none!important}
 @media(max-width:360px){.game-root .work-dialog{grid-template-columns:92px minmax(0,1fr)!important}.game-root .work-illustration{width:92px!important}.game-root .work-action-art{width:88px!important;max-width:88px!important}}
+
+/* v0.34.1: map backgrounds take precedence over the location being left. */
+.game-root.map-mode[data-scene=door]:not(.regional-map) .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/map-local-v32.webp')!important;background-size:cover!important;background-position:center!important;filter:none!important}
+.game-root.map-mode.regional-map[data-scene=door]:not([data-chapter-map=yes]) .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/map-region-v32.webp')!important;background-size:cover!important;background-position:center!important;filter:none!important}
+.game-root.map-mode.regional-map[data-scene=door][data-chapter-map=yes] .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/chapter2-route.svg')!important;background-size:100% 100%!important;background-position:center!important;filter:none!important}

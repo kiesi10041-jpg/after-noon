@@ -1,6 +1,6 @@
-import {isMedicalSite,medicalState} from './medical-sites.js?v=0.34.0';
-import {carryLimit} from './strain.js?v=0.34.0';
-import {chapterQuest} from './chapter2.js?v=0.34.0';
+import {isMedicalSite,medicalState} from './medical-sites.js?v=0.34.1';
+import {carryLimit} from './strain.js?v=0.34.1';
+import {chapterQuest} from './chapter2.js?v=0.34.1';
 // Persistent expedition, narrative and exposure rules. No UI or wall-clock dependency.
 export const expeditionPlaces={
  nowon:{name:'노원역 기록실',distance:80.5,kind:'단서'},

@@ -1,6 +1,6 @@
-import {injuryPenalty} from './wildlife.js?v=0.34.0';
-import {medicalSites} from './medical-sites.js?v=0.34.0';
-import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.34.0';
+import {injuryPenalty} from './wildlife.js?v=0.34.1';
+import {medicalSites} from './medical-sites.js?v=0.34.1';
+import {hasKnowledge,initGrowth,gain,level} from './growth.js?v=0.34.1';
 // District exits, light ownership and bicycle lifecycle.
 export const hubs={station:'영종역',road1:'검암역',road2:'서울역',road3:'창동역',nowon:'노원역'};
 export const districtPlaces={};export const districtDots={};

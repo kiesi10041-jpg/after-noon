@@ -1,5 +1,5 @@
-import {injuryPenalty} from './wildlife.js?v=0.34.0';
-import {initGrowth} from './growth.js?v=0.34.0';
+import {injuryPenalty} from './wildlife.js?v=0.34.1';
+import {initGrowth} from './growth.js?v=0.34.1';
 export const carryLimit=s=>Math.max(3,4+initGrowth(s).stats.endurance*2-injuryPenalty(s,'arm'));
 export const comfortLoad=s=>2+initGrowth(s).stats.endurance;
 export const minuteNow=s=>(s.day-1)*1440+s.time;
