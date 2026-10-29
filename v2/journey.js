@@ -1,24 +1,24 @@
-import {reliefAction} from './relief.js?v=0.33.1';
-import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.33.1';
-import {chooseAnimal,beginAnimal,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.33.1';
-import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.33.1';
-import {initBody,climateHour,climateAction} from './body-climate.js?v=0.33.1';
-import {isMedicalSite} from './medical-sites.js?v=0.33.1';
-import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.33.1';
-import {siteInteractions} from './site-interactions.js?v=0.33.1';
-import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.33.1';
+import {reliefAction} from './relief.js?v=0.34.0';
+import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.34.0';
+import {chooseAnimal,beginAnimal,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.34.0';
+import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.34.0';
+import {initBody,climateHour,climateAction} from './body-climate.js?v=0.34.0';
+import {isMedicalSite} from './medical-sites.js?v=0.34.0';
+import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.34.0';
+import {siteInteractions} from './site-interactions.js?v=0.34.0';
+import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.34.0';
 export {carryLimit,comfortLoad,calmPlan};
-import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.33.1';
-import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.33.1';
-import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.33.1';
-import {railAction,railEstimate} from './rail-journey.js?v=0.33.1';
-import {chapterPlaces,chapterAction} from './chapter2.js?v=0.33.1';
-import {replaceBattery,tension} from './survival-controls.js?v=0.33.1';
-import {useMedicine} from './care.js?v=0.33.1';
-import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.33.1';
+import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.34.0';
+import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.34.0';
+import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.34.0';
+import {railAction,railEstimate} from './rail-journey.js?v=0.34.0';
+import {chapterPlaces,chapterAction} from './chapter2.js?v=0.34.0';
+import {replaceBattery,tension} from './survival-controls.js?v=0.34.0';
+import {useMedicine} from './care.js?v=0.34.0';
+import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.34.0';
 export {flashlightOwned};
-import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.33.1';
-import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.33.1';
+import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.34.0';
+import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.34.0';
 export {items,pantryFoods,season,capacity,weatherToday,incidentToday};
 items.flashlight=['손전등',1,.2];items.battery=['건전지 한 쌍',1,.1];
 items.medicine=['구급약',1,.15];items.carKey=['차 열쇠',0,0];items.bike=['자전거',0,0];items.mask=['방진 마스크',1,.1];Object.assign(items,extraItems,settlementItems);
@@ -83,7 +83,7 @@ export function drop(s,id){if(!s.away||s.roadTrip||s.railTrip)return false;let e
 function travelEncounter(s){return chooseAnimal(s,()=>rand(s));}
 function arrive(s,target){s.tripPlan.target=target;s.away=true;s.location=target;s.source=s.location;s.scene=s.location;s.packLimit=null;if(s.location==='station'&&s.questStage===1){s.stationChecked=false;s.text='전광판에는 운행 중단 안내가 멈춰 있다. 개찰구는 비상 해제되어 열렸지만 승강장은 텅 비었다. 관제와 역무 인력이 사라진 뒤 열차는 멈췄다. 표를 찍어도 갈 곳은 없다. 가족은 노원역 인근에 있다. 전광판과 안내도를 직접 확인하고, 걸어서 통과할 경로를 찾아야 한다.';return true;}if(s.location==='family'&&s.questStage<3){s.questStage=3;s.stress=Math.min(100,s.stress+22);s.clues??=[];s.clues.push('가족의 옷과 차려진 식탁');s.signalPending=s.day<=s.signalDeadline;s.signalMissed=!s.signalPending;s.carry.medicine=(s.carry.medicine||0)+1;s.text='몇 번이나 이름을 불렀다. 대답은 없다. 식탁에는 먹다 만 밥, 의자 아래에는 익숙한 옷이 남아 있다. 여기만은 다를 거라는 생각이 무너졌다. '+(s.signalPending?'그때, 닫힌 서랍 안에서 휴대폰이 진동했다.':'서랍 속 휴대폰에는 부재중 전화 한 건과 서비스 없음 표시만 남아 있다. 발신 시각은 이틀 전이다.');storyArrival(s);return true;}s.visits[s.location]=(s.visits[s.location]||0)+1;s.ratActive=false;if(storyArrival(s))return true;if(chapterPlaces[s.location]){s.text=({depot:'하역장은 조용하다. 잔해를 치우거나 하역문 틈으로 들어갈 수 있다.',school:'체육관 입구에 들개가 서성인다. 안쪽에는 접힌 야전침대와 밀봉한 재난 물자가 쌓여 있다. 대피소로 운영된 흔적은 없다.',waterworks:'펌프가 멈춘 관리동. 기록 장치에는 예비 전원 연결부가 있다.'})[s.location];return true;}if(isMedicalSite(s.location)){s.text='접수대는 비어 있다. 남겨진 교상 안내와 냉장 보관 기록을 먼저 확인하고, 일반 구급약·세척 물자를 따로 살필 수 있다. 의료 기록은 장소·장비에서 확인한다.';return true;}if(['nowon','relay'].includes(s.location))return true;
   const incident=incidentAt(s,s.location);if(incident){s.incidentActive={...incident};s.scene='incident';s.text=incident.kind==='fire'?'가게 안쪽에서 검은 연기가 새어 나온다. 전기 합선인지, 아직 불씨가 남아 있는 듯하다. 안으로 들어가면 연기를 들이마실 수 있다.':'사고 난 차에서 흘러나온 기름이 차도에 번져 있다. 타이어나 신발이 미끄러질 수 있다.';return true;}
-  const companion=!s.pet&&(s.petTrails?.[s.location]||petEncounterAt(s,s.location));if(companion){s.petEncounter={...companion};s.scene='pet-event';s.text=companion.kind==='parrot'?'이웃집 문틈에서 작은 날갯짓과 짧은 울음이 들린다. 집 안에는 사람이 보이지 않는다.':'쓰러진 가방 곁에서 작은 동물이 몸을 웅크리고 있다. 가까이 다가가자 경계하면서도 자리를 떠나지 않는다.';return true;}
+  const companion=!s.pet&&petEncounterAt(s,s.location);if(companion){s.petEncounter={...companion};s.scene='pet-event';s.text=companion.kind==='parrot'?'이웃집 문틈에서 작은 날갯짓과 짧은 울음이 들린다. 집 안에는 사람이 보이지 않는다.':'쓰러진 가방 곁에서 작은 동물이 몸을 웅크리고 있다. 가까이 다가가자 경계하면서도 자리를 떠나지 않는다.';return true;}
   const animal=travelEncounter(s);s.wildlifeActive=animal;
   if(animal){beginAnimal(s,animal);return true;}
   s.text=s.location==='bridge'?siteInteractions(s.location,places).description:animal==='cat'?'가게 앞 고양이가 쓰러진 바구니를 살피다 담장 너머로 사라졌다.':animal==='crow'?'까마귀 몇 마리가 도로의 음식 포장지를 쪼고 있다. 가까이 다가가자 전깃줄로 날아갔다.':districtPlaces[s.location]?({street:'역 출입구 밖으로 나왔다. 버려진 차 사이로 상점 입구와 자전거 수리점이 보인다.',supply:'유리문 너머로 식품 진열대가 보인다. 생수와 밀봉 식품부터 살펴보자.',workshop:'거치대에 잠긴 자전거가 남아 있다. 작업대에는 공구와 타이어 수선 재료가 보인다.'})[districtPlaces[s.location].suffix]||places[s.location].name+'에 들어섰다. 남겨진 물자와 자료를 구분해 살펴보자.':places[s.location]?.kind==='중간거점'?'차량이 버려진 도로 옆에 문을 막을 수 있는 작은 건물이 남아 있다. 물자를 살피거나 여기서 쉬어 갈 수 있다.':s.location==='neighbor'?'현관 장바구니가 쓰러져 있다. 안쪽 주방은 조용하다.':s.location==='store'?'입구에 유리 조각이 흩어져 있다. 뒤쪽 진열대는 쓰러진 선반에 가려져 있다.':s.location==='pharmacy'?'약국 유리문 한쪽이 깨져 있다. 조제실 문은 닫혀 있다.':s.location==='market'?'마트 입구에 손수레가 뒤집혀 있다. 냉장 매대의 전원은 끊겼다.':s.location==='park'?'하천 산책로에 자전거가 쓰러져 있다. 풀숲에서 움직임이 보인다.':'상자 사이로 좁은 통로가 남아 있다. 안쪽에는 공구와 생활용품이 보인다.';return true;
@@ -94,6 +94,7 @@ if(a==='station-board'){if(!s.away||s.location!=='station')return false;if(!requ
 if(a==='wear-jacket')return wearJacket(s);
 if(a==='repair-outfit'){if(s.away||!s.stock.cloth){s.text='집에서 천과 실을 써야 한다. 수선할 재료가 없다.';return false;}if(!pay(s,{ap:1,minutes:30}))return false;s.stock.cloth--;s.outfit.condition=100;s.outfit.wet=0;s.text='겉옷의 터진 솔기를 꿰매고 말렸다. 방한 성능이 돌아왔다.';return finish(s);}
 if(a==='mask'){const source=s.away?s.carry:s.stock;if(s.maskOn){s.maskOn=false;source.mask=(source.mask||0)+1;s.text='방진 마스크를 벗어 보관했다.';return true;}if(!source.mask){s.text='방진 마스크가 없다. 약국에서 찾아야 한다.';return false;}source.mask--;s.maskOn=true;s.text='방진 마스크를 착용했다. 황사 속에서 목과 호흡기를 보호한다.';return true;}
+if(a==='pet-revisit'&&s.away&&!s.pet&&s.petTrails?.[s.location]&&!["wildlife","incident"].includes(s.scene)){s.petEncounter={...s.petTrails[s.location]};s.scene='pet-event';s.text='전에 보았던 동물과 거리를 두고 상태를 살핀다.';return true;}
 if(s.scene==='pet-event'&&s.petEncounter){const event=s.petEncounter,key=`${event.day}:${event.location}`,petNames={cat:['점박이','나비','호두'],dog:['콩이','보리','마루'],parrot:['초롱','구름','단추']};if(a==='pet-observe'){if(!pay(s,{ap:0,minutes:10}))return false;event.trust=Math.max(1,event.trust||0);s.text='거리를 두고 지켜봤다. 손을 뻗기보다 물과 종류에 맞는 먹이부터 마련하자.';return true;}if(a==='pet-offer'){const kit=s.away?s.carry:s.stock,id=event.kind==='parrot'?'birdFeed':'petFeed';if(!kit[id]||availableWater(s)<100){s.text='종류에 맞는 먹이와 물 100mL를 준비해야 한다.';return false;}if(event.offeredDay===s.day){s.text='오늘 먹이를 주었다. 조금 더 거리를 두고 기다려야 한다.';return false;}if(!pay(s,{ap:0,minutes:15}))return false;kit[id]--;drawWater(s,100);event.trust=Math.min(3,(event.trust||0)+1);event.offeredDay=s.day;s.text='먹이와 물을 놓고 물러났다. 동물이 천천히 다가온다.';return true;}if(a==='pet-adopt'){if((event.trust||0)<2||!event.offeredDay){s.text='아직 경계하고 있다. 관찰하고 먹이를 주며 신뢰를 쌓아야 한다.';return false;}const names=petNames[event.kind];s.pet={kind:event.kind,name:names[Math.floor(rand(s)*names.length)],trust:event.trust,nextMealDay:s.day+3,hungry:false,note:'먹이는 사흘에 한 번 필요하다. 함께 있으면 긴장이 조금 줄어든다.'};s.petEventsHandled[key]='adopted';if(s.petTrails)delete s.petTrails[s.location];s.petEncounter=null;s.scene=s.location;s.text=event.kind==='parrot'?'작은 앵무새가 어깨 가까이 다가왔다. 짧은 울음에 대답하듯 손을 내밀고, 조심스럽게 집으로 데려가기로 했다.':event.kind==='cat'?'고양이가 가방 밑에서 몸을 일으켰다. 경계하는 눈을 살피며 천천히 집으로 데려가기로 했다.':'작은 개가 다친 발을 들고 꼬리를 흔들었다. 혼자 두고 갈 수 없어 조심스럽게 집으로 데려가기로 했다.';return true;}if(a==='pet-leave'){s.petTrails??={};s.petTrails[s.location]={...event};s.petEventsHandled[key]='left';s.petEncounter=null;s.scene=s.location;s.text='당장 먹이고 보호할 준비가 되어 있지 않다. 물과 먹이를 마련한 뒤 다시 살펴보기로 했다.';return true;}}
 if(a==='pet-feed'&&s.pet){const kit=s.away?s.carry:s.stock,id=s.pet.kind==='parrot'?'birdFeed':'petFeed';if(s.pet.fedDay===s.day){s.text='오늘 먹이를 주었다.';return false;}if(!kit[id]||availableWater(s)<100){s.text='종류에 맞는 먹이와 물 100mL가 필요하다.';return false;}if(!pay(s,{ap:0,minutes:10}))return false;kit[id]--;drawWater(s,100);s.pet.fedDay=s.day;s.pet.hungry=false;s.pet.nextMealDay=s.day+3;s.pet.trust=Math.min(5,(s.pet.trust||2)+1);s.text='먹이와 물을 챙겼다.';return true;}
 if(a==='pet-care'&&s.pet){if(minuteNow(s)-(s.lastPetCareMinute??-10000)<180){s.text='방금 함께 시간을 보냈다. 돌봄으로 긴장을 풀려면 조금 더 시간이 필요하다.';return false;}if(!pay(s,{ap:1,minutes:10}))return false;s.lastPetCareMinute=minuteNow(s);if(s.pet.hungry){easeStress(s,4);s.text=`${s.pet.name} 곁에 앉아 진정시켰다. 먹이를 구하지 못해 계속 마음이 쓰인다.`;}else{easeStress(s,10);s.text=s.pet.kind==='parrot'?`${s.pet.name}가 전에 들은 짧은 말을 작게 되풀이했다. 텅 빈 집 안에 목소리가 남았다.`:`${s.pet.name}의 체온이 손끝에 닿았다. 잠시 숨을 고르자 긴장이 조금 풀렸다.`;}return finish(s);}

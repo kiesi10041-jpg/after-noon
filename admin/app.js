@@ -1,6 +1,6 @@
-import {placeName,actionName,resultName,RESULTS,NEXT_STEPS} from './labels.js?v=0.33.1';
+import {placeName,actionName,resultName,RESULTS,NEXT_STEPS} from './labels.js?v=0.34.0';
 import {config} from './config.js';
-import {TYPES,REASONS,parseCSV,objects,buildData,isFailure,needsReview,issueGroups,csv,selectRuns,demoData} from './model.js?v=0.33.1';
+import {TYPES,REASONS,parseCSV,objects,buildData,isFailure,needsReview,issueGroups,csv,selectRuns,demoData} from './model.js?v=0.34.0';
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let data=buildData({}),source='',view='overview',profile='',page=0,eventType='',failureOnly=false,busy=false,generation=0,updated='',dialogRun='';
 const SIZE=15;

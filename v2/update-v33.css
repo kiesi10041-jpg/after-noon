@@ -61,3 +61,17 @@
 /* Fixed viewport: decoded sprite frames share one canvas and never determine layout. */
 .game-root .work-illustration{flex:none!important;overflow:hidden!important}
 .game-root .work-action-art{width:178px!important;height:178px!important;min-width:178px!important;max-width:178px!important;flex:none!important;object-fit:contain!important;transform:none!important;transition:none!important}
+
+/* v0.34: action stays in a compact tray, without changing or darkening the scene. */
+.game-root .work-shade{inset:auto 12px calc(82px + env(safe-area-inset-bottom)) auto!important;width:min(460px,calc(100vw - 24px))!important;padding:0!important;background:transparent!important;backdrop-filter:none!important;animation:none!important;display:block!important;z-index:120}
+.game-root .work-dialog{display:grid!important;grid-template-columns:112px minmax(0,1fr)!important;width:100%!important;max-height:min(310px,62dvh)!important;overflow:auto!important;border-radius:8px!important;box-shadow:0 3px 12px #0003!important;background:#213027!important}
+.game-root .work-illustration{width:112px!important;height:156px!important;max-height:none!important;padding:6px!important;align-self:center!important}
+.game-root .work-action-art{width:108px!important;height:144px!important;min-width:0!important;max-width:108px!important;max-height:144px!important}
+.game-root .work-content{padding:14px 12px 12px 0!important;min-width:0}
+.game-root .work-content h2{font-size:17px!important;line-height:1.4!important;overflow-wrap:anywhere}
+.game-root .work-content time{font-size:20px!important}
+.game-root .work-content progress{margin-top:8px!important}
+.game-root .work-content p{font-size:12px!important;flex-wrap:wrap!important}
+.game-root .work-controls{margin-top:6px!important}
+.game-root .work-controls:empty{display:none!important}
+@media(max-width:360px){.game-root .work-dialog{grid-template-columns:92px minmax(0,1fr)!important}.game-root .work-illustration{width:92px!important}.game-root .work-action-art{width:88px!important;max-width:88px!important}}
