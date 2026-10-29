@@ -117,3 +117,11 @@
 .game-root.working-mode .play-shell .play-body .scene-stage .world{height:clamp(145px,28dvh,240px)!important;aspect-ratio:auto!important;min-height:0!important}
 .game-root.working-mode .play-shell .play-body .decision-panel{display:flex!important;flex-direction:column!important;overflow:auto!important;max-height:none!important;min-height:0!important}
 }
+
+/* Primary decisions stay directly below the narrative and compact condition row. */
+@media(max-width:760px){
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.narration{order:-4!important}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.vitals{order:-3!important}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.care-alert{order:-2!important}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.scene-choices{order:-1!important}
+}
