@@ -1,5 +1,5 @@
-import {featureCodes,featureChanges} from './feature-records.js?v=0.34.3';
-import {telemetryConfig} from './telemetry-config.js?v=0.34.3';
+import {featureCodes,featureChanges} from './feature-records.js?v=0.34.7';
+import {telemetryConfig} from './telemetry-config.js?v=0.34.7';
 export const GAME_VERSION='0.34.3';
 const finite=n=>Number.isFinite(n)?Math.round(n*100)/100:0;
 const safeAction=a=>/^[a-z][A-Za-z0-9:-]{0,70}$/.test(a||'')?a:'';

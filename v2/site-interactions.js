@@ -1,4 +1,5 @@
 export function siteInteractions(id,places={}){const p=places[id]||{},profile=p.profile||({neighbor:'home',family:'home',store:'supply',market:'supply',hardware:'workshop',pharmacy:'medical',park:'garden',station:'office'})[id]||'office';
+ if(['road1','road2','road3'].includes(id))return {outside:false,near:'선반과 남겨진 배낭',nearAt:[29,70],inside:'닫힌 수납함 확인',force:'막힌 수납공간 조사',description:'출입문과 기존 잠자리가 있는 실내 쉼터다. 선반의 물자를 살피거나 잠자리에서 쉬어 갈 수 있다.'};
  if(id==='bridge')return {outside:true,near:'난간 옆 가방',nearAt:[29,78],inside:null,force:null,description:'난간 아래에 옷과 가방이 남아 있다. 문을 닫을 실내 공간은 없다. 표지판을 살펴 다음 거점으로 갈 방향을 확인해야 한다.'};
  if(profile==='street')return {outside:true,near:'길가에 남은 물건',nearAt:[30,72],inside:null,force:'흩어진 짐 사이 조사',description:'길가에 멈춘 차량과 남겨진 짐을 살핀다.'};
  if(id==='park'||profile==='garden')return {outside:true,near:'자전거와 주변 물건',nearAt:[30,72],inside:'자전거 부품 확인',force:'풀숲에 걸린 짐 조사',description:'산책로와 풀숲 사이에 남겨진 물건을 살핀다.'};
