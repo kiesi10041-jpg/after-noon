@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {fatiguePlan,spendTravel} from '../v2/movement-fatigue.js';
+import {create,action,returnCost} from '../v2/journey.js';
+import {featureCodes,featureChanges} from '../v2/feature-records.js';
+import {reliefAction,stressCauses} from '../v2/relief.js';
+import {storageObjects,useStored} from '../v2/storage.js';
+import {siteLife,initSettlement,settlementView} from '../v2/settlement.js';
+import {travelConfirm,mapControls} from '../v2/travel-ui.js';
+const button=(a,n,small='',disabled=false)=>`<button data-a="${a}" ${disabled?'disabled':''}>${n} ${small}</button>`;
+test('short outward and return travel accumulate the same fatigue without charging previews',()=>{const s={};assert.equal(fatiguePlan(s,.2).ap,0);assert.equal(s.travelFatigue,undefined);for(let i=0;i<9;i++)spendTravel(s,.2);assert.equal(fatiguePlan(s,.2).ap,1);spendTravel(s,.2);assert.equal(s.travelFatigue,0);assert.ok(fatiguePlan({travelFatigue:.8},1,'bike').ap<fatiguePlan({travelFatigue:.8},1,'walk').ap);});
+test('opened water and prepared meals are accessible in the fridge and consumed once',()=>{const s=create(11);s.hunger=20;s.thirst=20;initSettlement(s).water.home=150;const life=siteLife(s,'home');life.meals=1;life.mealExpires=s.day+1;const all=storageObjects(s,'fridge');assert.ok(all.some(o=>o.id==='openWater'));assert.ok(all.some(o=>o.id==='meal'));assert.equal(useStored(s,{id:'openWater'}),true);assert.equal(s.settlement.water.home,0);assert.equal(useStored(s,{id:'openWater'}),false);assert.equal(useStored(s,{id:'meal'}),true);assert.equal(useStored(s,{id:'meal'}),false);});
+test('life menu no longer duplicates direct drinking or eating',()=>{const html=settlementView(create(4),button);assert.doesNotMatch(html,/data-a="(?:drink-reserve|meal|water-pack|water-store)"/);assert.match(html,/빗물 관리/);});
+test('calming leisure cannot create knowledge or work without a real book',()=>{const s=create(5);s.stock={};s.carry={};s.stress=60;const before=structuredClone(s.growth);const c={pay:()=>true,requireSight:()=>true};assert.equal(reliefAction(s,'relief:read',c),false);assert.deepEqual(s.growth,before);assert.ok(stressCauses({...s,hunger:0}).includes('허기'));});
+test('feature traces retain the existing collector schema and bounded machine readable action names',()=>{const s=create(9),before=featureCodes(s);s.lastAnimalOutcome={kind:'dog',result:'hit',part:'arm'};s.pet={kind:'parrot',trust:4};const changed=featureChanges(before,featureCodes(s));assert.ok(changed.includes('animal:dog:hit:arm'));assert.ok(changed.includes('pet:parrot:4:0'));assert.ok(changed.every(x=>/^[a-z][A-Za-z0-9:-]{0,70}$/.test(x)));});
+test('map controls omit irrelevant rail reference and departure scheduling',()=>{const s=create(4);s.tripPlan.target='store';assert.doesNotMatch(mapControls(s,button),/철도 노선|rail-map/);assert.doesNotMatch(travelConfirm(s,button),/leave:|지금 출발|다음 06:00/);});

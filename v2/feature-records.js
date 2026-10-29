@@ -1,0 +1,6 @@
+// Backward-compatible records: supported heartbeat events carry structured action codes.
+// No PINs, free text or additional player identifiers are collected here.
+export function featureCodes(s){const v=s.settlement,site=v?.sites?.[s.away?s.location:'home'],stats=s.growth?.stats||{},b=s.body||{};
+ const crop=site?.pots?.[site.selected||0];const animal=s.lastAnimalOutcome;
+ return {body:`body:${Math.round(b.heat||0)}:${Math.round(s.cold||0)}:${Math.round(b.hygiene??90)}`,injury:`injury:${(s.bodyInjuries||[]).filter(x=>x.part==='arm').length}:${(s.bodyInjuries||[]).filter(x=>x.part==='leg').length}:${(s.bodyInjuries||[]).filter(x=>!x.treated).length}`,farm:`farm:${site?.pots?.length||0}:${crop?.crop||'none'}:${Math.floor(crop?.progress||0)}:${site?.hens||0}:${site?.eggs||0}`,pet:`pet:${s.pet?.kind||'none'}:${s.pet?.trust||0}:${s.pet?.hungry?1:0}`,ability:'ability:'+['endurance','observation','dexterity','judgment','composure','intelligence'].map(k=>stats[k]||1).join(':'),animal:animal?`animal:${animal.kind}:${animal.result}:${animal.part}`:'',fatigue:`travel-fatigue:${Math.round((s.travelFatigue||0)*100)}`};}
+export function featureChanges(before,after){return Object.entries(after).filter(([k,v])=>v&&v!==before?.[k]).map(([,v])=>v);}

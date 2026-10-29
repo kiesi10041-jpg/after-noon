@@ -1,0 +1,59 @@
+/* Mobile-first corrections: one map surface, transparent action sprites, distinct tools. */
+.game-root .map-toolbar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+.game-root.regional-map:not([data-chapter-map=yes]) .world.door .world-art{background-image:linear-gradient(#17271a33,#17271a33),url('../assets/map-region-v32.webp')!important;background-size:cover!important;background-position:center!important}
+.game-root.regional-map .world-spot.unexplored-point{opacity:1!important;filter:none!important;pointer-events:auto!important}
+.game-root.regional-map .unexplored-point .spot-marker{border-style:dashed!important;background:#26372deb!important}
+.game-root.regional-map .unexplored-point .spot-label{background:#27372aee!important;color:#f4ead2!important}
+.game-root.regional-map .world-spot .spot-label{box-shadow:0 2px 6px #0008;line-height:1.3!important;white-space:normal!important;text-shadow:none!important}
+.game-root.regional-map .spot-label small{color:#e8dfbf!important;opacity:1!important;font-size:12px!important}
+.game-root.regional-map .scene-location{color:#f0e7cd!important;text-shadow:none!important}
+.game-root.regional-map .discovered-paths{z-index:1;filter:drop-shadow(0 1px 2px #0b180d)}
+.game-root.regional-map .world-spot{z-index:4}
+.game-root.regional-map .compact-map-controls>[data-a=route-map]{display:none!important}
+.game-root .map-toolbar button{width:100%;margin:0!important;min-width:0!important;justify-content:center!important;text-align:center!important}
+.game-root .working-mode{isolation:isolate}
+.game-root .work-shade{background:#07110bc7!important;backdrop-filter:none!important;overscroll-behavior:contain;padding:16px!important;animation:work-appear .18s ease-out}
+.game-root .work-dialog{width:min(400px,100%)!important;max-height:calc(100dvh - 32px)!important;background:#213027f5!important;box-shadow:0 12px 40px #0006;border:1px solid #a4ab88;border-radius:12px!important;overflow:auto!important}
+.game-root .work-illustration{height:190px!important;min-height:0!important;max-height:32dvh!important;aspect-ratio:auto!important;background:none!important;display:grid!important;place-items:center!important;padding:12px 20px 0;box-sizing:border-box}
+.game-root .work-action-art{width:100%!important;height:100%!important;max-height:178px;object-fit:contain!important;animation:none!important;filter:none!important}
+.game-root .work-content{padding:10px 20px 18px!important}
+.game-root .work-content h2{font-size:20px!important;font-weight:500;margin:4px 0!important}
+.game-root .work-content time{font-size:24px!important}
+.game-root .work-content p{font-size:13px!important;margin:8px 0!important;line-height:1.4!important}
+.game-root .work-content progress{margin-top:12px!important}
+.game-root .work-controls{gap:8px!important;margin-top:14px!important}
+.game-root .work-controls button{font-size:15px!important;min-height:44px!important;padding:8px 12px!important}
+.game-root .new-item-art{display:block;object-fit:contain!important;object-position:center!important;flex:none;width:76px;height:76px;max-width:100%;filter:drop-shadow(0 2px 2px #0003)}
+.game-root .loot-object :is(.new-item-art,.supply-art){margin:0 auto 5px!important;flex:none!important}
+.game-root .loot-object{display:flex!important;flex-direction:column!important;align-items:center;gap:4px;overflow:hidden;box-sizing:border-box}
+.game-root .loot-object strong{line-height:1.4;overflow-wrap:anywhere}
+.game-root .stock-pick .new-item-art{width:44px;height:44px}
+.game-root .equipped-devices{padding:10px 12px;margin:8px 0 12px;background:#17271e;border:1px solid #81907466;border-radius:6px}
+.equipped-devices>strong,.equipped-devices>span{display:block;font-size:15px;line-height:1.6}.equipped-devices button{margin-top:8px;font-size:15px!important}
+.game-root .life-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:8px 0 12px}
+.game-root .life-tabs button{min-width:0!important;padding:8px 4px!important;font-size:16px!important;text-align:center!important;justify-content:center!important}
+.game-root .life-section{padding:10px 0!important;border:0!important}
+.game-root .life-section h3{font-size:20px;margin:8px 0 12px}
+.game-root .storage-prep button{min-height:44px;padding:6px 18px;font-size:16px}
+.game-root .storage-controls{max-height:40dvh!important;overflow-y:auto!important;box-sizing:border-box;min-height:0!important}
+.game-root .storage-controls .storage-expiry-summary{font-size:12px!important;line-height:1.35!important;margin:4px 0!important}
+.game-root .relief-level{font-size:24px!important;color:#eee1b7}
+@keyframes work-appear{from{opacity:0}to{opacity:1}}
+@media(max-width:760px){
+ .game-root.regional-map .world-spot{max-width:31%!important;min-width:0!important}
+ .game-root.regional-map .spot-label{font-size:14px!important;max-width:110px!important;padding:5px 6px!important}
+ .game-root.regional-map .spot-marker{width:27px!important;height:27px!important}
+ .game-root.regional-map .spot-marker svg{width:17px!important;height:17px!important}
+ .game-root.regional-map .world-spot .spot-label small{display:block!important;font-size:11px!important}
+ .game-root.regional-map .scene-stage .world{background:#263b2d}
+ .game-root.map-mode .map-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .game-root.map-mode .map-toolbar button{font-size:15px!important;min-height:44px!important}
+ .game-root.map-mode .map-instruction{font-size:12px!important;margin:4px 0!important}
+ .game-root .loot-tray{gap:8px!important}
+ .game-root .loot-object .new-item-art{width:68px!important;height:68px!important}
+ .game-root .loot-object>small{font-size:13px!important;line-height:1.4!important}
+}
+@media(prefers-reduced-motion:reduce){.game-root .work-shade{animation:none!important}}
+/* The progress layer is visible from its first frame; no full-screen fade flash. */
+.game-root .work-shade{opacity:1!important;animation:none!important}
+.game-root.regional-map .unexplored-point .spot-marker::after{content:'?';display:block;color:#f3e6bc;font:16px/1 Georgia,serif}

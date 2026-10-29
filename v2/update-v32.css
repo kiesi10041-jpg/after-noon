@@ -72,3 +72,42 @@
 .game-root .storage-screen .stored-item.sprite-0 .object-art{width:210%!important}
 .game-root .storage-screen .stored-item.sprite-1 .object-art{width:190%!important}
 .game-root .storage-screen .stored-item:is(.sprite-4,.sprite-5,.sprite-6,.sprite-7) .object-art{width:130%!important;aspect-ratio:1!important}
+/* v0.32.1: use the available viewport, with weather clipped to map artwork. */
+.game-root .work-shade{box-sizing:border-box;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));overflow:auto}
+.game-root .work-dialog{box-sizing:border-box;max-height:100%;overflow:auto;flex:none}
+.game-root .work-illustration{height:auto;aspect-ratio:3/2;display:block;background:none!important;overflow:hidden}
+.game-root .work-action-art{display:block;width:100%;height:100%;object-fit:cover;animation:work-art-drift 7s ease-out both}
+.game-root .work-content{padding:18px 20px}
+.game-root .work-content progress{appearance:none;-webkit-appearance:none;height:9px;overflow:hidden;border:0;border-radius:6px;background:#111c16}
+.game-root .work-content progress::-webkit-progress-bar{background:#111c16;border-radius:6px}
+.game-root .work-content progress::-webkit-progress-value{background:#c9c49c;border-radius:6px;transition:width .08s linear}
+.game-root .work-content progress::-moz-progress-bar{background:#c9c49c;border-radius:6px}
+.game-root .work-content p{font-variant-numeric:tabular-nums;flex-wrap:wrap;margin:8px 0;font-size:14px}
+.game-root .work-controls{margin-top:14px;flex-wrap:wrap}
+@keyframes work-art-drift{from{transform:scale(1)}to{transform:scale(1.035)}}
+@media(max-width:760px){
+ .game-root.map-mode .play-shell{height:100dvh;min-height:0;overflow:hidden}
+ .game-root.map-mode .play-shell .play-body{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) auto!important;overflow:hidden!important;padding:0!important;min-height:0!important}
+ .game-root.map-mode .play-shell .play-body .scene-stage{display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;align-content:stretch!important;align-items:stretch!important;justify-content:stretch!important;height:100%!important;min-height:0!important;max-height:none!important;padding:0!important;overflow:hidden!important}
+ .game-root.map-mode .play-shell .play-body .scene-stage .scene-location{position:static!important;padding:5px 12px!important;min-height:25px;font-size:13px!important}
+ .game-root.map-mode .play-shell .play-body .scene-stage .world{height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;width:100%!important;flex:none!important;margin:0!important;overflow:hidden!important}
+ .game-root.map-mode .play-shell .play-body .scene-stage .world-art{background-size:cover!important;background-position:center!important}
+ .game-root.map-mode .play-shell .play-body .scene-stage::after{display:none!important}
+ .game-root.map-mode .scene-stage .world-light{background:transparent!important}
+ .game-root.map-mode .play-shell .play-body .decision-panel{padding:0!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+ .game-root.map-mode .scene-choices{margin:0!important;padding:0!important}
+ .game-root.map-mode .compact-map-controls{padding:7px 10px!important}
+ .game-root.map-mode .map-toolbar{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ .game-root.map-mode .map-toolbar button{min-width:0!important;min-height:42px!important;padding:6px 3px!important;font-size:14px!important;margin:0!important}
+ .game-root.map-mode .map-instruction{font-size:12px!important;margin:5px 0 0!important}
+ .game-root.map-mode .game-dock{flex:none;padding-bottom:env(safe-area-inset-bottom)}
+ .game-root .work-dialog{width:100%;max-width:600px;border-radius:10px}
+ .game-root .work-illustration{max-height:40dvh;min-height:0;aspect-ratio:3/2}
+ .game-root .work-content{padding:16px!important}
+ .game-root .work-content h2{font-size:20px!important;margin:0 0 8px!important}
+ .game-root .work-content time{font-size:25px!important}
+ .game-root .work-content progress{margin-top:14px!important}
+ .game-root .work-content p{font-size:13px!important}
+ .game-root .work-controls button{min-height:44px!important;font-size:16px!important;padding:8px 12px!important}
+}
+@media(prefers-reduced-motion:reduce){.work-action-art{animation:none!important}.work-content progress::-webkit-progress-value{transition:none!important}}
