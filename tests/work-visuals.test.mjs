@@ -5,9 +5,9 @@ const execute=(s)=>{s.time+=50;return true;};
 test('legacy fast preference never shortens the next action',()=>{
  const s={day:1,time:720,ap:8,fastWork:true};
  const first=planWork(s,'learn:mechanics',execute,{fast:true});
- assert.ok(first.duration===2800);assert.equal(first.fastRequested,undefined);
+ assert.ok(first.duration===3200);assert.equal(first.fastRequested,undefined);
  first.fastRequested=true;assert.equal(advanceWork(first,100),false);assert.equal(first.elapsed,100);
- const next=planWork(s,'careful',execute);assert.equal(next.fastRequested,undefined);assert.ok(next.duration===2000);
+ const next=planWork(s,'careful',execute);assert.equal(next.fastRequested,undefined);assert.ok(next.duration===3000);
 });
 test('progress pauses while hidden, clamps stale timer jumps, and never exceeds completion',()=>{
  const j={duration:4000,elapsed:0};advanceWork(j,100,false);assert.equal(j.elapsed,0);

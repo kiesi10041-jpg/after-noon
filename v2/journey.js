@@ -1,24 +1,25 @@
-import {reliefAction} from './relief.js?v=0.34.7';
-import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.34.7';
-import {chooseAnimal,beginAnimal,animalIntro,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.34.7';
-import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.34.7';
-import {initBody,climateHour,climateAction} from './body-climate.js?v=0.34.7';
-import {isMedicalSite} from './medical-sites.js?v=0.34.7';
-import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.34.7';
-import {siteInteractions} from './site-interactions.js?v=0.34.7';
-import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.34.7';
+import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.35.0';
+import {reliefAction} from './relief.js?v=0.35.0';
+import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.35.0';
+import {chooseAnimal,beginAnimal,animalIntro,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.35.0';
+import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.35.0';
+import {initBody,climateHour,climateAction} from './body-climate.js?v=0.35.0';
+import {isMedicalSite} from './medical-sites.js?v=0.35.0';
+import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.35.0';
+import {siteInteractions} from './site-interactions.js?v=0.35.0';
+import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.35.0';
 export {carryLimit,comfortLoad,calmPlan};
-import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.34.7';
-import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.34.7';
-import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.34.7';
-import {railAction,railEstimate} from './rail-journey.js?v=0.34.7';
-import {chapterPlaces,chapterAction} from './chapter2.js?v=0.34.7';
-import {replaceBattery,tension} from './survival-controls.js?v=0.34.7';
-import {useMedicine} from './care.js?v=0.34.7';
-import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.34.7';
+import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.35.0';
+import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.35.0';
+import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.35.0';
+import {railAction,railEstimate} from './rail-journey.js?v=0.35.0';
+import {chapterPlaces,chapterAction} from './chapter2.js?v=0.35.0';
+import {replaceBattery,tension} from './survival-controls.js?v=0.35.0';
+import {useMedicine} from './care.js?v=0.35.0';
+import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.35.0';
 export {flashlightOwned};
-import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.34.7';
-import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.34.7';
+import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.35.0';
+import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.35.0';
 export {items,pantryFoods,season,capacity,weatherToday,incidentToday};
 items.flashlight=['손전등',1,.2];items.battery=['건전지 한 쌍',1,.1];
 items.medicine=['구급약',1,.15];items.carKey=['차 열쇠',0,0];items.bike=['자전거',0,0];items.mask=['방진 마스크',1,.1];Object.assign(items,extraItems,settlementItems);
@@ -141,7 +142,7 @@ if(a==='calm'){const plan=calmPlan(s);if(plan.reason){s.text=plan.reason;return 
 if(s.away)return false;
 if(a==='rest'){advance(s,60,{resting:true});s.travelFatigue=Math.max(0,(s.travelFatigue||0)-.5);s.ap=Math.min(MAX_AP,s.ap+3);easeStress(s,12);s.text='한 시간 동안 등을 기대고 쉬었다. 바깥 소리에 귀를 기울였다.';return true;}
 if(a==='wait'){advance(s,120);s.text='창가에 앉아 두 시간을 보냈다. 거리의 빛이 조금 달라졌다.';return true;}
-if(a==='sleep'||a==='sleep-morning'){const duration=a==='sleep-morning'?(s.time<360?360-s.time:1800-s.time):480;const noisy=s.day<=s.hornUntil&&!s.earplugs,anxious=tension(s).level>=2;s.lightOn=false;s.phoneLight=false;s.travelFatigue=0;advance(s,duration,{resting:true});const canHeal=s.hunger>=35&&s.thirst>=35&&(s.cold||0)<60&&(s.outfit?.wet||0)<40&&(s.body?.heat||0)<55;const healed=canHeal?8:0;s.health=Math.min(100,s.health+healed);s.ap=s.hunger>10&&s.thirst>10?(noisy||anxious?MAX_AP-2:MAX_AP):Math.min(MAX_AP,6);easeStress(s,noisy?5:20);s.scene='home';s.text=(anxious?'긴장 때문에 잠이 얕아 기력이 덜 회복됐다. ':'')+(noisy?'끊이지 않는 차량 경적에 몇 번이나 깼다. 기력이 덜 회복됐다. ':a==='sleep-morning'?'아침 06:00까지 쉬었다. ':'여덟 시간 뒤 눈을 떴다. ')+(powered(s)?'냉장고의 낮은 소리가 들린다.':'집 안의 전기 소리가 모두 멎어 있다.')+(healed?' 식사와 물, 체온을 챙겨 건강이 8 회복됐다.':' 식사와 수분이 부족하거나 몸이 차가워 건강이 회복되지 않았다. 물과 식량을 챙기고 몸을 따뜻하게 해야 한다.');return finish(s);}
+if(a==='sleep'||a==='sleep-morning'){const duration=sleepMinutes(s,a==='sleep-morning');const noisy=s.day<=s.hornUntil&&!s.earplugs,anxious=tension(s).level>=2;s.lightOn=false;s.phoneLight=false;s.travelFatigue=0;advance(s,duration,{resting:true});const canHeal=s.hunger>=35&&s.thirst>=35&&(s.cold||0)<60&&(s.outfit?.wet||0)<40&&(s.body?.heat||0)<55;const healed=canHeal?sleepRecovery(8,duration):0;s.health=Math.min(100,s.health+healed);const recoveryCap=s.hunger>10&&s.thirst>10?(noisy||anxious?MAX_AP-2:MAX_AP):6;s.ap=Math.min(recoveryCap,s.ap+sleepRecovery(recoveryCap,duration));easeStress(s,sleepRecovery(noisy?5:20,duration));s.scene='home';s.text=(anxious?'긴장 때문에 잠이 얕아 기력이 덜 회복됐다. ':'')+(noisy?'끊이지 않는 차량 경적에 몇 번이나 깼다. 기력이 덜 회복됐다. ':a==='sleep-morning'?'아침 06:00까지 쉬었다. ':'여덟 시간 뒤 눈을 떴다. ')+(powered(s)?'냉장고의 낮은 소리가 들린다.':'집 안의 전기 소리가 모두 멎어 있다.')+(healed?` 식사와 물, 체온을 챙겨 건강이 ${healed} 회복됐다.`:' 식사와 수분이 부족하거나 몸이 차가워 건강이 회복되지 않았다. 물과 식량을 챙기고 몸을 따뜻하게 해야 한다.');return finish(s);}
 const costs={fill:{ap:1,minutes:20},repair:{ap:2,minutes:40},expand:{ap:3,minutes:60},insulate:{ap:2,minutes:45},plant:{ap:2,minutes:40}};
 if(!costs[a])return false;
 if(a==='fill'&&s.day>=s.water){s.utilityKnown.water='off';s.text='수도꼭지를 돌렸지만 물이 나오지 않는다.';return false;}

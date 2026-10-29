@@ -1,0 +1,5 @@
+export const sleepMenuActions=['sleep','shelter-sleep','road-sleep'];
+export function sleepMinutes(s,morning=false){return morning?(s.time<360?360-s.time:1800-s.time):480;}
+export function sleepRecovery(maximum,minutes){return Math.min(maximum,Math.max(1,Math.round(maximum*Math.min(480,minutes)/480)));}
+export function normalizeSleepAction(a){return ({'sleep-eight':'sleep','shelter-sleep-eight':'shelter-sleep','road-sleep-eight':'road-sleep'})[a]||a;}
+export function sleepChoiceView(s,button){const base=s.roadTrip?'road-sleep':s.away?'shelter-sleep':'sleep',minutes=sleepMinutes(s,true),duration=`${Math.floor(minutes/60)}시간${minutes%60?' '+minutes%60+'분':''}`,wake=(s.time+480)%1440,clock=n=>`${String(Math.floor(n/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;return `<p class="sheet-note">현재 ${clock(s.time)}. 자는 동안에도 허기·갈증과 바깥 상황이 변합니다.</p><div class="sheet-actions">${button(base+'-eight','8시간 자기',`${s.time+480>=1440?'다음 날':'오늘'} ${clock(wake)} 기상 · 8시간 수면`)}${button(base+'-morning',s.time<360?'오늘 아침 06:00까지 자기':'다음 날 아침 06:00까지 자기',`${duration} 수면 · 06:00에 기상`)}${button('close-panel','다시 생각하기')}</div>`;}

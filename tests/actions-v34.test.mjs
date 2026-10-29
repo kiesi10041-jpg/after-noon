@@ -16,9 +16,9 @@ test('search art follows actual place and task rather than a shared box',()=>{
 test('presentation is brief without changing simulated time or committing early',()=>{
  const s=make(),time=s.time;
  const j=planWork(s,'careful',after=>{after.time+=30;return true;});
- assert.equal(j.duration,2000);assert.equal(j.minutes,30);assert.equal(j.after.time,time+30);assert.equal(s.time,time);
- assert.equal(workDuration('sleep'),1500);assert.equal(workDuration('drink'),1500);assert.equal(workDuration('read'),2800);assert.equal(workDuration('repair'),2600);
- assert.match(workArt(j),/actor-retail-v34/);assert.doesNotMatch(progressView(j),/aria-modal="true"|work-fast/);
+ assert.equal(j.duration,3000);assert.equal(j.minutes,30);assert.equal(j.after.time,time+30);assert.equal(s.time,time);
+ assert.equal(workDuration('sleep'),2600);assert.equal(workDuration('drink'),2400);assert.equal(workDuration('read'),3200);assert.equal(workDuration('repair'),3000);
+ assert.match(workArt(j),/actor-retail-v350/);assert.doesNotMatch(progressView(j),/aria-modal="true"|work-fast/);
 });
 test('cat and birds can be passed safely and looting remains available',()=>{
  for(const kind of ['cat','crow','pigeon']){
@@ -45,6 +45,6 @@ test('leaving a pet encounter preserves it for optional revisit without spending
  assert.equal(action(s,'pet-revisit'),true);assert.equal(s.scene,'pet-event');assert.equal(s.petEncounter.trust,1);
 });
 
-test('saved long work adopts shorter presentation without losing progress or granting rewards',()=>{const job={version:1,kind:'read',duration:7000,elapsed:3500,after:{value:1}};refreshWork(job);assert.equal(job.duration,2800);assert.equal(job.elapsed,1400);assert.deepEqual(job.after,{value:1});refreshWork(job);assert.equal(job.elapsed,1400);});
+test('saved long work adopts shorter presentation without losing progress or granting rewards',()=>{const job={version:1,kind:'read',duration:7000,elapsed:3500,after:{value:1}};refreshWork(job);assert.equal(job.duration,3200);assert.equal(job.elapsed,1600);assert.deepEqual(job.after,{value:1});refreshWork(job);assert.equal(job.elapsed,1600);});
 
 test('every work kind retains its animated image inside a fixed viewport',()=>{for(const kind of ['eat','drink','sleep','sew','repair','read','shelf','wait','walk','bike','stairs']){const html=progressView({kind,title:'작업',elapsed:0,duration:2000,minutes:20,startedTime:720});assert.match(html,/<img class="work-action-art"/);assert.doesNotMatch(html,/<canvas|hidden style=/);}});
