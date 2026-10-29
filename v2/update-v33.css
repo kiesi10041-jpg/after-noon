@@ -92,3 +92,28 @@
 .game-root:not(.map-mode):not(.story-mode) .decision-panel>.narration p{margin:0!important;font-size:18px!important;line-height:1.55!important}
 .game-root .home-actions{gap:5px!important;padding:6px 10px!important}.game-root .home-actions button{min-height:42px!important;padding:6px 4px!important}
 }
+
+/* v0.34.5: progress occupies its own row below narration, never floats over it. */
+.game-root.working-mode .decision-panel>:not(.narration):not(.work-shade){display:none!important}
+.game-root.working-mode .decision-panel>.narration{position:static!important;order:0!important;flex:none!important;margin:0!important}
+.game-root.working-mode>.sheet-shade{display:none!important}
+.game-root .work-shade[data-inline=true]{position:static!important;inset:auto!important;order:1!important;width:100%!important;max-width:560px!important;flex:none!important;align-self:center!important;margin:12px 0!important;z-index:auto!important;overflow:visible!important}
+.game-root .work-shade[data-inline=true] .work-dialog{max-height:none!important;overflow:visible!important;grid-template-columns:112px minmax(0,1fr)!important}
+.game-root .work-shade:not([data-inline]){position:fixed!important;inset:0!important;width:auto!important;display:grid!important;place-items:center!important;padding:16px!important;background:#101a14f5!important}
+.game-root .work-shade:not([data-inline]) .work-dialog{width:min(460px,100%)!important;max-height:calc(100dvh - 32px)!important}
+.game-root .work-illustration{contain:layout paint!important}
+.game-root .work-action-art{display:block!important;object-fit:contain!important;object-position:center!important;animation:none!important;transform:none!important;transition:none!important}
+@media(max-width:360px){.game-root .work-shade[data-inline=true] .work-dialog{grid-template-columns:92px minmax(0,1fr)!important}}
+
+/* Explicit encounter art cannot be replaced by a location background selector. */
+.game-root .world>.encounter-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;z-index:1;display:block!important;pointer-events:none}
+.game-root .world>.encounter-label{position:absolute;left:12px;bottom:10px;z-index:9;padding:6px 10px;border:1px solid #c9c49c88;border-radius:4px;background:#132019ed;color:#f6edce;font-size:15px;line-height:1.4;pointer-events:none}
+.game-root.place-mode .scene-choices{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.game-root.place-mode .scene-choices>button{min-width:0;margin:0!important;min-height:54px}
+.game-root.place-mode .place-actions{display:none!important}
+.game-root:is([data-scene=wildlife],[data-scene=pet-event],[data-scene=incident],[data-scene=rat-choice]) .decision-panel :is(.stress-notice,.tension-notice,.care-alert,.bike-notice){display:none!important}
+@media(max-width:760px){
+.game-root.working-mode .play-shell .play-body{display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;min-height:0!important;overflow:hidden!important}
+.game-root.working-mode .play-shell .play-body .scene-stage .world{height:clamp(145px,28dvh,240px)!important;aspect-ratio:auto!important;min-height:0!important}
+.game-root.working-mode .play-shell .play-body .decision-panel{display:flex!important;flex-direction:column!important;overflow:auto!important;max-height:none!important;min-height:0!important}
+}

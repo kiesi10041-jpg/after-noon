@@ -8,7 +8,7 @@ export const expeditionPlaces={
  relay:{name:'도봉권 중계실',distance:88,kind:'단서'}
 };
 export const extraItems={tarp:['방수포',1,.4],rope:['로프',1,.3],soap:['비누',1,.1],antiseptic:['소독·드레싱 묶음',1,.2],radio:['수동 충전 라디오',1,.4],recorder:['음성 기록기',1,.15]};
-export const isResidence=id=>['neighbor','family'].includes(id);
+export const isResidence=id=>['neighbor','family','road2_supply'].includes(id)||Boolean(id?.endsWith('_home'));
 export function shelterSite(s,places={}){
  const place=places[s.location];
  if(!s.away||!place)return {allowed:false,reason:'장거리 이동 중 실내 장소에서 마련할 수 있습니다.'};
