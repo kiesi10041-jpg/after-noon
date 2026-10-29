@@ -57,3 +57,7 @@
 /* The progress layer is visible from its first frame; no full-screen fade flash. */
 .game-root .work-shade{opacity:1!important;animation:none!important}
 .game-root.regional-map .unexplored-point .spot-marker::after{content:'?';display:block;color:#f3e6bc;font:16px/1 Georgia,serif}
+
+/* Fixed viewport: decoded sprite frames share one canvas and never determine layout. */
+.game-root .work-illustration{flex:none!important;overflow:hidden!important}
+.game-root .work-action-art{width:178px!important;height:178px!important;min-width:178px!important;max-width:178px!important;flex:none!important;object-fit:contain!important;transform:none!important;transition:none!important}
