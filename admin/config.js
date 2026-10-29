@@ -1,5 +1,4 @@
-// Public identifiers only. Never add a client secret, access token, PIN, or player records here.
+// Public read-only Apps Script endpoint. No credentials or player records in this file.
 export const config = {
-  spreadsheetId: '1X3Le0Yafe7O9SxN2CC67UrY7YMIFmQ__2MzPHvH9p5s',
-  googleClientId: ''
+  endpoint: 'https://script.google.com/macros/s/AKfycbxosuyBWlLHDZEtnJOq1XPgnbrtmD4yAk4qHCYoYWVQvjWXC770vpYcauMy7Kn2poVL_A/exec'
 };
