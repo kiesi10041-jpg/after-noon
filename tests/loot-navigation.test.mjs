@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {create,action,take} from '../v2/journey.js';
+import {lootNavigation,placeActions} from '../v2/fieldwork-ui.js';
+const button=(a,n)=>`<button data-a="${a}">${n}</button>`;
+function park(){const s=create(13);s.away=true;s.scene=s.location='park';s.ap=8;s.time=900;s.carry={tool:1};s.worldLoot.park={cloth:2,seed:1};s.worldSites.park.condition='sealed';return s;}
+test('empty loot always exposes return and other investigations',()=>{const s=park();assert.equal(action(s,'careful'),true);assert.ok(take(s,'cloth'));assert.ok(take(s,'cloth'));assert.equal(s.loot.seed,undefined);assert.match(lootNavigation(s,button),/site-back/);const before=[s.time,s.ap,JSON.stringify(s.carry),JSON.stringify(s.worldLoot)];assert.equal(action(s,'site-back'),true);assert.equal(s.scene,'park');assert.deepEqual([s.time,s.ap,JSON.stringify(s.carry),JSON.stringify(s.worldLoot)],before);assert.match(placeActions(s,button),/loot-resume/);assert.equal(action(s,'loot-resume'),true);assert.equal(action(s,'tool'),true);assert.equal(s.scene,'loot');assert.equal(s.loot.seed,1);assert.equal(s.loot.cloth,0);});
+test('partial loot survives return and free reopening without regeneration',()=>{const s=park();action(s,'careful');take(s,'cloth');const before=[s.time,s.ap];assert.equal(action(s,'site-back'),true);assert.equal(action(s,'loot-resume'),true);assert.deepEqual([s.time,s.ap],before);assert.equal(s.loot.cloth,1);assert.equal(s.worldLoot.park.cloth,1);});
+test('navigation does not bypass encounters or permit reopening at another site',()=>{const s=park();s.scene='wildlife';assert.equal(action(s,'site-back'),false);s.scene=s.location='store';s.lootLocation='park';s.loot={cloth:1};assert.equal(action(s,'loot-resume'),false);});

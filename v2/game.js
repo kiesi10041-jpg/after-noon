@@ -21,13 +21,13 @@ import {medicineSource} from './care.js?v=0.34.3';
 import {foodLabelHTML} from './food-labels.js?v=0.34.3';
 import {regionalPoints,regionalDots,discoveredPaths} from './route-art.js?v=0.34.3';
 import {districtFor,districtPoints,districtDots,districtPlaces,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.34.3';
-import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView} from './fieldwork-ui.js?v=0.34.3';
+import {lightControls,mapTabs,bikeView,shelterStoreView,placeActions,placeMenuView,lootNavigation} from './fieldwork-ui.js?v=0.34.4';
 import {storyView,expeditionQuest,expeditionControls,expeditionStatus,fieldCareView,shelterView,railView} from './expedition-ui.js?v=0.34.3';
 import {initExpedition,shelterAt,isResidence} from './expedition.js?v=0.34.3';
 import{patchHTML}from'./render.js';
 import{storageObjects,storageView,useStored}from'./storage.js?v=0.34.3';
 import{setSound,soundOn,effect,stopRing}from'./sound.js?v=0.34.3';
-import{create,migrate,action,advance,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,carryLimit,comfortLoad,calmPlan,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.34.3';
+import{create,migrate,action,advance,take,pack,drop,consumeCarry,items,pantryFoods,season,capacity,clock,isNight,phase,powered,places,vehicles,departureAt,travelMinutes,routeDistance,returnCost,searchCost,load,mass,carryLimit,comfortLoad,calmPlan,lit,lightSource,needsLight,dark,flashlightReady,requireSight,bagLimit,weatherToday,incidentAt,petEncounterAt}from'./journey.js?v=0.34.4';
 const root=document.querySelector('#game'),key=new URLSearchParams(location.search).has('qa')?'noon-v2-qa':'noon-v2-preview',mapDots={home:[8,28],bookstore:[60,27],neighbor:[17,44],store:[43,66],pharmacy:[82,35],market:[71,74],hardware:[27,76],park:[28,22],station:[88,78],family:[25,10],road1:[75,72],road2:[25,52],road3:[75,32]};let growthTab='stats';let draft=null;let identityResume=false,identityBusy=false,nameDraft='';let s=create(),title=true,hasSave=false,confirmNew=false,nameEntry=false,nameError='',panel=null,lastPanel=null,lastFeedback=null,storage=null,storagePage=0,selectedStored=null,bagTab='food',beam={x:55,y:58},dragStart=null,beamDragged=false;
 Object.assign(mapDots,districtDots);
 try{const x=JSON.parse(localStorage.getItem(key));if(x?.v===2&&x.stock&&Number.isFinite(x.day)){s=migrate(x);hasSave=true;}}catch{}
@@ -75,7 +75,7 @@ else if(s.scene==='pet-event'){const kind=s.petEncounter?.kind,label={cat:'고�
 else if(s.scene==='incident'){if(s.incidentActive?.kind==='fire')choices=button('incident-retreat','연기 구역을 피해 물러난다','진입하지 않고 다른 장소를 고른다')+button('incident-enter','입구에서 물자만 빠르게 챙긴다','15분 · 건강 −18 · 긴장 증가');else choices=button('incident-detour','골목으로 우회한다','25분 · 안전하지만 시간이 든다')+button('incident-cross','차도 가장자리로 천천히 건넌다',`${s.tripPlan?.vehicle==='car'?'차량 화재':s.tripPlan?.vehicle==='bike'?'미끄러짐':'넘어짐'} 위험 · 10분`);}
 else if(s.scene==='wildlife'){choices=wildlifeView(s,button);}
 else if(places[s.scene]){const context=siteInteractions(s.scene,places);points=spot('careful',context.near,...context.nearAt,'bag')+(context.inside?spot('tool',context.inside,72,35,'tool'):'');choices='';}
-else if(s.scene==='loot'){choices=`<div class="loot-tray">${Object.entries(s.loot||{}).filter(([,q])=>q>0).map(([id,q])=>`<button class="loot-object" data-a="take:${id}">${itemArt(id)}<strong>${items[id][0]}</strong>${foodLabelHTML(s,id,'loot')}<small>남은 ${q}개 · ${id==='bike'||id==='carKey'?'발견물':`${items[id][1]}칸`}</small><span>${id==='carKey'?'열쇠 챙기기':id==='bike'?'상태 조사 · 잠금과 정비 필요':'담기 ＋'}</span></button>`).join('')||'<p>남은 물자가 없습니다.</p>'}</div>`;}
+else if(s.scene==='loot'){choices=`<div class="loot-tray">${Object.entries(s.loot||{}).filter(([,q])=>q>0).map(([id,q])=>`<button class="loot-object" data-a="take:${id}">${itemArt(id)}<strong>${items[id][0]}</strong>${foodLabelHTML(s,id,'loot')}<small>남은 ${q}개 · ${id==='bike'||id==='carKey'?'발견물':`${items[id][1]}칸`}</small><span>${id==='carKey'?'열쇠 챙기기':id==='bike'?'상태 조사 · 잠금과 정비 필요':'담기 ＋'}</span></button>`).join('')||'<p>남은 물자가 없습니다.</p>'}</div>${lootNavigation(s,button)}`;}
 else if(s.scene==='rat-choice'){choices=button('rat-scare','바닥을 두드려 쫓아낸다','10분 · 기력 1',s.ap<1)+button('rat-ignore','갉힌 식품은 포기한다','기력 소모 없음 · 식품 1개 손실 가능');}
 else if(s.scene==='return-choice'){choices=button('force-return','무리해서 귀환',`건강 −${Math.min(30,Math.max(0,rc.ap-s.ap)*5)} · ${rc.minutes*2}분`)+button('camp','여기서 쉰다','6시간 · 기력 +5 · 건강 −8 · 긴장 +15');}
 if(!intro&&!s.ended&&s.scene!=='door'){choices=(s.away&&shelterAt(s)?button('life','이 거처의 생활·돌봄','재배·보관한 물·식사'):'')+(!s.roadTrip&&!s.railTrip&&(s.location==='pharmacy'||isMedicalSite(s.location))?button('field-care','상처·의료 확인','세척 · 가까운 의료 시설 · 남은 예방 과정'):'')+expeditionControls(s,button)+choices;}
