@@ -76,7 +76,19 @@
 .game-root .work-controls:empty{display:none!important}
 @media(max-width:360px){.game-root .work-dialog{grid-template-columns:92px minmax(0,1fr)!important}.game-root .work-illustration{width:92px!important}.game-root .work-action-art{width:88px!important;max-width:88px!important}}
 
-/* v0.34.2: map backgrounds take precedence over the location being left. */
+/* v0.34.3: map backgrounds take precedence over the location being left. */
 .game-root.map-mode[data-scene=door]:not(.regional-map) .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/map-local-v32.webp')!important;background-size:cover!important;background-position:center!important;filter:none!important}
 .game-root.map-mode.regional-map[data-scene=door]:not([data-chapter-map=yes]) .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/map-region-v32.webp')!important;background-size:cover!important;background-position:center!important;filter:none!important}
 .game-root.map-mode.regional-map[data-scene=door][data-chapter-map=yes] .play-shell .play-body .scene-stage .world.door .world-art{background-image:url('../assets/chapter2-route.svg')!important;background-size:100% 100%!important;background-position:center!important;filter:none!important}
+
+/* v0.34.3: keep feedback above secondary information on small screens. */
+@media(max-width:760px){
+.game-root:not(.map-mode):not(.story-mode) .play-shell .play-body{display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;min-height:0!important;overflow:hidden!important}
+.game-root:not(.map-mode):not(.story-mode) .play-body .scene-stage{min-height:0!important;max-height:none!important;flex:none!important;overflow:hidden!important}
+.game-root:not(.map-mode):not(.story-mode) .play-shell .play-body .scene-stage .world{height:clamp(145px,28dvh,240px)!important;min-height:0!important;max-height:240px!important;aspect-ratio:auto!important}
+.game-root:not(.map-mode):not(.story-mode) .play-body .decision-panel{display:flex!important;flex-direction:column!important;min-height:0!important;max-height:none!important;overflow:auto!important;padding:8px 12px!important}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>*{flex-shrink:0}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.narration{order:-1!important;position:sticky;top:-8px;z-index:8;background:#212c25;padding:8px 0;border-bottom:1px solid #a9af8140}
+.game-root:not(.map-mode):not(.story-mode) .decision-panel>.narration p{margin:0!important;font-size:18px!important;line-height:1.55!important}
+.game-root .home-actions{gap:5px!important;padding:6px 10px!important}.game-root .home-actions button{min-height:42px!important;padding:6px 4px!important}
+}
