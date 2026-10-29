@@ -1,4 +1,4 @@
-import {placeName,actionName,resultName,RESULTS,NEXT_STEPS} from './labels.js?v=0.2.1';
+import {placeName,actionName,resultName,RESULTS,NEXT_STEPS} from './labels.js?v=0.3.0';
 import {config} from './config.js';
 import {TYPES,REASONS,parseCSV,objects,buildData,isFailure,needsReview,issueGroups,csv,selectRuns,demoData} from './model.js?v=0.2.1';
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

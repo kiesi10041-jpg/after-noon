@@ -1,4 +1,5 @@
-import {roll} from './growth.js?v=0.30.1';
+import {injuryPenalty} from './wildlife.js?v=0.32.0';
+import {roll} from './growth.js?v=0.32.0';
 export const line4Stops=['서울역','회현','명동','충무로','동대문역사문화공원','동대문','혜화','한성대입구','성신여대입구','길음','미아사거리','미아','수유','쌍문','창동','노원'];
 const anchors={road2:0,road3:14,family:15,nowon:15};
 export function railStops(from,to){const a=anchors[from],b=anchors[to];if(a===undefined||b===undefined||a===b)return null;const out=[];for(let i=a;;i+=a<b?1:-1){out.push(line4Stops[i]);if(i===b)break;}return out;}
@@ -10,7 +11,7 @@ export function railAction(s,a,c){const t=s.railTrip;
  if(['light','phone-light','battery','medicine','calm'].includes(a))return null;
  if(a==='rail-back'){const minutes=t.spent;if(minutes){c.advance(s,minutes);if(s.ended)return false;if(s.ap>0)s.ap--;else s.health=Math.max(0,s.health-8);}const origin=t.origin;delete s.railTrip;s.location=s.scene=origin;s.tripPlan.target='';s.text='왔던 통로를 되짚어 출발한 역으로 돌아왔다.';return c.finish(s);}
  if(a==='rail-rest'){if(t.stage!=='platform'){s.text='좁은 통로에서는 쉴 수 없다. 승강장에 닿거나 출발한 역으로 돌아가야 한다.';return false;}c.advance(s,30);if(s.ended)return false;s.ap=Math.min(8,s.ap+2);s.stress=Math.min(100,s.stress+2);s.text='승강장 벽에 기대어 삼십 분 쉬었다. 기력은 돌아왔지만 지하의 소음이 신경을 곤두세운다.';return true;}
- const source=c.lightSource(s);const need=a==='rail-step'?(t.stage==='platform'?12:13):a==='rail-clear'?20:35;
+ const source=c.lightSource(s);const need=Math.ceil((a==='rail-step'?(t.stage==='platform'?12:13):a==='rail-clear'?20:35)*(1+injuryPenalty(s,'leg')));
  if(!source){s.text='지하 통로는 낮에도 빛이 없다. 손전등이나 휴대폰 조명을 켜야 이동할 수 있다.';return false;}
  if(source==='flashlight'&&s.battery<Math.ceil(need/10)||source==='phone'&&s.phoneBattery<Math.ceil(need/5)*2+1){s.text='다음 구간을 비출 배터리가 부족하다. 건전지를 교체하거나 다른 조명을 켜야 한다.';return false;}
  if(t.stage==='blocked'){

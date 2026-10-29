@@ -1,5 +1,6 @@
-import {initGrowth} from './growth.js?v=0.30.1';
-export const carryLimit=s=>4+initGrowth(s).stats.endurance*2;
+import {injuryPenalty} from './wildlife.js?v=0.32.0';
+import {initGrowth} from './growth.js?v=0.32.0';
+export const carryLimit=s=>Math.max(3,4+initGrowth(s).stats.endurance*2-injuryPenalty(s,'arm'));
 export const comfortLoad=s=>2+initGrowth(s).stats.endurance;
 export const minuteNow=s=>(s.day-1)*1440+s.time;
 export function stressFloor(s){const shelter=s.expedition?.shelters?.[s.location],trip=Boolean(s.roadTrip||s.railTrip),night=s.time<360||s.time>=1140,unlit=night&&!(s.lightOn&&s.battery>0)&&!(s.phoneLight&&s.phoneBattery>0),noise=!s.away&&s.day<=s.hornUntil&&!s.earplugs;return Math.min(75,(trip?45:!s.away?10:shelter?20:35)+(unlit&&s.away?10:0)+(noise?10:0)+(s.thirst<20||s.hunger<20||s.cold>=60?15:0));}

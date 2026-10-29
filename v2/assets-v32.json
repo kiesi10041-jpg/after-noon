@@ -1,0 +1,442 @@
+{
+  "version": "0.32.0",
+  "count": 74,
+  "assets": [
+    {
+      "path": "assets/action-read-v32.webp",
+      "bytes": 171560,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-boar-v32.webp",
+      "bytes": 316526,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-cat-v32.webp",
+      "bytes": 178530,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-crow-v32.webp",
+      "bytes": 284776,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-deer-v32.webp",
+      "bytes": 231964,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-dog-v32.webp",
+      "bytes": 262136,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-pigeon-v32.webp",
+      "bytes": 164654,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-raccoon-v32.webp",
+      "bytes": 199602,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/animal-snake-v32.webp",
+      "bytes": 264266,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/arex-plan-v32.svg",
+      "bytes": 2177
+    },
+    {
+      "path": "assets/bookstore-v32.webp",
+      "bytes": 230312,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-cold-v32.webp",
+      "bytes": 146178,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-dirty-v32.webp",
+      "bytes": 132612,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-dressing-v32.webp",
+      "bytes": 153438,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-heat-v32.webp",
+      "bytes": 246758,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-rest-v32.webp",
+      "bytes": 133202,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/condition-wet-v32.webp",
+      "bytes": 148194,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/crop-lettuce-0-v32.webp",
+      "bytes": 93954,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-lettuce-1-v32.webp",
+      "bytes": 129472,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-lettuce-2-v32.webp",
+      "bytes": 185518,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-mint-0-v32.webp",
+      "bytes": 101416,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-mint-1-v32.webp",
+      "bytes": 141540,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-mint-2-v32.webp",
+      "bytes": 175230,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-pepper-0-v32.webp",
+      "bytes": 68446,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-pepper-1-v32.webp",
+      "bytes": 131924,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-pepper-2-v32.webp",
+      "bytes": 126910,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-potato-0-v32.webp",
+      "bytes": 87678,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-potato-1-v32.webp",
+      "bytes": 161434,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-potato-2-v32.webp",
+      "bytes": 162060,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-strawberry-0-v32.webp",
+      "bytes": 115732,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-strawberry-1-v32.webp",
+      "bytes": 181702,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-strawberry-2-v32.webp",
+      "bytes": 188522,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-tomato-0-v32.webp",
+      "bytes": 128838,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-tomato-1-v32.webp",
+      "bytes": 109686,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/crop-tomato-2-v32.webp",
+      "bytes": 151586,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/district-plan-v32.svg",
+      "bytes": 1206
+    },
+    {
+      "path": "assets/hardware-v32.webp",
+      "bytes": 306628,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/item-bandage-v32.webp",
+      "bytes": 147442,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-bottles-v32.webp",
+      "bytes": 85328,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-eggs-v32.webp",
+      "bytes": 87650,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-feed-v32.webp",
+      "bytes": 188490,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-rainbarrel-v32.webp",
+      "bytes": 106014,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-seedling-v32.webp",
+      "bytes": 117754,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-seeds-v32.webp",
+      "bytes": 68106,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/item-watering-v32.webp",
+      "bytes": 71408,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/line4-plan-v32.svg",
+      "bytes": 3123
+    },
+    {
+      "path": "assets/map-local-v32.webp",
+      "bytes": 513900,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets/map-region-v32.webp",
+      "bytes": 506168,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/medical-v32.webp",
+      "bytes": 186366,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/neighbor-v32.webp",
+      "bytes": 176256,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-arm-v32.webp",
+      "bytes": 118336,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-bag-v32.webp",
+      "bytes": 213896,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-barrier-v32.webp",
+      "bytes": 266638,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-contamination-v32.webp",
+      "bytes": 111610,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-leg-v32.webp",
+      "bytes": 140638,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-observe-v32.webp",
+      "bytes": 299738,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-rescue-v32.webp",
+      "bytes": 188434,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/outcome-retreat-v32.webp",
+      "bytes": 265004,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/passage-v32.webp",
+      "bytes": 300128,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/settlement-coop-v32.webp",
+      "bytes": 265568,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/settlement-garden-v32.webp",
+      "bytes": 238446,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/settlement-petbed-v32.webp",
+      "bytes": 167880,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/settlement-rain-v32.webp",
+      "bytes": 240014,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/shelter-v32.webp",
+      "bytes": 196162,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/station-plan-v32.svg",
+      "bytes": 1409
+    },
+    {
+      "path": "assets/station-v32.webp",
+      "bytes": 226570,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/store-v32.webp",
+      "bytes": 211926,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-family-v32.webp",
+      "bytes": 118644,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-hope-mobile-v32.webp",
+      "bytes": 229400,
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "path": "assets/story-hope-v32.webp",
+      "bytes": 260862,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-horizon-v32.webp",
+      "bytes": 306442,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-phone-v32.webp",
+      "bytes": 80722,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-receiver-v32.webp",
+      "bytes": 151046,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "assets/story-trace-v32.webp",
+      "bytes": 116908,
+      "width": 1536,
+      "height": 1024
+    }
+  ]
+}
