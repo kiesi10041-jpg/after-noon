@@ -1,5 +1,5 @@
 import {identifyPlayer,identityError,normalizePlayerName,attachIdentity} from './player-identity.js?v=0.31.0';
-import {createTelemetry,snapshot as telemetrySnapshot} from './telemetry.js?v=0.31.1';
+import {createTelemetry,snapshot as telemetrySnapshot} from './telemetry.js?v=0.31.1-r2';
 import {stressNotice,panicView} from './stress-events.js?v=0.30.1';
 import {nearestMedical,medicalSites,isMedicalSite,medicalState} from './medical-sites.js?v=0.30.1';
 import {siteInteractions} from './site-interactions.js?v=0.30.1';
