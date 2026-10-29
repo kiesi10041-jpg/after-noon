@@ -17,6 +17,6 @@ test('actual garden-select click handler keeps life popup and changes selected p
 });
 test('every supported action references a multi-frame asset and keeps it visible',()=>{
  for(const kind of ['wait','walk','run','stairs','bike','observe','drawer','shelf','rubble','read','repair','sew','unlock','fill','eat','drink','cook','meal','treat','sleep','plant','water','harvest','feed','hide','retreat','defend','fall']){
-  const job={kind,title:'진행 중',elapsed:0,duration:2000,minutes:20,startedTime:720};const asset=readFileSync(new URL(workArt(job),new URL('../v2/',import.meta.url)));assert.ok(asset.includes(Buffer.from('ANIM')),kind+' animation missing');const html=progressView(job);assert.doesNotMatch(html,/<canvas|hidden/);assert.match(html,/<img class="work-action-art"/);
+  const job={kind,title:'진행 중',elapsed:0,duration:2000,minutes:20,startedTime:720};const asset=readFileSync(new URL(workArt(job),new URL('../v2/',import.meta.url)));assert.ok(asset.includes(Buffer.from('ANIM')),kind+' animation missing');const html=progressView(job);assert.doesNotMatch(html,/work-still|hidden/);assert.match(html,/class="work-action-art(?: work-motion)?"/);
  }
 });

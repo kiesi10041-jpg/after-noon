@@ -17,7 +17,7 @@ test('progress pauses while hidden, clamps stale timer jumps, and never exceeds 
 test('reading, searching and consuming show action illustrations instead of stick figure overlays',()=>{
  for(const kind of ['read','shelf','eat','drink']){
   const job={kind,title:'진행 중',elapsed:0,duration:4000,minutes:30,startedTime:720};
-  assert.match(workArt(job),/actor-/);const html=progressView(job);assert.match(html,/<img class="work-action-art"/);assert.doesNotMatch(html,/<svg/);
+  assert.match(workArt(job),/actor-/);const html=progressView(job);assert.match(html,/<canvas class="work-action-art work-motion"/);assert.doesNotMatch(html,/<svg/);
  }
  assert.notEqual(workArt({kind:'eat'}),workArt({kind:'drink'}));
 });
