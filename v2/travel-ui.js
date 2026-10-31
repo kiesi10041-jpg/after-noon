@@ -1,7 +1,7 @@
 import {preparationView} from './travel-supplies.js?v=0.36.1';
 import {fatiguePlan} from './movement-fatigue.js?v=0.35.0';
 import {districtFor} from './fieldwork.js?v=0.35.0';
-import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.35.0';
+import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.36.1';
 import {routeAllowed,initDiscovery,neighbors,mapSource} from './overland.js?v=0.36.1';
 import {railStops,railEstimate} from './rail-journey.js?v=0.36.1';
 const escape=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
