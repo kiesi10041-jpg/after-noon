@@ -1,5 +1,5 @@
-import {farmDaily} from './farm-state.js?v=0.37.0';
-import {roll,gain,level,hasKnowledge} from './growth.js?v=0.37.0';
+import {farmDaily} from './farm-state.js?v=0.37.1';
+import {roll,gain,level,hasKnowledge} from './growth.js?v=0.37.1';
 export const crops={lettuce:{name:'상추',seed:'seed',days:6,water:80,yield:2,regrow:3},tomato:{name:'방울토마토',seed:'seedTomato',days:12,water:160,yield:3,regrow:5},potato:{name:'감자',seed:'seedPotato',days:13,water:120,yield:4},strawberry:{name:'딸기',seed:'seedStrawberry',days:12,water:100,yield:2,regrow:5},pepper:{name:'고추',seed:'seedPepper',days:13,water:140,yield:2,regrow:5},mint:{name:'민트',seed:'seedMint',days:8,water:80,yield:1,regrow:4}};
 crops.bean={name:'콩',seed:'seedBean',days:10,water:140,yield:3,regrow:4};crops.corn={name:'사료용 옥수수',seed:'seedCorn',days:9,water:150,yield:4,fodder:true};
 export const settlementItems={seedBean:['콩 씨앗',1,.05],seedCorn:['사료용 옥수수 씨앗',1,.05],seed:['상추 씨앗',1,.05],seedTomato:['방울토마토 씨앗',1,.05],seedPotato:['씨감자',1,.25],seedStrawberry:['딸기 모종',1,.2],seedPepper:['고추 씨앗',1,.05],seedMint:['민트 모종',1,.1],petFeed:['반려동물 먹이',1,.3],birdFeed:['조류용 먹이',1,.25],grain:['닭 사료',1,.5]};

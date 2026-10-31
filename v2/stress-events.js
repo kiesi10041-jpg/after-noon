@@ -1,5 +1,5 @@
-import {minuteNow} from './strain.js?v=0.37.0';
-import {initGrowth} from './growth.js?v=0.37.0';
+import {minuteNow} from './strain.js?v=0.37.1';
+import {initGrowth} from './growth.js?v=0.37.1';
 export const stressfulActions=new Set(['careful','tool','force','road-step','road-force','rail-step','rail-clear','bike-repair']);
 export function stressRisk(s){const n=s.stress||0,composure=initGrowth(s).stats.composure;const base=n>=90?.55:n>=80?.40:n>=65?.25:n>=50?.12:0;return {chance:Math.max(0,base-(base?(composure-1)*.025:0)),panic:n>=80,cooling:minuteNow(s)<(s.stressRecoveryUntil||0)};}
 export function stressEffect(s,random){const risk=stressRisk(s);if(risk.cooling||!risk.chance||random()>=risk.chance)return null;s.stressRecoveryUntil=minuteNow(s)+60;const panic=risk.panic&&random()<.5;
