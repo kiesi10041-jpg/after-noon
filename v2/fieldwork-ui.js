@@ -3,7 +3,7 @@ import {siteInteractions} from './site-interactions.js?v=0.35.0';
 import {hasKnowledge,level} from './growth.js?v=0.35.0';
 import {tension} from './survival-controls.js?v=0.35.0';
 import {foodLabelHTML} from './food-labels.js?v=0.35.0';
-import {isResidence,isRestStop,shelterAt} from './expedition.js?v=0.35.0';
+import {isResidence,isRestStop,shelterAt} from './expedition.js?v=0.36.2';
 import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.35.0';
 export function lightControls(s,button,source){return button(flashlightOwned(s)?'light':'light-help',source==='flashlight'?'손전등 끄기':'손전등',flashlightHint(s),flashlightOwned(s)&&s.battery<=0)+button('phone-light',source==='phone'?'휴대폰 끄기':'휴대폰',`${s.phoneBattery}%`,!s.phoneBattery)+button('power-kit','건전지','교체·충전');}
 export function mapTabs(s,button){const district=s.away&&districtFor(s.location);return `<div class="travel-tabs primary-map-tabs">${button(district?'district-map':'local-map','주변 탐색')}${button('regional-map','장거리 여정')}</div><details class="map-reference"><summary>노선·다른 지도</summary><div class="travel-tabs">${button('rail-map','역 순서·노선')}${district?button('local-map','내 집 주변'):''}${s.chapter2?.stage?button('ch2-map','2장 지도'):''}</div></details>`;}
