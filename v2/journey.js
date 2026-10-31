@@ -11,8 +11,8 @@ import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from '
 export {carryLimit,comfortLoad,calmPlan};
 import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.35.0';
 import {ensureWorld,seededLoot,siteState,documentAction} from './worldgen.js?v=0.35.0';
-import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.35.0';
-import {railAction,railEstimate} from './rail-journey.js?v=0.35.0';
+import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.36.1';
+import {railAction,railEstimate} from './rail-journey.js?v=0.36.1';
 import {chapterPlaces,chapterAction} from './chapter2.js?v=0.35.0';
 import {replaceBattery,tension} from './survival-controls.js?v=0.35.0';
 import {useMedicine} from './care.js?v=0.35.0';

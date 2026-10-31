@@ -1,6 +1,6 @@
 import {featureCodes,featureChanges} from './feature-records.js?v=0.35.0';
 import {telemetryConfig} from './telemetry-config.js?v=0.35.0';
-export const GAME_VERSION='0.34.3';
+export const GAME_VERSION='0.36.1';
 const finite=n=>Number.isFinite(n)?Math.round(n*100)/100:0;
 const safeAction=a=>/^[a-z][A-Za-z0-9:-]{0,70}$/.test(a||'')?a:'';
 export function snapshot(s){return {features:featureCodes(s),feedback:String(s.text||''),stateMark:JSON.stringify([s.carry,s.stock,s.carryFood,s.food,s.loot,s.transport,s.equipment,s.growth,s.expedition,s.chapter2,s.settlement,s.body,s.bodyInjuries,s.pet]),run:s.runRecord?.id||'',day:s.day,time:s.time,location:s.roadTrip?`${s.roadTrip.origin}>${s.roadTrip.target}`:s.railTrip?`${s.railTrip.origin}>${s.railTrip.target}`:s.away?s.location:'home',scene:s.scene,health:finite(s.health),hunger:finite(s.hunger),thirst:finite(s.thirst),stress:finite(s.stress),ap:finite(s.ap),quest:s.questStage||0,story:s.expedition?.phase||0,chapter:s.chapter2?.stage||0,water:s.carry?.water||0,food:Object.entries(s.carry||{}).filter(([id])=>['can','crackers','rice','noodles','nuts'].includes(id)).reduce((n,[,q])=>n+q,0)+(s.carryFood?.length||0),battery:s.battery||0,phone:s.phoneBattery||0,bag:s.bag?.durability||0,mode:s.roadTrip?.mode||s.tripPlan?.vehicle||'walk',wound:s.expedition?.wound?`${s.expedition.wound.cleaned?'washed':'unwashed'}/${s.expedition.wound.dressed?'dressed':'undressed'}/${s.expedition.wound.doses?.length||0}`:'none',ended:Boolean(s.ended),panic:Boolean(s.panicActive),stressEvent:s.lastStressEvent?.minute??-1};}
