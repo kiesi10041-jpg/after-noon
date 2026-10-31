@@ -1,4 +1,4 @@
-import {pantryFoods,season,weatherToday} from './rules.js?v=0.35.0';
+import {pantryFoods,season,weatherToday} from './rules.js?v=0.37.0';
 export function travelFood(s){const kit=s.away?s.carry:s.stock,dates=s.away?s.carryDates:s.foodDates;return Object.entries(pantryFoods).filter(([id])=>kit?.[id]>0&&(id==='can'||!dates?.[id]?.length||dates[id].some(day=>day>s.day))).map(([id,f])=>({id,name:f.name,count:kit[id],gain:f.gain}));}
 export function travelWater(s){const id=s.away?s.location:'home';return (s.carry?.water||0)*500+(s.settlement?.water?.bag||0)+(s.settlement?.water?.[id]||0)+(!s.away?(s.stock?.water||0)*500:0);}
 export function travelReadiness(s,minutes,ap=0){const restMinutes=Math.max(0,Math.ceil((ap-s.ap)/2))*30,hours=Math.ceil((minutes+restMinutes)/60),hungerCost=hours,thirstCost=hours*((season(s)==='여름'?2:1.5)+(weatherToday(s).temp>=30?1:0)),food=travelFood(s),foodGain=food.reduce((n,x)=>n+x.count*x.gain,0),water=travelWater(s),waterGain=Math.floor(water/500)*40;return {hours,restMinutes,hungerCost,thirstCost,food,water,foodShort:s.hunger+foodGain-hungerCost<20,waterShort:s.thirst+waterGain-thirstCost<20};}

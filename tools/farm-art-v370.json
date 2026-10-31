@@ -1,0 +1,34 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompts": [
+    {
+      "kind": "yard",
+      "prompt": "Production background for existing Korean single survivor game 12:00. Wide landscape 3:2 composition, detailed semi-realistic hand-painted cinematic illustration, subdued olive green warm earthy colors, believable contemporary South Korean outskirts, no people anywhere, no zombies, no fantasy, no lettering, no UI. The world is quiet and unmaintained for a few days, not decades. Match grounded atmospheric Korean apartment illustration style. A small family-run allotment farm courtyard on the northern outskirts of Seoul. One long translucent plastic greenhouse left, simple single-storey management room with a little porch right, small timber chicken coop and wire duck pen in middle distance, rainwater storage tank near shed, folded hose and muddy gumboots foreground. Distinct walkways and beds. Spring midday sharp sunlight. Crops slightly drooping, two brown hens visible near empty feeder. NO vehicle, no humans."
+    },
+    {
+      "kind": "greenhouse",
+      "prompt": "Production background for existing Korean single survivor game 12:00. Wide landscape 3:2 composition, detailed semi-realistic hand-painted cinematic illustration, subdued olive green warm earthy colors, believable contemporary South Korean outskirts, no people anywhere, no zombies, no fantasy, no lettering, no UI. The world is quiet and unmaintained for a few days, not decades. Match grounded atmospheric Korean apartment illustration style. Inside that small Korean family farm plastic greenhouse. Clear center path, six orderly vegetable beds and pots: lettuce, tomatoes, potatoes, strawberries, peppers, herbs. Galvanized watering can, hose, drip irrigation tubing currently disconnected. Warm filtered midday sunlight through curved plastic roof, humble realistic working space, no industrial factory. NO people."
+    },
+    {
+      "kind": "animals",
+      "prompt": "Production background for existing Korean single survivor game 12:00. Wide landscape 3:2 composition, detailed semi-realistic hand-painted cinematic illustration, subdued olive green warm earthy colors, believable contemporary South Korean outskirts, no people anywhere, no zombies, no fantasy, no lettering, no UI. The world is quiet and unmaintained for a few days, not decades. Match grounded atmospheric Korean apartment illustration style. A well-framed view of a small Korean family farm animal yard beside a simple wooden shed. Two brown hens in left coop, two white ducks in separate wire run with shallow water tub to right, one brown rabbit sitting inside an adjacent secure shaded hutch. Individual species anatomically accurate, distinct enclosures, no mixed mutant animals. Grain sacks, hay, water containers. Semi-realistic tranquil spring midday with short shadows. NO people."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "yard",
+      "generatedSource": "/workspace/scratch/361604e18b54/generated_images/exec-6541c635-86cd-42f5-a523-9b7d20b6b2bf.png",
+      "gameAsset": "assets/farm-yard-v370.webp"
+    },
+    {
+      "kind": "greenhouse",
+      "generatedSource": "/workspace/scratch/361604e18b54/generated_images/exec-c1261a63-f4cd-4f51-9e92-7f6d25e1a93f.png",
+      "gameAsset": "assets/farm-greenhouse-v370.webp"
+    },
+    {
+      "kind": "animals",
+      "generatedSource": "/workspace/scratch/361604e18b54/generated_images/exec-e5f3ecf1-0d9e-4536-a007-397f7c7766b1.png",
+      "gameAsset": "assets/farm-animals-v370.webp"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-import {availableWater,drawWater} from './settlement.js?v=0.35.0';
-import {initGrowth,roll,gain} from './growth.js?v=0.35.0';
+import {availableWater,drawWater} from './settlement.js?v=0.37.0';
+import {initGrowth,roll,gain} from './growth.js?v=0.37.0';
 export const animalNames={deer:'고라니',boar:'멧돼지',cat:'고양이',raccoon:'너구리',dog:'들개',snake:'뱀',crow:'까마귀',pigeon:'비둘기',wolf:'늑대'};
 export function animalIntro(s,kind=s.wildlifeActive){const where=s.location==='bridge'?'난간 옆 보행로':s.location==='park'?'산책로':'진행 방향 앞';return ({pigeon:where+'에 비둘기 몇 마리가 모여 있다. 바닥과 남겨진 물건에 깃털과 배설물이 보인다.',cat:where+'에서 고양이가 이쪽을 바라본다. 퇴로를 막지 않으면 거리를 두고 지나갈 수 있다.',deer:'고라니가 진행 방향 앞에서 고개를 들었다. 움직이는 방향과 빠져나갈 틈을 살펴야 한다.',boar:'진행 방향 앞에 멧돼지가 서 있다. 뒤쪽에도 움직임이 보인다. 가까이 다가가지 않고 주변을 살펴야 한다.'})[kind]||'';}
 export function animalArt(kind){return kind==='wolf'?'../assets/wolf-v21.svg':Object.hasOwn(animalNames,kind)?'../assets/animal-'+kind+'-v32.webp':'';}
