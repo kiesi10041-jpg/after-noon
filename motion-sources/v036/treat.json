@@ -1,0 +1,1 @@
+{"kind": "treat", "keyframes": 16, "frames": 96, "cell": 192, "columns": 8, "frameMs": 40, "cycleMs": 3840, "loop": false, "source": "motion-sources/v036/treat.webp", "atlas": "assets/actor-treat-atlas-v360.webp"}

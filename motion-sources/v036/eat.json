@@ -1,0 +1,1 @@
+{"kind": "eat", "keyframes": 16, "frames": 96, "cell": 192, "columns": 8, "frameMs": 40, "cycleMs": 3840, "loop": false, "source": "motion-sources/v036/eat.webp", "atlas": "assets/actor-eat-atlas-v360.webp"}

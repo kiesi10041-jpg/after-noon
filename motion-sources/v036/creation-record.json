@@ -1,0 +1,167 @@
+{
+  "base": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. First and last pose nearly identical for a smooth loop. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ",
+  "plans": [
+    {
+      "kind": "garden",
+      "action": "Water a small plant in a terracotta pot. Kneel left of the pot which stays right. Use a metal watering can, spout must point over soil. Frames 1-4 hand grasps can and raises it slightly, 5-8 smoothly tilts can toward soil, 9-12 thin water stream waters the soil while wrist shifts a little, 13-16 stops stream and gently returns can to starting angle. Pot and knees must NEVER move. Keep the same plant throughout."
+    },
+    {
+      "kind": "rest",
+      "action": "Rest while seated on a plain wooden stool. Frames 1-4 shoulders relax and hands settle on knees, 5-8 slow inhalation chest subtly expands and chin rises slightly, 9-12 slow exhalation shoulders soften and chin lowers, 13-16 returns to the starting seated relaxed pose. Very small natural movements. Shoes and stool remain completely fixed. Do not rock or slide the whole body."
+    },
+    {
+      "kind": "repair",
+      "action": "Repair a small portable radio resting on the lap while seated on a wooden stool. Frames1-4 right hand brings screwdriver to one screw while left hand steadies radio,5-8 wrist turns screwdriver smoothly in small increments,9-12 hand lifts screwdriver slightly and adjusts the same screw position,13-16 screwdriver returns to initial angle. Radio housing, stool and shoes remain fixed. No changing tool, no changing radio, no teleporting arm."
+    },
+    {
+      "kind": "eat",
+      "action": "Eat from a small metal bowl held in left hand while seated on a wooden stool. Frames1-4 right hand scoops food with spoon,5-8 raises spoon smoothly toward mouth,9-10 spoon reaches mouth,11-12 lowers spoon halfway,13-16 returns spoon to bowl. Small jaw movement only. Bowl stays at constant height and size, stool and feet fixed. Same spoon and bowl throughout."
+    },
+    {
+      "kind": "treat",
+      "oneShot": true,
+      "action": "Bandage the character's LEFT forearm while seated on a fixed wooden stool. Left forearm rests on lap at constant position. Frames1-4 right hand brings a small white gauze roll toward forearm,5-8 gently wraps once around the SAME spot,9-12 completes another small wrap and presses the end,13-16 smooths the bandage and withdraws hand. Final frame shows completed neat bandage. Do NOT unwrap it or expose injury; no blood."
+    },
+    {
+      "kind": "fill",
+      "oneShot": true,
+      "action": "Fill a clear bottle from a fixed metal water tap on a small wall/sink panel at the RIGHT. Character kneels left, bottle under tap. Frames1-4 positions empty bottle beneath spout,5-8 left hand turns tap on and a thin water stream starts,9-12 water level in the SAME bottle gradually rises,13-16 turns tap off and holds the full bottle upright. The tap and kneeling feet stay fixed. NO watering can, NO plant, NO pouring water onto the ground."
+    },
+    {
+      "kind": "cook",
+      "action": "Cook by stirring a small pan on a fixed compact camping stove to the RIGHT while kneeling left. Frames1-4 right hand lowers a wooden spoon into the SAME pan,5-12 makes one smooth circular stirring motion,13-16 gently lifts spoon slightly and returns to starting pose. Pan, stove and left hand stay stable. Small steam only. Do not eat, do not lift pan, no big flames."
+    },
+    {
+      "kind": "plant",
+      "oneShot": true,
+      "action": "Plant seeds in a fixed terracotta pot of soil on the right while kneeling left. Frames1-4 right fingertip makes a tiny hole in soil,5-8 takes a small seed from left palm and lowers it into hole,9-12 gently draws soil over seed,13-16 pats soil flat and returns hands to relaxed position. No watering can, no already grown plant, no changing pot."
+    },
+    {
+      "kind": "harvest",
+      "oneShot": true,
+      "action": "Harvest a few lettuce leaves from a fixed terracotta pot on the RIGHT into a small woven basket near the left knee. Frames1-4 right hand reaches to one OUTER lettuce leaf,5-8 gently pinches and lifts the leaf,9-12 moves that leaf over basket and releases it,13-16 returns hand toward remaining lettuce. Pot and basket fixed. Do not uproot whole plant or transform leaf into tool."
+    },
+    {
+      "kind": "unlock",
+      "oneShot": true,
+      "action": "Unlock a padlock on the latch of a fixed metal storage chest on the RIGHT while kneeling left. Frames1-4 right hand positions a small key in the SAME padlock,5-8 turns key gradually,9-12 padlock shackle opens and left hand steadies it,13-16 lifts opened padlock off latch and holds it nearby. Final frame remains unlocked; do NOT relock. Keep chest CLOSED, no cabinet drawer, no smashing."
+    },
+    {
+      "kind": "bike-repair",
+      "action": "Repair the chain of a fixed black commuter bicycle occupying the RIGHT half. Character squats left beside the chainwheel. Frames1-4 right hand brings a small wrench to a bolt near chainwheel,5-8 rotates wrist a little to tighten,9-12 lifts and resets wrench angle,13-16 repeats a small tightening turn returning to initial wrist angle. Bicycle frame/wheels remain static, no riding or whole-bike rotation."
+    },
+    {
+      "kind": "build",
+      "action": "Reinforce a small upright wooden door panel on the RIGHT while kneeling LEFT. Panel remains exactly fixed, a short horizontal plank across it remains fixed. Frames1-4 left hand steadies plank and right hand raises a small hammer slightly,5-8 hammer makes one controlled small tap onto a nail,9-12 pulls hammer back 10cm,13-16 makes another gentle tap and returns to initial position. No destruction, no giant hammer swing, no changing door geometry."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "drawer",
+      "path": "motion-sources/v036/drawer.png"
+    },
+    {
+      "kind": "garden",
+      "path": "motion-sources/v036/garden.png"
+    },
+    {
+      "kind": "rest",
+      "path": "motion-sources/v036/rest.png"
+    },
+    {
+      "kind": "repair",
+      "path": "motion-sources/v036/repair.png"
+    },
+    {
+      "kind": "eat",
+      "path": "motion-sources/v036/eat.png"
+    },
+    {
+      "kind": "books",
+      "path": "motion-sources/v036/books.png"
+    },
+    {
+      "kind": "medical",
+      "path": "motion-sources/v036/medical.png"
+    },
+    {
+      "kind": "retail",
+      "path": "motion-sources/v036/retail.png"
+    },
+    {
+      "kind": "tools",
+      "path": "motion-sources/v036/tools.png"
+    },
+    {
+      "kind": "vehicle",
+      "path": "motion-sources/v036/vehicle.png"
+    },
+    {
+      "kind": "rubble",
+      "path": "motion-sources/v036/rubble.png"
+    },
+    {
+      "kind": "drink",
+      "path": "motion-sources/v036/drink.png"
+    },
+    {
+      "kind": "sleep",
+      "path": "motion-sources/v036/sleep.png"
+    },
+    {
+      "kind": "sew",
+      "path": "motion-sources/v036/sew.png"
+    },
+    {
+      "kind": "care",
+      "path": "motion-sources/v036/care.png"
+    },
+    {
+      "kind": "bike",
+      "path": "motion-sources/v036/bike.png"
+    },
+    {
+      "kind": "read",
+      "path": "motion-sources/v036/read.png"
+    },
+    {
+      "kind": "observe",
+      "path": "motion-sources/v036/observe.png"
+    },
+    {
+      "kind": "treat",
+      "path": "motion-sources/v036/treat.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. This is a ONE-SHOT action: frame16 keeps the completed result, do not undo the action or return to frame1. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Bandage the character's LEFT forearm while seated on a fixed wooden stool. Left forearm rests on lap at constant position. Frames1-4 right hand brings a small white gauze roll toward forearm,5-8 gently wraps once around the SAME spot,9-12 completes another small wrap and presses the end,13-16 smooths the bandage and withdraws hand. Final frame shows completed neat bandage. Do NOT unwrap it or expose injury; no blood."
+    },
+    {
+      "kind": "fill",
+      "path": "motion-sources/v036/fill.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. This is a ONE-SHOT action: frame16 keeps the completed result, do not undo the action or return to frame1. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Fill a clear bottle from a fixed metal water tap on a small wall/sink panel at the RIGHT. Character kneels left, bottle under tap. Frames1-4 positions empty bottle beneath spout,5-8 left hand turns tap on and a thin water stream starts,9-12 water level in the SAME bottle gradually rises,13-16 turns tap off and holds the full bottle upright. The tap and kneeling feet stay fixed. NO watering can, NO plant, NO pouring water onto the ground."
+    },
+    {
+      "kind": "cook",
+      "path": "motion-sources/v036/cook.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. First and last pose nearly identical for a smooth loop. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Cook by stirring a small pan on a fixed compact camping stove to the RIGHT while kneeling left. Frames1-4 right hand lowers a wooden spoon into the SAME pan,5-12 makes one smooth circular stirring motion,13-16 gently lifts spoon slightly and returns to starting pose. Pan, stove and left hand stay stable. Small steam only. Do not eat, do not lift pan, no big flames."
+    },
+    {
+      "kind": "plant",
+      "path": "motion-sources/v036/plant.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. This is a ONE-SHOT action: frame16 keeps the completed result, do not undo the action or return to frame1. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Plant seeds in a fixed terracotta pot of soil on the right while kneeling left. Frames1-4 right fingertip makes a tiny hole in soil,5-8 takes a small seed from left palm and lowers it into hole,9-12 gently draws soil over seed,13-16 pats soil flat and returns hands to relaxed position. No watering can, no already grown plant, no changing pot."
+    },
+    {
+      "kind": "harvest",
+      "path": "motion-sources/v036/harvest.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. This is a ONE-SHOT action: frame16 keeps the completed result, do not undo the action or return to frame1. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Harvest a few lettuce leaves from a fixed terracotta pot on the RIGHT into a small woven basket near the left knee. Frames1-4 right hand reaches to one OUTER lettuce leaf,5-8 gently pinches and lifts the leaf,9-12 moves that leaf over basket and releases it,13-16 returns hand toward remaining lettuce. Pot and basket fixed. Do not uproot whole plant or transform leaf into tool."
+    },
+    {
+      "kind": "bike-repair",
+      "path": "motion-sources/v036/bike-repair.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. First and last pose nearly identical for a smooth loop. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Repair the chain of a fixed black commuter bicycle occupying the RIGHT half. Character squats left beside the chainwheel. Frames1-4 right hand brings a small wrench to a bolt near chainwheel,5-8 rotates wrist a little to tighten,9-12 lifts and resets wrench angle,13-16 repeats a small tightening turn returning to initial wrist angle. Bicycle frame/wheels remain static, no riding or whole-bike rotation."
+    },
+    {
+      "kind": "build",
+      "path": "motion-sources/v036/build.png",
+      "prompt": "Create ONE production game animation sprite sheet, 4 columns x 4 rows, EXACTLY 16 equal square cells in one square image. Read left to right then top to bottom. No labels, no borders, no letters. Character reference image gives style: the same black-haired Korean young adult male with olive jacket, beige shirt, dark trousers and brown shoes. Semi-realistic hand-painted game sprite. In all sixteen cells: locked same camera, exact same character proportions, head size, full body framing, feet/knees position and prop locations. Entire subject and props visible with 10% padding. Perfectly flat uniform dark green #213027 background throughout, no gradients, no ground shadows extending outside the sprite. A SINGLE continuous physical action, NOT variants. Draw SIXTEEN distinct chronological intermediate key poses, small believable changes from each pose to the next. Keep static objects identical across cells; articulate actual arms/hands and the moving object, not whole-image shifting or zooming. First and last pose nearly identical for a smooth loop. No duplicate people, no ghost figures, no blur, no dissolves. Most important is physical continuity and mechanically plausible interaction. ACTION: Reinforce a small upright wooden door panel on the RIGHT while kneeling LEFT. Panel remains exactly fixed, a short horizontal plank across it remains fixed. Frames1-4 left hand steadies plank and right hand raises a small hammer slightly,5-8 hammer makes one controlled small tap onto a nail,9-12 pulls hammer back 10cm,13-16 makes another gentle tap and returns to initial position. No destruction, no giant hammer swing, no changing door geometry."
+    }
+  ]
+}

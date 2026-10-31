@@ -1,0 +1,1 @@
+{"kind": "rest", "keyframes": 16, "frames": 96, "cell": 192, "columns": 8, "frameMs": 40, "cycleMs": 3840, "loop": true, "source": "motion-sources/v036/rest.webp", "atlas": "assets/actor-rest-atlas-v360.webp"}

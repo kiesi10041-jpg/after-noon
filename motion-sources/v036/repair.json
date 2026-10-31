@@ -1,0 +1,1 @@
+{"kind": "repair", "keyframes": 16, "frames": 96, "cell": 192, "columns": 8, "frameMs": 40, "cycleMs": 3840, "loop": false, "source": "motion-sources/v036/repair.webp", "atlas": "assets/actor-repair-atlas-v360.webp"}
