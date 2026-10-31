@@ -1,6 +1,6 @@
-import {travelSuppliesView} from './travel-supplies.js?v=0.37.3';
-import {injuryPenalty} from './wildlife.js?v=0.37.3';
-import {roll} from './growth.js?v=0.37.3';
+import {travelSuppliesView} from './travel-supplies.js?v=0.37.4';
+import {injuryPenalty} from './wildlife.js?v=0.37.4';
+import {roll} from './growth.js?v=0.37.4';
 export const line4Stops=['서울역','회현','명동','충무로','동대문역사문화공원','동대문','혜화','한성대입구','성신여대입구','길음','미아사거리','미아','수유','쌍문','창동','노원'];
 const anchors={road2:0,road3:14,family:15,nowon:15};
 export function railStops(from,to){const a=anchors[from],b=anchors[to];if(a===undefined||b===undefined||a===b)return null;const out=[];for(let i=a;;i+=a<b?1:-1){out.push(line4Stops[i]);if(i===b)break;}return out;}
