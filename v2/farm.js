@@ -1,5 +1,5 @@
-import {initFarm,discoverFarm,arriveFarm,carHere,carFuelCost} from './farm-state.js?v=0.37.1';
-import {siteLife,initSettlement,crops} from './settlement.js?v=0.37.1';
+import {initFarm,discoverFarm,arriveFarm,carHere,carFuelCost} from './farm-state.js?v=0.37.3';
+import {siteLife,initSettlement,crops} from './settlement.js?v=0.37.3';
 export {initFarm,arriveFarm,carHere,carFuelCost};
 export const farmItems={hay:['건초',1,.25],compost:['퇴비',1,.3],seedBean:['콩 씨앗',1,.05],seedCorn:['사료용 옥수수 씨앗',1,.05]};
 const stories={calendar:['달력의 동그라미','냉장고에 달력이 붙어 있었다. 그날 날짜에 엄마 글씨로 ‘농원’이라고 적혀 있었다.\n현관 옆 고리에는 차키가 걸려 있었다.\n같이 가자고 했을 때, 다음에 가겠다고 했는데.','차키를 챙긴다','family'],keys:['익숙한 길','엄마가 몇 년째 다니던 농원이다. 몇 번 따라간 적이 있다.\n주차장에 차가 그대로 있을까. 있으면 거기까지 가 볼 수 있다.','휴대폰도 확인한다','family'],arrival:['농원','비닐하우스 문이 반쯤 열려 있었다. 관리실과 창고를 차례로 불렀지만 대답은 없었다.\n닭들이 빈 모이통 주위를 쪼고 있었다. 수도꼭지를 돌리자 호스 끝에서 물이 나왔다.\n일단 물부터 줘야겠다.','호스를 내려놓는다','yard'],night:['하루만','모이통을 채우고 호스를 감았다. 관리실 벽에 엄마 작업 장갑이 걸려 있었다.\n관리실 안쪽에는 접어 둔 이불이 있었다.\n오늘은 여기서 자도 되겠다.','관리실을 정리한다','yard'],settled:['짐을 내려놓고','책상 위 먼지를 닦고 이불을 폈다. 문은 안에서 잠글 수 있었다.\n가방을 벽에 기대 놓았다. 내일은 비닐하우스부터 손봐야겠다.','농원으로 돌아간다','yard']};

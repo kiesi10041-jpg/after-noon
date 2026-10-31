@@ -1,10 +1,10 @@
-import {carHere,carFuelCost} from './farm-state.js?v=0.37.1';
-import {preparationView} from './travel-supplies.js?v=0.37.1';
-import {fatiguePlan} from './movement-fatigue.js?v=0.37.1';
-import {districtFor} from './fieldwork.js?v=0.37.1';
-import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.37.1';
-import {routeAllowed,initDiscovery,neighbors,mapSource} from './overland.js?v=0.37.1';
-import {railStops,railEstimate} from './rail-journey.js?v=0.37.1';
+import {carHere,carFuelCost} from './farm-state.js?v=0.37.3';
+import {preparationView} from './travel-supplies.js?v=0.37.3';
+import {fatiguePlan} from './movement-fatigue.js?v=0.37.3';
+import {districtFor} from './fieldwork.js?v=0.37.3';
+import {places,vehicles,routeDistance,travelMinutes,departureAt,mass} from './journey.js?v=0.37.3';
+import {routeAllowed,initDiscovery,neighbors,mapSource} from './overland.js?v=0.37.3';
+import {railStops,railEstimate} from './rail-journey.js?v=0.37.3';
 const escape=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const duration=n=>`${Math.floor(n/60)?Math.floor(n/60)+'시간 ':''}${n%60||!n?n%60+'분':''}`;
 export function travelSummary(s){const target=s.tripPlan?.target,origin=s.away?s.location:'home',mode=s.tripPlan?.vehicle||'walk';if(!places[target])return null;const km=routeDistance(origin,target),rail=mode==='railwalk'?railEstimate(origin,target):null,minutes=rail?rail.minutes:travelMinutes(target,mode,mass(s),origin,s),ap=rail?rail.ap:km<5?fatiguePlan(s,km,mode).ap:mode==='walk'?Math.ceil(km/4):mode==='bike'?Math.ceil(km/9):1;return {target,origin,mode,km,minutes,ap,allowed:routeAllowed(s,origin,target),segmented:!(mode==='car'&&s.farm?.carClaimed)&&(km>=5||Boolean(rail))};}
