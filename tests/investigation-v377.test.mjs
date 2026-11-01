@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {create,action} from '../v2/journey.js';
+import {investigationTargets,investigationView,lootNavigation} from '../v2/fieldwork-ui.js';
+const button=(a,n,d='',off=false)=>`<button data-a="${a}" ${off?'disabled':''}>${n}<small>${d}</small></button>`;
+function setup(location='pharmacy',condition='sealed'){const s=create(13);s.away=true;s.location=s.scene=location;s.ap=8;s.time=780;s.ratsChecked[location]=true;s.carry={tool:1};s.worldSites[location].condition=condition;return s;}
+test('loot opens only local investigations, without unrelated management actions',()=>{const s=setup();action(s,'careful');const nav=lootNavigation(s,button),html=investigationView(s,button);assert.match(nav,/data-a="investigate"/);assert.doesNotMatch(nav,/place-menu/);assert.match(html,/調査|조사 완료/);assert.match(html,/data-a="tool"/);assert.doesNotMatch(html,/growth|route-map|shelter|field-rest|field-care|life/);});
+test('tool and forced entry share completion; all done hides the loot shortcut',()=>{const s=setup();action(s,'careful');assert.ok(investigationTargets(s).some(t=>!t.done));action(s,'tool');assert.ok(investigationTargets(s).every(t=>t.done));assert.doesNotMatch(lootNavigation(s,button),/investigate/);assert.match(lootNavigation(s,button),/site-back/);});
+test('open-site legacy saves do not offer paid searches of the same accessible stock',()=>{const s=setup('pharmacy','open');s.worldSites.pharmacy.searched=true;assert.ok(investigationTargets(s).every(t=>t.done));});
+test('bridge has only its actual bag target; uninspected park bike remains available',()=>{const bridge=setup('bridge','open');assert.deepEqual(investigationTargets(bridge).map(t=>t.action),['careful']);const s=setup('park','open');action(s,'careful');assert.ok(investigationTargets(s).find(t=>t.action==='bike-inspect'&&!t.done));action(s,'bike-inspect');assert.ok(investigationTargets(s).every(t=>t.done));});
+test('opening the investigation list does not change time, stock or state',()=>{const s=setup();action(s,'careful');const before=JSON.stringify(s);investigationView(s,button);lootNavigation(s,button);assert.equal(JSON.stringify(s),before);});

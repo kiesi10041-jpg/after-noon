@@ -1,10 +1,10 @@
-import {isMedicalSite} from './medical-sites.js?v=0.37.6';
-import {siteInteractions} from './site-interactions.js?v=0.37.6';
-import {hasKnowledge,level} from './growth.js?v=0.37.6';
-import {tension} from './survival-controls.js?v=0.37.6';
-import {foodLabelHTML} from './food-labels.js?v=0.37.6';
-import {isResidence,isRestStop,shelterAt} from './expedition.js?v=0.37.6';
-import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.37.6';
+import {isMedicalSite} from './medical-sites.js?v=0.37.7';
+import {siteInteractions} from './site-interactions.js?v=0.37.7';
+import {hasKnowledge,level} from './growth.js?v=0.37.7';
+import {tension} from './survival-controls.js?v=0.37.7';
+import {foodLabelHTML} from './food-labels.js?v=0.37.7';
+import {isResidence,isRestStop,shelterAt} from './expedition.js?v=0.37.7';
+import {districtFor,hubs,flashlightOwned,flashlightHint} from './fieldwork.js?v=0.37.7';
 export function lightControls(s,button,source){return button(flashlightOwned(s)?'light':'light-help',source==='flashlight'?'손전등 끄기':'손전등',flashlightHint(s),flashlightOwned(s)&&s.battery<=0)+button('phone-light',source==='phone'?'휴대폰 끄기':'휴대폰',`${s.phoneBattery}%`,!s.phoneBattery)+button('power-kit','건전지','교체·충전');}
 export function mapTabs(s,button){const district=s.away&&districtFor(s.location);return `<div class="travel-tabs primary-map-tabs">${button(district?'district-map':'local-map','주변 탐색')}${button('regional-map','장거리 여정')}</div><details class="map-reference"><summary>노선·다른 지도</summary><div class="travel-tabs">${button('rail-map','역 순서·노선')}${district?button('local-map','내 집 주변'):''}${s.chapter2?.stage?button('ch2-map','2장 지도'):''}</div></details>`;}
 export function bikeView(s,button,itemArt,places){const b=s.bikeFind,owned=s.transport.bike,kit=s.away?s.carry:s.stock;return `<p class="shelter-feedback" role="status">${s.text}</p><div class="bike-portrait">${itemArt('bike')}</div><p class="sheet-note">${owned?`보유 자전거 · 상태 ${s.transport.bikeCondition}%`:b?`발견 위치: ${places[b.location]?.name} · 상태 ${b.condition}%`:'공원이나 각 역 주변 자전거 수리점에서 프레임을 찾아보세요.'}</p><p class="sheet-note">${s.away?'현재 가방':'집'}: 공구 ${kit.tool||0} · 정비 부품 ${kit.bikeParts||0} · 천과 실 ${kit.cloth||0}<br>공구는 유지됩니다. 심한 손상과 완전 정비에는 부품이 필요하며, 천은 간단한 응급 수선에 사용합니다.</p><p class="sheet-note">정비 지식: ${hasKnowledge(s,'mechanics')?'기초 이해':'학습 필요'} · 숙련 ${level(s,'mechanics')}/3</p>${button('growth','정비 학습·실습','책을 읽거나 실제 작업으로 배우기')}<ol class="bike-stages"><li class="${b||owned?'done':''}">프레임·바퀴 확인</li><li class="${owned||b&&!b.locked?'done':''}">케이블 잠금 제거</li><li class="${owned?'done':''}">타이어·체인·브레이크 정비</li></ol><div class="sheet-actions">${!owned?button('bike-inspect','주변 자전거 살피기','10분 · 발견 장소에서 진행')+button('bike-unlock','케이블 잠금 제거','20분 · 기력 1 · 공구',!b||!b.locked):''}${button('bike-repair',owned?'자전거 수리':'수리하고 자전거 확보','40분 · 기력 1 · 공구 + 정비 부품 또는 천과 실',owned?s.transport.bikeCondition>=100:!b||b.locked)}</div><p class="sheet-note">이동 거리만큼 마모되고, 확률적으로 체인·바퀴가 추가 손상됩니다. 상태 25% 미만이면 수리 후 탈 수 있습니다.</p>`;}
@@ -13,4 +13,20 @@ export function placeActions(s,button,places={}){const context=siteInteractions(
 export function placeMenuView(s,button,extra,places={}){const context=siteInteractions(s.location,places);const feedback=String(s.text||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));return `<p class="shelter-feedback" role="status">${feedback}</p><p class="sheet-note">현재 장소의 행동을 고르세요. 이동과 조사에 드는 시간은 실제 게임 시간에 반영됩니다.</p><div class="sheet-actions">${button('growth','능력과 기술','능력치 · 숙련 · 읽을거리')}${button('route-map','지도·안내 자료 조사','20분 · 다음 지역의 후보 경로')}${extra}${button('careful',context.near,`${30+tension(s).minutes}분 · 기력 ${1+tension(s).ap}`)}${context.inside?button('tool',context.inside,'50분 기본 · 기력 2 · 공구',!s.carry.tool):''}${context.force?button('force',context.force,`${50-(s.growth.stats.endurance-1)*5}분 기본 · 기력 2 · 가방 손상 20 · 부상 위험`):''}${!context.outside?button('shelter','거처·잠자리 확인'):''}${s.expedition?.shelters?.[s.location]?button('shelter-store','거처 보관함 열기')+button('kitchen','조리 공간 확인'):''}${button('field-rest',isResidence(s.location)?'집 안에서 잠시 쉬기':context.outside?'통행로 가장자리에서 잠시 쉬기':'몸을 숨겨 잠시 쉬기',isResidence(s.location)?'1시간 · 기력 +2 · 긴장 완화':'1시간 · 기력 +2 · 긴장 증가')}</div>`;}
 
 
-export function lootNavigation(s,button){return button('site-back','장소로 돌아가기','다른 곳 조사 · 시간·기력 소모 없음')+button('place-menu','다른 조사·장비 선택','주변 · 수납공간 · 잔해 조사');}
+// Search choices share the actual loot access boundaries: tool and force open
+// the same compartment, so completing either completes that target.
+export function investigationTargets(s,places={}){
+ const context=siteInteractions(s.location,places),site=s.worldSites?.[s.location]||{};
+ const opened=Boolean(site.opened||(site.searched&&site.condition!=='sealed'));
+ const targets=[{action:'careful',name:context.near,done:Boolean(site.searched),detail:`${30+tension(s).minutes}분 · 기력 ${1+tension(s).ap}`}];
+ if(context.inside)targets.push({action:'tool',name:context.inside,done:opened,detail:'공구로 조사 · 시간·기력 소모',disabled:!s.carry.tool});
+ if(context.force)targets.push({action:'force',name:context.force,done:opened,detail:'강제로 조사 · 가방 손상·부상 위험'});
+ const bikeHere=!s.transport.bike&&(s.location==='park'||places[s.location]?.profile==='workshop'||s.location===s.vehicleFinds?.bike)&&(!s.bikeFind||s.bikeFind.location===s.location);
+ if(bikeHere)targets.push({action:'bike-inspect',name:'주변 자전거 살피기',done:Boolean(s.bikeFind?.inspected),detail:'10분 · 프레임·잠금 상태 확인'});
+ return targets;
+}
+export function investigationView(s,button,places={}){
+ const targets=investigationTargets(s,places);
+ return '<p class="sheet-note">이 장소에서 더 살펴볼 곳을 고르세요.</p><div class="sheet-actions">'+targets.map(t=>t.done?button(t.action,t.name,'조사 완료',true):button(t.action,t.name,t.detail,t.disabled)).join('')+'</div>';
+}
+export function lootNavigation(s,button,places={}){return button('site-back','장소로 돌아가기','시간·기력 소모 없음')+(investigationTargets(s,places).some(t=>!t.done)?button('investigate','다른 곳 조사하기','이 장소에 남은 조사 대상'): '');}

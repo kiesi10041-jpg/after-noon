@@ -1,9 +1,9 @@
-import {initFarm} from './farm-state.js?v=0.37.6';
-import {farmQuest} from './farm.js?v=0.37.6';
-import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.6';
-import {isMedicalSite,medicalState} from './medical-sites.js?v=0.37.6';
-import {carryLimit} from './strain.js?v=0.37.6';
-import {chapterQuest} from './chapter2.js?v=0.37.6';
+import {initFarm} from './farm-state.js?v=0.37.7';
+import {farmQuest} from './farm.js?v=0.37.7';
+import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.7';
+import {isMedicalSite,medicalState} from './medical-sites.js?v=0.37.7';
+import {carryLimit} from './strain.js?v=0.37.7';
+import {chapterQuest} from './chapter2.js?v=0.37.7';
 // Persistent expedition, narrative and exposure rules. No UI or wall-clock dependency.
 export const expeditionPlaces={
  nowon:{name:'노원역 기록실',distance:80.5,kind:'단서'},
