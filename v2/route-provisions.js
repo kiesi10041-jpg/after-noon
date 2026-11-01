@@ -1,7 +1,7 @@
 import {roll} from './growth.js?v=0.37.9';
 export function provisionStop(s){
  const t=s.railTrip;
- if(t){if(t.stage!=='platform')return null;const name=t.stops[t.index];return {key:'rail:'+name,name:name+'역 자판기·매점',note:'자판기 배출구와 매점의 밀봉 식품을 확인한다. 전기가 끊긴 기계는 작동하지 않는다.'};}
+ if(t){if(t.stage!=='platform')return null;const name=t.stops[t.index];return {key:'rail:'+name,name:(name.endsWith('역')?name:name+'역')+' 자판기·매점',note:'자판기 배출구와 매점의 밀봉 식품을 확인한다. 전기가 끊긴 기계는 작동하지 않는다.'};}
  const r=s.roadTrip;if(!r||r.crossing||r.stage==='obstacle')return null;
  return {key:'road:'+r.edge+':'+r.index,name:r.index%2?'길가 편의점':'도로변 작은 식당',note:'진열대의 밀봉 식품과 생수만 살핀다. 냉장 음식과 조리된 음식은 남겨 둔다.'};
 }
