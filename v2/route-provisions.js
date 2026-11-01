@@ -1,4 +1,4 @@
-import {roll} from './growth.js?v=0.37.9-r1';
+import {roll} from './growth.js?v=0.37.10';
 export function provisionStop(s){
  const t=s.railTrip;
  if(t){if(t.stage!=='platform')return null;const name=t.stops[t.index];return {key:'rail:'+name,name:(name.endsWith('역')?name:name+'역')+' 자판기·매점',note:'자판기 배출구와 매점의 밀봉 식품을 확인한다. 전기가 끊긴 기계는 작동하지 않는다.'};}

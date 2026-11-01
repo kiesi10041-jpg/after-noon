@@ -1,28 +1,28 @@
-import {provisionAction} from './route-provisions.js?v=0.37.9-r1';
-import {farmAction,farmItems,initFarm,arriveFarm,carHere,carFuelCost} from './farm.js?v=0.37.9-r1';
-import {farmPlace} from './farm-state.js?v=0.37.9-r1';
-import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.9-r1';
-import {reliefAction} from './relief.js?v=0.37.9-r1';
-import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.37.9-r1';
-import {chooseAnimal,beginAnimal,catEncounter,animalIntro,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.37.9-r1';
-import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.37.9-r1';
-import {initBody,climateHour,climateAction} from './body-climate.js?v=0.37.9-r1';
-import {isMedicalSite} from './medical-sites.js?v=0.37.9-r1';
-import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.37.9-r1';
-import {siteInteractions} from './site-interactions.js?v=0.37.9-r1';
-import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.37.9-r1';
+import {provisionAction} from './route-provisions.js?v=0.37.10';
+import {farmAction,farmItems,initFarm,arriveFarm,carHere,carFuelCost} from './farm.js?v=0.37.10';
+import {farmPlace} from './farm-state.js?v=0.37.10';
+import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.10';
+import {reliefAction} from './relief.js?v=0.37.10';
+import {fatiguePlan,spendTravel} from './movement-fatigue.js?v=0.37.10';
+import {chooseAnimal,beginAnimal,catEncounter,animalIntro,wildlifeAction,injuryPenalty,injuryDaily} from './wildlife.js?v=0.37.10';
+import {initSettlement,migrateSeeds,settlementAction,settlementDaily,drawWater,availableWater,settlementItems} from './settlement.js?v=0.37.10';
+import {initBody,climateHour,climateAction} from './body-climate.js?v=0.37.10';
+import {isMedicalSite} from './medical-sites.js?v=0.37.10';
+import {stressfulActions,stressEffect,panicAction} from './stress-events.js?v=0.37.10';
+import {siteInteractions} from './site-interactions.js?v=0.37.10';
+import {carryLimit,comfortLoad,calmPlan,easeStress,minuteNow,stressFloor} from './strain.js?v=0.37.10';
 export {carryLimit,comfortLoad,calmPlan};
-import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.37.9-r1';
-import {ensureWorld,seededLoot,siteState,searchDocuments} from './worldgen.js?v=0.37.9-r1';
-import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.37.9-r1';
-import {railAction,railEstimate} from './rail-journey.js?v=0.37.9-r1';
-import {chapterPlaces,chapterAction} from './chapter2.js?v=0.37.9-r1';
-import {replaceBattery,tension} from './survival-controls.js?v=0.37.9-r1';
-import {useMedicine} from './care.js?v=0.37.9-r1';
-import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.37.9-r1';
+import {initGrowth,growthAction,gain,level,hasKnowledge,books} from './growth.js?v=0.37.10';
+import {ensureWorld,seededLoot,siteState,searchDocuments} from './worldgen.js?v=0.37.10';
+import {routePlaces,initDiscovery,routeAllowed,startRoad,roadAction,backbone,neighbors} from './overland.js?v=0.37.10';
+import {railAction,railEstimate} from './rail-journey.js?v=0.37.10';
+import {chapterPlaces,chapterAction} from './chapter2.js?v=0.37.10';
+import {replaceBattery,tension} from './survival-controls.js?v=0.37.10';
+import {useMedicine} from './care.js?v=0.37.10';
+import {districtPlaces,districtDistance,districtFor,initFieldwork,fieldAction,flashlightOwned,localStock,bikeWear} from './fieldwork.js?v=0.37.10';
 export {flashlightOwned};
-import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.37.9-r1';
-import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.37.9-r1';
+import {expeditionPlaces,extraItems,initExpedition,shelterAt,expeditionAction,expeditionDaily,storyArrival,animalBite} from './expedition.js?v=0.37.10';
+import {create as baseCreate,items,pantryFoods,eatPantry,rand,season,capacity,weatherToday,incidentToday,ensureFoodDates,addFoodDate,foodExpiry,agePantry} from './rules.js?v=0.37.10';
 export {items,pantryFoods,season,capacity,weatherToday,incidentToday};
 items.flashlight=['손전등',1,.2];items.battery=['건전지 한 쌍',1,.1];
 items.medicine=['구급약',1,.15];items.carKey=['차 열쇠',0,0];items.bike=['자전거',0,0];items.mask=['방진 마스크',1,.1];Object.assign(items,extraItems,settlementItems);
@@ -56,7 +56,7 @@ export function mass(s){return Object.entries(s.carry).reduce((n,[id,q])=>n+(ite
 export const flashlightReady=s=>flashlightOwned(s)&&s.battery>0;
 export const lightSource=s=>s.lightOn&&flashlightReady(s)?'flashlight':s.phoneLight&&s.phoneBattery>0?'phone':null;
 export const lit=s=>Boolean(lightSource(s));
-export const needsLight=s=>Boolean(s.railTrip)||Boolean(s.roadTrip&&isNight(s))||isNight(s)&&(!powered(s)||['neighbor','park'].includes(s.location));
+export const needsLight=s=>Boolean(s.railTrip&&(!s.railTrip.surface||isNight(s)))||Boolean(s.roadTrip&&isNight(s))||isNight(s)&&(!powered(s)||['neighbor','park'].includes(s.location));
 export const dark=s=>needsLight(s)&&!lit(s);
 export const bagLimit=s=>capacity(s);
 export function requireSight(s){if(!dark(s))return true;s.text='너무 어둡다. 바닥과 물건이 구분되지 않는다. 손전등이나 휴대폰 조명을 켜야 살필 수 있다.';return false;}
@@ -142,7 +142,7 @@ if(a==='silence-car'){if(s.away||!s.stock.tool||s.ap<1)return false;if(!pay(s,{a
 if(a==='answer-signal'&&s.signalPending){s.signalPending=false;initExpedition(s).phase=2;if(s.day>s.signalDeadline){s.signalMissed=true;s.text='화면에는 서비스 없음만 남아 있다. 다시 진동하지 않았다.';}else{s.signalHeard=true;s.clues.push('생존자를 찾는 불완전한 통화');s.text='서랍 속 휴대폰이 진동했다. 통화 버튼을 누르자 잡음 사이로 “생존…자를 찾습니다. 들리면… 방송…”이 들렸다. 곧 통신이 끊겼다. 녹음인지, 지금 누군가 말한 것인지는 알 수 없다.';}return true;}
 if(a==='light'){if(!flashlightOwned(s)){s.text='휴대한 손전등이 없다. 집의 손전등은 외출할 때 장착하고, 거처에 보관한 손전등은 그 거처에서 사용할 수 있다.';return false;}if(!s.battery){s.text='건전지가 다 됐다. 가방에서 교체해야 한다.';return false;}s.lightOn=!s.lightOn;if(s.lightOn)s.phoneLight=false;return true;}
 if(a==='battery')return replaceBattery(s,flashlightOwned(s));
-if(a==='calm'){const plan=calmPlan(s);if(plan.reason){s.text=plan.reason;return false;}advance(s,plan.minutes,{exposed:Boolean(s.roadTrip||s.railTrip),resting:true});if(s.ended)return false;easeStress(s,plan.amount);s.lastCalmMinute=minuteNow(s);s.text=`주변을 살피며 20분 동안 호흡을 가다듬었다. 긴장 완화는 최대 ${plan.amount}. 현재 환경의 긴장 하한 ${plan.floor}. 다시 시도하려면 2시간이 필요하다. 위험·허기·갈증을 해결해야 더 안정될 수 있다.`;return true;}
+if(a==='calm'){const plan=calmPlan(s);if(plan.reason){s.text=plan.reason;return false;}advance(s,plan.minutes,{exposed:Boolean(s.roadTrip||s.railTrip),resting:true});if(s.ended)return false;easeStress(s,plan.amount);s.lastCalmMinute=minuteNow(s);s.text=`주변을 살피며 20분 동안 호흡을 가다듬었다. 긴장 완화는 최대 ${plan.amount}. 현재 환경의 긴장 하한 ${plan.floor}. 다시 시도하려면 ${s.railTrip?.stage==='platform'?'30분':'2시간'}이 필요하다. 위험·허기·갈증을 해결해야 더 안정될 수 있다.`;return true;}
 if(s.away)return false;
 if(a==='rest'){advance(s,60,{resting:true});s.travelFatigue=Math.max(0,(s.travelFatigue||0)-.5);s.ap=Math.min(MAX_AP,s.ap+3);easeStress(s,12);s.text='한 시간 동안 등을 기대고 쉬었다. 바깥 소리에 귀를 기울였다.';return true;}
 if(a==='wait'){advance(s,120);s.text='창가에 앉아 두 시간을 보냈다. 거리의 빛이 조금 달라졌다.';return true;}

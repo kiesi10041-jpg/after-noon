@@ -1,9 +1,9 @@
-import {provisionView} from './route-provisions.js?v=0.37.9-r1';
-import {knownCarRoute} from './farm-state.js?v=0.37.9-r1';
-import {travelSuppliesView} from './travel-supplies.js?v=0.37.9-r1';
-import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.9-r1';
-import {comfortLoad} from './strain.js?v=0.37.9-r1';
-import {roll,initGrowth,gain,level,understand} from './growth.js?v=0.37.9-r1';
+import {provisionView} from './route-provisions.js?v=0.37.10';
+import {knownCarRoute} from './farm-state.js?v=0.37.10';
+import {travelSuppliesView} from './travel-supplies.js?v=0.37.10';
+import {sleepMinutes,sleepRecovery} from './sleep-options.js?v=0.37.10';
+import {comfortLoad} from './strain.js?v=0.37.10';
+import {roll,initGrowth,gain,level,understand} from './growth.js?v=0.37.10';
 export const routePlaces={bridge:{name:'청라하늘대교 진입부',kind:'외곽',profile:'street',distance:8}};
 export const backbone=['station','bridge','road1','road2','road3','family'];
 const hub=id=>id?.includes('_')?id.split('_')[0]:['home','neighbor','store','pharmacy','market','hardware','park','bookstore'].includes(id)?'station':id;

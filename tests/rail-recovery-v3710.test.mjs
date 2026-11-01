@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {create,action,needsLight} from '../v2/journey.js';
+import {calmPlan} from '../v2/strain.js';
+import {sceneArt} from '../v2/scene-art.js';
+function stuck(stage='platform'){const s=create(18);s.away=true;s.location='rail-transit';s.scene='rail-journey';s.time=900;s.ap=0;s.stress=95;s.hunger=69;s.thirst=97;s.equipment.flashlight=true;s.battery=1;s.lightOn=true;s.phoneBattery=0;s.railTrip={origin:'road2',target:'road3',stops:['서울역','회현','명동','충무로','동대문역사문화공원','동대문','혜화','한성대입구','성신여대입구','길음','미아사거리','미아','수유','쌍문','창동'],index:8,stage,spent:280,obstacles:{}};return s;}
+test('screenshot condition can recover stamina and tension without light or items',()=>{const s=stuck();assert.equal(action(s,'rail-step'),false);assert.equal(action(s,'rail-rest'),true);assert.equal(s.ap,2);assert.equal(s.stress,77);assert.ok(s.stressRecoveryUntil>(s.day-1)*1440+s.time);});
+test('empty battery traveler exits at current station and continues above ground in daylight',()=>{const s=stuck('tunnel');assert.equal(action(s,'rail-surface'),true);assert.equal(s.railTrip.index,8);assert.equal(s.railTrip.surface,true);assert.equal(s.railTrip.stage,'platform');assert.equal(s.lightOn,false);assert.equal(needsLight(s),false);assert.equal(sceneArt(s),'neighborhood-v25.webp');action(s,'rail-rest');assert.equal(action(s,'rail-step'),true);assert.equal(s.railTrip.index,9);});
+test('reloaded surface mode persists and never skips remaining stations',()=>{const s=stuck();action(s,'rail-surface');const copy=JSON.parse(JSON.stringify(s));copy.ap=2;assert.equal(action(copy,'rail-step'),true);assert.equal(copy.railTrip.index,9);assert.equal(copy.location,'rail-transit');});
+test('dark surface path still needs light, and breathing cooldown is shorter at stations',()=>{const s=stuck();s.lastCalmMinute=(s.day-1)*1440+s.time;assert.equal(calmPlan(s).remaining,30);action(s,'rail-surface');s.time=1200;assert.equal(needsLight(s),true);assert.equal(action(s,'rail-step'),false);});
