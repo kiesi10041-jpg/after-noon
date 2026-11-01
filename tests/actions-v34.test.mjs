@@ -24,13 +24,13 @@ test('cat and birds can be passed safely and looting remains available',()=>{
  for(const kind of ['cat','crow','pigeon']){
   const s=make(),hp=s.health,bag=s.bag.durability;beginAnimal(s,kind);
   assert.doesNotMatch(wildlifeView(s,a=>a),/wildlife-defend/);
-  assert.equal(action(s,'wildlife-pass'),true);assert.equal(s.scene,'market');assert.equal(s.health,hp);assert.equal(s.bag.durability,bag);
+  assert.equal(action(s,kind==='cat'?'pet-leave':'wildlife-pass'),true);assert.equal(s.scene,'market');assert.equal(s.health,hp);assert.equal(s.bag.durability,bag);
   assert.equal(action(s,'careful'),true);
  }
 });
 test('all animals have a non-combat continuation to the actual destination',()=>{
  for(const kind of ['cat','crow','pigeon','deer','dog','boar','snake','raccoon']){
-  const s=make();beginAnimal(s,kind);assert.equal(action(s,'wildlife-pass'),true);assert.equal(s.scene,'market');assert.equal(s.location,'market');assert.equal(s.wildlifeActive,'');
+  const s=make();beginAnimal(s,kind);assert.equal(action(s,kind==='cat'?'pet-leave':'wildlife-pass'),true);assert.equal(s.scene,'market');assert.equal(s.location,'market');assert.equal(s.wildlifeActive,'');
  }
 });
 test('encounter cooldown persists on save and cannot repeat at every location',()=>{
